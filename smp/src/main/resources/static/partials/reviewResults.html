@@ -1,0 +1,94 @@
+<div class="pure-g">
+    <div class="pure-u-1-1">
+        <ng-include src="'common/partials/header.html'"></ng-include>
+
+    </div>
+    <div class="pure-u-1-1">
+        <h2>Review and approve import</h2>
+        <hr/>
+        <br>
+    </div>
+
+    <div ng-hide="resultsImported">
+        <div ng-repeat="learningReport in reports| filter:courseNumberfilter">
+
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+
+                    <fieldset>
+                        <legend ng-show="learningReport.verification.score > verificationLimit">Almost done!</legend>
+                        <legend style="background-color:orange;"
+                                ng-show="learningReport.verification.score > verificationLimit">The names doesn't match
+                        </legend>
+                        <p>
+
+                        <div class="custom-inline">You have selected to import</div>
+                        <div class="custom-inline">{{learningReport.numberOfCourses}}</div>
+                        <div class="custom-inline" ng-show="learningReport.numberOfCourses == 1"> course.</div>
+                        <div class="custom-inline" ng-show="learningReport.numberOfCourses != 1"> courses.</div>
+                        <p>
+
+                        <p ng-show="learningReport.verification.nameVerified == false">
+                            The name of the of the person you are trying to import as,
+                            {{learningReport.verification.fullNameFromHomeInstitute|| "undefined"}}, 
+                            and the name of the person your are trying to import from,
+                            <b>{{learningReport.verification.fullNameInElmo}}</b>, doesn´t match.  
+                        </p>
+                        <p ng-show="learningReport.verification.bDayVerified == false">
+                            Due to mismatch between your birthday information from Haka  and in course report
+                            your identity is not verified. 
+                        </p>
+                         <p ng-show="learningReport.verification.verified == false">   You will still be able to import 
+                            your results but not use them until they have been reviewed. 
+                         </p>
+
+
+                        Please review your selection below and approve it to import the courses to your home university
+                        results.
+                    </fieldset>
+                    <button class="pure-button custom-go-button" ng-click="import()">Import courses</button>
+                    <button class="pure-button custom-panic-button" ng-click="abort()">Cancel</button>
+
+                </div>
+            </div>
+            <div class="pure-u-1-1">
+                If you’d like a copy of the imported results, <a href="/smp/elmo">please open and save the PDF</a> to your own device.
+                <learning-report-directive report='learningReport' only-viewing=true level-filter='selectedLevel'
+                                           type-filter='typeOptions'></learning-report-directive>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="resultsImported">
+        <div class="pure-g">
+            <div class="pure-u-1-2">
+                <div ng-repeat="learningReport in reports| filter:courseNumberfilter">
+                    <fieldset>
+                        <legend>Completed</legend>
+                        {{learningReport.numberOfCourses}} course have been imported for 
+                        {{learningReport.verification.fullNameFromHomeInstitute|| "undefined"}} from 
+                        {{getTitle(learningReport) || "issuing institution"}} 
+                        to the {{learningReport.verification.homeInstitute|| "home institution"}}.
+                    </fieldset>
+                    <fieldset>
+                        <legend style="background-color:orange;">Results imported</legend>
+                        <p>
+                            The results you selected have been imported.
+                        </p>
+
+                        <p ng-show="learningReport.verification.verified == false">
+                            Due to mismatch between your information from Haka  and in course report
+                            your identity is not verified. You will not be able
+                            use your results until they have been reviewed. 
+                        </p>
+                        <p>
+                            Please contact the admissions office at your university for more information.
+                        </p>
+                    </fieldset>
+                    <a href="{{questionnaireUrl}}"><button class="pure-button custom-go-button">Take me to the questionnaire.</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

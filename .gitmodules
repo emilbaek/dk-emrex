@@ -1,6 +1,6 @@
 [submodule "fi-ncp/src/main/resources/static/fi-common"]
-	path = fi-ncp/src/main/resources/static/fi-common
-	url = https://github.com/EMREXEU/fi-common.git
+	path = ncp/src/main/resources/static/common
+	url = https://github.com/InvokIT/dk-emrex-common.git
 [submodule "fi-smp/src/main/resources/static/fi-common"]
-	path = fi-smp/src/main/resources/static/fi-common
-	url = https://github.com/EMREXEU/fi-common.git
+	path = smp/src/main/resources/static/common
+	url = https://github.com/InvokIT/dk-emrex-common.git
