@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @Slf4j
 @Setter
 @Component
-public class VirtaClient {
+public class VirtaClient implements dk.kmd.emrex.ncp.StudyFetcher {
 
     /**
      *
@@ -36,6 +36,7 @@ public class VirtaClient {
     private ELMOOpiskelijavaihtoService elmoOpiskelijavaihtoService;
 
     
+    @Override
     public String fetchStudies(String oid, String ssn) {
         return fetchStudies(new VirtaUser(oid, ssn));
     }
