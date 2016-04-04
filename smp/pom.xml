@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <wro4j.version>1.7.6</wro4j.version>
-        <start-class>dk.kmd.emrex.smp.DkSmpApplication</start-class>
+        <start-class>dk.uds.emrex.smp.DkSmpApplication</start-class>
         <project.build.finalName>smp</project.build.finalName>
     </properties>
 
