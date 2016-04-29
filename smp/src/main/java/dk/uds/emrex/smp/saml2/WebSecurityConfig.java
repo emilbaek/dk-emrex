@@ -71,6 +71,8 @@ import org.springframework.security.saml.processor.HTTPRedirectDeflateBinding;
 import org.springframework.security.saml.processor.HTTPSOAP11Binding;
 import org.springframework.security.saml.processor.SAMLBinding;
 import org.springframework.security.saml.processor.SAMLProcessorImpl;
+import org.springframework.security.saml.trust.httpclient.TLSProtocolConfigurer;
+import org.springframework.security.saml.trust.httpclient.TLSProtocolSocketFactory;
 import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 import org.springframework.security.saml.util.VelocityFactory;
 import org.springframework.security.saml.websso.ArtifactResolutionProfile;
@@ -218,21 +220,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     // Setup TLS Socket Factory
-//    @Bean
-//    public TLSProtocolConfigurer tlsProtocolConfigurer() {
-//        return new TLSProtocolConfigurer();
-//    }
+    @Bean
+    public TLSProtocolConfigurer tlsProtocolConfigurer() {
+        return new TLSProtocolConfigurer();
+    }
 
     @Bean
     public ProtocolSocketFactory socketFactory() {
-        return new DefaultProtocolSocketFactory();
-//        return new TLSProtocolSocketFactory(keyManager(), null, "default");
+//        return new DefaultProtocolSocketFactory();
+        return new TLSProtocolSocketFactory(keyManager(), null, "default");
     }
 
     @Bean
     public Protocol socketFactoryProtocol() {
-//        return new Protocol("https", socketFactory(), 443);
-        return new Protocol("http", socketFactory(), 80);
+        return new Protocol("https", socketFactory(), 443);
+//        return new Protocol("http", socketFactory(), 80);
     }
 
     @Bean
@@ -265,19 +267,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public ExtendedMetadata extendedMetadata() {
         ExtendedMetadata extendedMetadata = new ExtendedMetadata();
-//        extendedMetadata.setIdpDiscoveryEnabled(true);
-        extendedMetadata.setIdpDiscoveryEnabled(false);
+        extendedMetadata.setIdpDiscoveryEnabled(true);
+//        extendedMetadata.setIdpDiscoveryEnabled(false);
         extendedMetadata.setSignMetadata(false);
         return extendedMetadata;
     }
 
     // IDP Discovery Service
-//    @Bean
-//    public SAMLDiscovery samlIDPDiscovery() {
-//        SAMLDiscovery idpDiscovery = new SAMLDiscovery();
-//        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
-//        return idpDiscovery;
-//    }
+    @Bean
+    public SAMLDiscovery samlIDPDiscovery() {
+        SAMLDiscovery idpDiscovery = new SAMLDiscovery();
+        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
+        return idpDiscovery;
+    }
 
     @Bean
     @Qualifier("wayf-idp")
@@ -341,7 +343,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         SimpleUrlAuthenticationFailureHandler failureHandler =
                 new SimpleUrlAuthenticationFailureHandler();
         failureHandler.setUseForward(true);
-        failureHandler.setDefaultFailureUrl("/error"); // TODO
+        failureHandler.setDefaultFailureUrl("/saml/error"); // TODO
         return failureHandler;
     }
 
@@ -373,7 +375,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SimpleUrlLogoutSuccessHandler successLogoutHandler() {
         SimpleUrlLogoutSuccessHandler successLogoutHandler = new SimpleUrlLogoutSuccessHandler();
-        successLogoutHandler.setDefaultTargetUrl("/");
+        successLogoutHandler.setDefaultTargetUrl("/saml/logout");
         return successLogoutHandler;
     }
 
@@ -476,8 +478,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 samlWebSSOHoKProcessingFilter()));
         chains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/saml/SingleLogout/**"),
                 samlLogoutProcessingFilter()));
-//        chains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/saml/discovery/**"),
-//                samlIDPDiscovery()));
+        chains.add(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/saml/discovery/**"),
+                samlIDPDiscovery()));
         return new FilterChainProxy(chains);
     }
 
@@ -514,12 +516,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
 //                .antMatchers("/").permitAll()
-                .antMatchers("/error").permitAll()
+//                .antMatchers("/error").permitAll()
                 .antMatchers("/saml/**").permitAll()
                 .anyRequest().authenticated();
         http
                 .logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/saml/logout");
     }
 
     /**
