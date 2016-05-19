@@ -106,6 +106,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${saml.wayfIdpMetadataURL}")
     private String wayfIdpMetadataURL;
 
+    @Value("${saml.wayfEntityId}")
+    private String wayfEntityId;
+
     @Autowired
     private SAMLUserDetailsService samlUserDetailsServiceImpl;
 
@@ -228,7 +231,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public ProtocolSocketFactory socketFactory() {
 //        return new DefaultProtocolSocketFactory();
-        return new TLSProtocolSocketFactory(keyManager(), null, "default");
+
+        final Set<String> trustedKeys = new TreeSet<>();
+        trustedKeys.add("wayf.dk");
+
+        return new TLSProtocolSocketFactory(keyManager(), trustedKeys, "default");
     }
 
     @Bean
@@ -292,6 +299,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpMetadataProvider.setParserPool(parserPool());
         ExtendedMetadataDelegate extendedMetadataDelegate =
                 new ExtendedMetadataDelegate(httpMetadataProvider, extendedMetadata());
+//        extendedMetadataDelegate.setMetadataTrustCheck(false);
         extendedMetadataDelegate.setMetadataTrustCheck(true);
         extendedMetadataDelegate.setMetadataRequireSignature(false);
         return extendedMetadataDelegate;
@@ -313,7 +321,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public MetadataGenerator metadataGenerator() {
         MetadataGenerator metadataGenerator = new MetadataGenerator();
-        metadataGenerator.setEntityId("dk:uds:emrex");
+        metadataGenerator.setEntityId(this.wayfEntityId);
         metadataGenerator.setExtendedMetadata(extendedMetadata());
         metadataGenerator.setIncludeDiscoveryExtension(false);
         metadataGenerator.setKeyManager(keyManager());

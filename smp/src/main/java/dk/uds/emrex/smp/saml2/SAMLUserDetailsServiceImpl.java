@@ -53,7 +53,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService {
 
             fillUserFields(credential, user);
 
-            LOG.info("User " + user.toString() + " is logged in");
+            LOG.info("User logged in: " + user.toString());
 
             return user;
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

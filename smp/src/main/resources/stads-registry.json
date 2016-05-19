@@ -1,0 +1,17 @@
+[
+
+  {
+    "institution": "testidp.wayf.dk",
+    "hosts": [
+      { "host": "localhost:9100" }
+    ]
+  },
+
+  {
+    "institution": "umit.dk",
+    "hosts": [
+      { "host": "stads.umit.dk" }
+    ]
+  }
+
+]
