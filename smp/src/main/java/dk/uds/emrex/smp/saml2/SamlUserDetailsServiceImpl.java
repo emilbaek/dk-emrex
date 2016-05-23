@@ -32,10 +32,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 @Service
-public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService {
+public class SamlUserDetailsServiceImpl implements SAMLUserDetailsService {
 
     // Logger
-    private static final Logger LOG = LoggerFactory.getLogger(SAMLUserDetailsServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SamlUserDetailsServiceImpl.class);
 
     @Autowired
     @Qualifier("samlUserClass")

@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author sj
  */
 public class WayfUser {
-    private static final Pattern CPR_PATTERN = Pattern.compile("^urn:mace:terena\\.org:schac:personalUniqueID:dk:CPR:(\\d{10})$");
+    private static final Pattern CPR_PATTERN = Pattern.compile("^urn:mace:terena\\.org:schac:personalUniqueID:dk:CPR:(.*)$");
 
     private String id;
 
@@ -289,12 +289,15 @@ public class WayfUser {
 
     public String getCpr() {
         final Iterable<String> uniqueIdList = this.getPersonalUniqueIDs();
+
         if (uniqueIdList != null) {
-            final Iterator<String> uniqueIds = uniqueIdList.iterator();
-            if (uniqueIds.hasNext()) {
-                final Matcher m = CPR_PATTERN.matcher(uniqueIds.next());
+            for (String uniqueId : uniqueIdList) {
+                final Matcher m = CPR_PATTERN.matcher(uniqueId);
                 if (m.matches()) {
-                    return m.group(1);
+                    final String cpr = m.group(1);
+                    if (!cpr.isEmpty()) {
+                        return cpr;
+                    }
                 }
             }
         }

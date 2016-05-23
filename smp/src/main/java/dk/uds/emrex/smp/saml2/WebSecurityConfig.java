@@ -284,7 +284,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SAMLDiscovery samlIDPDiscovery() {
         SAMLDiscovery idpDiscovery = new SAMLDiscovery();
-        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
+//        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
+        idpDiscovery.setMetadata();
         return idpDiscovery;
     }
 

@@ -14,6 +14,7 @@ import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -71,12 +72,12 @@ public class ThymeController {
     private SignatureVerifier signatureVerifier;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String smp(HttpServletRequest request, Model model) throws Exception {
-        return smpsmp(request, model);
+    public String smp(HttpServletRequest request, Model model, @AuthenticationPrincipal WayfUser wayfUser) throws Exception {
+        return smpsmp(request, model, wayfUser);
     }
 
     @RequestMapping(value = "/smp/", method = RequestMethod.GET)
-    public String smpsmp(HttpServletRequest request, Model model) throws Exception {
+    public String smpsmp(HttpServletRequest request, Model model, @AuthenticationPrincipal WayfUser wayfUser) throws Exception {
         String firstName = request.getHeader("shib-givenName");
         model.addAttribute("name", firstName);
         context.getSession().setAttribute("sessionStartTime", LocalDateTime.now());
@@ -85,14 +86,14 @@ public class ThymeController {
     }
 
     @RequestMapping(value = "/abort", method = RequestMethod.GET)
-    public String abort(Model model) throws Exception {
+    public String abort(Model model, @AuthenticationPrincipal WayfUser wayfUser) throws Exception {
         model.addAttribute("url", getLinkToPolishQuestionnaire());
         return "onReturnAbort";
     }
 
     @RequestMapping(value = "/smp/abort", method = RequestMethod.GET)
-    public String smpAbort(Model model) throws Exception {
-        return abort(model);
+    public String smpAbort(Model model, @AuthenticationPrincipal WayfUser wayfUser) throws Exception {
+        return abort(model, wayfUser);
     }
 
     @RequestMapping(value = "/smp/onReturn", method = RequestMethod.POST)
@@ -101,8 +102,9 @@ public class ThymeController {
             @CookieValue(value = "elmoSessionId") String sessionIdCookie,
             @CookieValue(value = "chosenNCP") String chosenNCP,
             @CookieValue(value = "chosenCert") String chosenCert,
+            @AuthenticationPrincipal WayfUser wayfUser,
             HttpServletRequest httpRequest) throws Exception {
-        return this.onReturnelmo(request, model, sessionIdCookie, chosenNCP, chosenCert, httpRequest);
+        return this.onReturnelmo(request, model, sessionIdCookie, chosenNCP, chosenCert, wayfUser, httpRequest);
     }
 
     @RequestMapping(value = "/onReturn", method = RequestMethod.POST)
@@ -111,6 +113,7 @@ public class ThymeController {
             @CookieValue(value = "elmoSessionId") String sessionIdCookie,
             @CookieValue(value = "chosenNCP") String chosenNCP,
             @CookieValue(value = "chosenCert") String chosenCert,
+            @AuthenticationPrincipal WayfUser wayfUser,
             HttpServletRequest httpRequest) throws Exception {
         String sessionId = request.getSessionId();
         String elmo = request.getElmo();
@@ -129,7 +132,7 @@ public class ThymeController {
 
         if (elmo == null) {
             PersonalLogger.log(personalLogLine + "\tfailed");
-            return abort(model);
+            return abort(model, wayfUser);
         }
         String ncpPubKey = this.getCertificate(chosenNCP);
         String locPubKey =this.getCertificate();
