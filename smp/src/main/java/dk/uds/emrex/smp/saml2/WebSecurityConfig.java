@@ -24,6 +24,7 @@ import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.protocol.DefaultProtocolSocketFactory;
 import org.apache.commons.httpclient.protocol.Protocol;
 import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.app.VelocityEngine;
 import org.opensaml.saml2.metadata.provider.HTTPMetadataProvider;
 import org.opensaml.saml2.metadata.provider.MetadataProvider;
@@ -44,6 +45,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.saml.SAMLAuthenticationProvider;
 import org.springframework.security.saml.SAMLBootstrap;
 import org.springframework.security.saml.SAMLDiscovery;
@@ -53,6 +55,7 @@ import org.springframework.security.saml.SAMLLogoutProcessingFilter;
 import org.springframework.security.saml.SAMLProcessingFilter;
 import org.springframework.security.saml.SAMLWebSSOHoKProcessingFilter;
 import org.springframework.security.saml.context.SAMLContextProviderImpl;
+import org.springframework.security.saml.context.SAMLMessageContext;
 import org.springframework.security.saml.key.EmptyKeyManager;
 import org.springframework.security.saml.key.JKSKeyManager;
 import org.springframework.security.saml.key.KeyManager;
@@ -265,8 +268,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // properties file
     @Bean
     public SAMLEntryPoint samlEntryPoint() {
-        SAMLEntryPoint samlEntryPoint = new SAMLEntryPoint();
+        SAMLEntryPoint samlEntryPoint = new SAMLEntryPoint() {
+            @Override
+            protected WebSSOProfileOptions getProfileOptions(SAMLMessageContext context, AuthenticationException exception) throws MetadataProviderException {
+                final WebSSOProfileOptions profileOptions = super.getProfileOptions(context, exception);
+
+                final String peerEntityId = context.getPeerEntityId();
+
+                if (!StringUtils.isEmpty(peerEntityId)) {
+                    final Set<String> allowedIDPs = new TreeSet<>();
+                    allowedIDPs.add(peerEntityId);
+
+                    profileOptions.setIncludeScoping(true);
+                    profileOptions.setAllowedIDPs(allowedIDPs);
+                }
+
+                return profileOptions;
+            }
+        };
+
         samlEntryPoint.setDefaultProfileOptions(defaultWebSSOProfileOptions());
+
         return samlEntryPoint;
     }
 
@@ -275,6 +297,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public ExtendedMetadata extendedMetadata() {
         ExtendedMetadata extendedMetadata = new ExtendedMetadata();
         extendedMetadata.setIdpDiscoveryEnabled(true);
+//        extendedMetadata.setIdpDiscoveryURL("http://localhost:9002/saml/idpSelection");
 //        extendedMetadata.setIdpDiscoveryEnabled(false);
         extendedMetadata.setSignMetadata(false);
         return extendedMetadata;
@@ -282,10 +305,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // IDP Discovery Service
     @Bean
-    public SAMLDiscovery samlIDPDiscovery() {
+    public SAMLDiscovery samlIDPDiscovery() throws MetadataProviderException {
         SAMLDiscovery idpDiscovery = new SAMLDiscovery();
-//        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
-        idpDiscovery.setMetadata();
+        idpDiscovery.setIdpSelectionPath("/saml/idpSelection");
+//        idpDiscovery.setMetadata(metadata());
         return idpDiscovery;
     }
 
@@ -300,8 +323,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpMetadataProvider.setParserPool(parserPool());
         ExtendedMetadataDelegate extendedMetadataDelegate =
                 new ExtendedMetadataDelegate(httpMetadataProvider, extendedMetadata());
-//        extendedMetadataDelegate.setMetadataTrustCheck(false);
-        extendedMetadataDelegate.setMetadataTrustCheck(true);
+        extendedMetadataDelegate.setMetadataTrustCheck(false);
+//        extendedMetadataDelegate.setMetadataTrustCheck(true);
         extendedMetadataDelegate.setMetadataRequireSignature(false);
         return extendedMetadataDelegate;
     }
@@ -324,7 +347,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         MetadataGenerator metadataGenerator = new MetadataGenerator();
         metadataGenerator.setEntityId(this.wayfEntityId);
         metadataGenerator.setExtendedMetadata(extendedMetadata());
-        metadataGenerator.setIncludeDiscoveryExtension(false);
+        metadataGenerator.setIncludeDiscoveryExtension(true);
         metadataGenerator.setKeyManager(keyManager());
         return metadataGenerator;
     }
@@ -526,7 +549,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antMatchers("/").permitAll()
 //                .antMatchers("/error").permitAll()
-                .antMatchers("/saml/**").permitAll()
+                .antMatchers("/saml/**", "/css/**", "/common/**", "/js/**").permitAll()
                 .anyRequest().authenticated();
         http
                 .logout()

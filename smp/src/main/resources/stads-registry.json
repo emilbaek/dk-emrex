@@ -2,7 +2,7 @@
 
   {
     "institutionId": "testidp.wayf.dk",
-    "institutionName": "WAYF Test IdP",
+    "institutionName": "WAYF Test IDP",
     "hosts": [
       { "host": "localhost:9100" }
     ]

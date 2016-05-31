@@ -45,10 +45,9 @@
         </encoder>
     </appender>
 
-    <logger name="fi.csc.emrex" level="DEBUG" />
     <logger name="dk.uds.emrex" level="DEBUG" />
 
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="STDOUT" />
     </root>
 
