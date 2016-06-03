@@ -1,10 +1,7 @@
-package dk.uds.emrex.smp;
+package dk.uds.emrex.ncp.saml2;
 
-import dk.uds.emrex.smp.saml2.SamlAttribute;
 import org.joda.time.DateTime;
 
-import java.util.Date;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -122,6 +119,9 @@ public class WayfUser {
      */
     @SamlAttribute("urn:oid:1.3.6.1.4.1.1466.115.121.1.15")
     private String organizationType;
+
+    public WayfUser() {
+    }
 
     public WayfUser(String id) {
         this.id = id;

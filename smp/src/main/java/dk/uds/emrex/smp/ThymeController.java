@@ -7,6 +7,7 @@ package dk.uds.emrex.smp;
 
 import dk.uds.emrex.smp.model.VerificationReply;
 import dk.uds.emrex.smp.model.VerifiedReport;
+import dk.uds.emrex.smp.saml2.WayfUser;
 import fi.csc.emrex.common.PersonalLogger;
 import fi.csc.emrex.common.elmo.ElmoParser;
 import fi.csc.emrex.common.model.Person;

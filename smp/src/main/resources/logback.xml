@@ -47,6 +47,9 @@
 
     <logger name="dk.uds.emrex" level="DEBUG" />
 
+    <logger name="org.springframework.security" level="DEBUG"/>
+    <!--<logger name="org.opensaml.saml2" level="DEBUG"/>-->
+
     <root level="WARN">
         <appender-ref ref="STDOUT" />
     </root>
