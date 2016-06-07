@@ -128,12 +128,12 @@ public class ThymeController {
         return "review";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/")
     public String ncp1(@ModelAttribute CustomRequest customRequest, HttpServletRequest request, Model model) {
         return this.greeting(customRequest, request, model);
     }
 
-    @RequestMapping(value = "/ncp/", method = RequestMethod.POST)
+    @RequestMapping(value = "/ncp/")
     public String greeting(@ModelAttribute CustomRequest customRequest, HttpServletRequest request, Model model) {
         log.info("/ncp/");
         if (customRequest != null) {
