@@ -5,6 +5,7 @@
  */
 package dk.uds.emrex.ncp;
 
+import dk.uds.emrex.ncp.saml2.WayfUser;
 import fi.csc.emrex.common.elmo.ElmoParser;
 import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
@@ -13,9 +14,11 @@ import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +36,7 @@ public class JsonController {
     private HttpServletRequest context;
 
     @Autowired
-    private VirtaClient virtaClient;
+    private StudyFetcher studyFetcher;
 
     @RequestMapping(value = "/elmo", method = RequestMethod.GET)
     @ResponseBody
@@ -47,8 +50,9 @@ public class JsonController {
         header.stringifyHeader();
         String OID = header.getHeiOid();
         String PersonalID = header.getPersonalID();
-        log.info("Fetching data from Virta client OID: {} PersonalID {}", OID, PersonalID);
-        model.put("elmoXml", virtaClient.fetchStudies(OID, PersonalID));
+//        log.info("Fetching data from Virta client OID: {} PersonalID {}", OID, PersonalID);
+//        model.put("elmoXml", studyFetcher.fetchStudies(OID, PersonalID));
+        // TODO
 
         return model;
     }
@@ -61,11 +65,15 @@ public class JsonController {
 
     @RequestMapping(value = "/api/fullelmo", method = RequestMethod.GET)
     @ResponseBody
-    public String getFullElmoJSON() {
+    public String getFullElmoJSON() throws IOException {
         log.info("getting FullELmo");
-        try {
 
-            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+        try {
+            final WayfUser user = getCurrentUser();
+            final String elmo = studyFetcher.fetchStudies(user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParser(elmo);
+
+//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             String xmlString;
             
             xmlString = parser.getCourseData();
@@ -134,6 +142,10 @@ public class JsonController {
             error.put("stack", log);
             return new JSONObject(error).toString();
         }
+    }
+
+    private WayfUser getCurrentUser() {
+        return (WayfUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

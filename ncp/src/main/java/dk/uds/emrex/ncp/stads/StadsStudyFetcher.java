@@ -8,7 +8,7 @@ import org.apache.commons.lang.NotImplementedException;
  */
 public class StadsStudyFetcher implements StudyFetcher {
     @Override
-    public String fetchStudies(String oid, String ssn) {
+    public String fetchStudies(String ssn) {
         throw new NotImplementedException();
     }
 }

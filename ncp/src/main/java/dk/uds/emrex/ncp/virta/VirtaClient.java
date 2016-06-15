@@ -38,8 +38,8 @@ public class VirtaClient implements StudyFetcher {
 
     
     @Override
-    public String fetchStudies(String oid, String ssn) {
-        return fetchStudies(new VirtaUser(oid, ssn));
+    public String fetchStudies(String ssn) {
+        return fetchStudies(new VirtaUser("", ssn));
     }
 
     public String fetchStudies(VirtaUser virtaUser) {

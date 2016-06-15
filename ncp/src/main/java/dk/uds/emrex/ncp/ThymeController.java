@@ -5,6 +5,7 @@
  */
 package dk.uds.emrex.ncp;
 
+import dk.uds.emrex.ncp.saml2.WayfUser;
 import fi.csc.emrex.common.PdfGen;
 import fi.csc.emrex.common.PersonalLogger;
 import fi.csc.emrex.common.StatisticalLogger;
@@ -15,6 +16,8 @@ import dk.uds.emrex.ncp.virta.VirtaClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -43,7 +46,7 @@ public class ThymeController {
     private HttpServletRequest context;
 
     @Autowired
-    private VirtaClient virtaClient;
+    private StudyFetcher studyFetcher;
 
     @Autowired
     private DataSign dataSign;
@@ -135,84 +138,86 @@ public class ThymeController {
 
     @RequestMapping(value = "/ncp/")
     public String greeting(@ModelAttribute CustomRequest customRequest, HttpServletRequest request, Model model) {
+        final WayfUser wayfUser = this.getCurrentUser();
+
         log.info("/ncp/");
-        if (customRequest != null) {
-            try {
-                if (customRequest.getSessionId() != null) {
-                    if (customRequest.getSessionId().equals(Security.stripXSS(customRequest.getSessionId()))) {
-                        context.getSession().setAttribute("sessionId", customRequest.getSessionId());
-                    } else {
-                        throw new Exception("Suspected XSS-injection");
-                    }
-                }
-                if (customRequest.getReturnUrl() != null) {
-                    String returnUrl = customRequest.getReturnUrl();
-                    log.info("unprocessed returnURL: " + returnUrl);
-                    String temp = Security.stripXSS(returnUrl);
-                    log.info("processed returnURL: " + temp);
-                    if (!returnUrl.equals(temp)) {
-                        throw new Exception("Suspected XSS-injection");
-                    }
-                    if (!returnUrl.startsWith("https")) {
-                        log.debug("env: "+env);
-                        if (!"dev".equals(env)) {
-                            throw new Exception("Only HTTPS allowed");
-                        }
-                    }
-                    context.getSession().setAttribute("returnUrl", returnUrl);
-
-                }
-            } catch (Exception e) {
-                model.addAttribute("error", e.getMessage());
-                return "error";
-            }
-            log.info("Return URL: {}", context.getSession().getAttribute("returnUrl"));
-            log.info("Session ID: {}", context.getSession().getAttribute("sessionId"));
-
-            try {
-                if (context.getSession().getAttribute("elmo") == null) {
-                    String elmoXML;
-                    ShibbolethHeaderHandler headerHandler = new ShibbolethHeaderHandler(request);
-                    log.debug(headerHandler.stringifyHeader());
-                    String OID = headerHandler.getOID();
-                    String personalId = headerHandler.getPersonalID();
-
-                    if (OID == null && personalId == null) {
-                        if ("dev".equals(env)) {
-                            elmoXML = virtaClient.fetchStudies("17488477125", personalId);
-                        } else {
-                            elmoXML = "";
-                        }
-                    } else {
-                        elmoXML = virtaClient.fetchStudies(OID, personalId);
-                    }
-                    log.debug(elmoXML);
-                    ElmoParser parser = null;
-                    if (elmoXML == null) {
-                        log.debug("elmoXML null");
-                        context.getSession().setAttribute("returnCode", "NCP_NO_RESULTS");
-
-                    } else {
-                        context.getSession().setAttribute("returnCode", "NCP_OK");
-                        parser = ElmoParser.elmoParserFromVirta(elmoXML);
-                        context.getSession().setAttribute("elmo", parser);
-
-                    }
-                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser);
-
-                    String statisticalLogLine = generateStatisticalLogLine(parser, "NCP");
-                    StatisticalLogger.log(statisticalLogLine);
-                    PersonalLogger.log(personalLogLine);
-                }
-                return "norex";
-
-            } catch (Exception e) {
-                log.error("Elmo was null and fetching elmo failed somehow.", e);
-                model.addAttribute("error", "Fetching study data failed");
-                return "error";
-            }
-
-        }
+//        if (customRequest != null) {
+//            try {
+//                if (customRequest.getSessionId() != null) {
+//                    if (customRequest.getSessionId().equals(Security.stripXSS(customRequest.getSessionId()))) {
+//                        context.getSession().setAttribute("sessionId", customRequest.getSessionId());
+//                    } else {
+//                        throw new Exception("Suspected XSS-injection");
+//                    }
+//                }
+//                if (customRequest.getReturnUrl() != null) {
+//                    String returnUrl = customRequest.getReturnUrl();
+//                    log.info("unprocessed returnURL: " + returnUrl);
+//                    String temp = Security.stripXSS(returnUrl);
+//                    log.info("processed returnURL: " + temp);
+//                    if (!returnUrl.equals(temp)) {
+//                        throw new Exception("Suspected XSS-injection");
+//                    }
+//                    if (!returnUrl.startsWith("https")) {
+//                        log.debug("env: "+env);
+//                        if (!"dev".equals(env)) {
+//                            throw new Exception("Only HTTPS allowed");
+//                        }
+//                    }
+//                    context.getSession().setAttribute("returnUrl", returnUrl);
+//
+//                }
+//            } catch (Exception e) {
+//                model.addAttribute("error", e.getMessage());
+//                return "error";
+//            }
+//            log.info("Return URL: {}", context.getSession().getAttribute("returnUrl"));
+//            log.info("Session ID: {}", context.getSession().getAttribute("sessionId"));
+//
+//            try {
+//                if (context.getSession().getAttribute("elmo") == null) {
+//                    String elmoXML;
+//                    ShibbolethHeaderHandler headerHandler = new ShibbolethHeaderHandler(request);
+//                    log.debug(headerHandler.stringifyHeader());
+//                    String OID = headerHandler.getOID();
+//                    String personalId = headerHandler.getPersonalID();
+//
+//                    if (OID == null && personalId == null) {
+//                        if ("dev".equals(env)) {
+//                            elmoXML = studyFetcher.fetchStudies("17488477125", personalId);
+//                        } else {
+//                            elmoXML = "";
+//                        }
+//                    } else {
+//                        elmoXML = studyFetcher.fetchStudies(OID, personalId);
+//                    }
+//                    log.debug(elmoXML);
+//                    ElmoParser parser = null;
+//                    if (elmoXML == null) {
+//                        log.debug("elmoXML null");
+//                        context.getSession().setAttribute("returnCode", "NCP_NO_RESULTS");
+//
+//                    } else {
+//                        context.getSession().setAttribute("returnCode", "NCP_OK");
+//                        parser = ElmoParser.elmoParserFromVirta(elmoXML);
+//                        context.getSession().setAttribute("elmo", parser);
+//
+//                    }
+//                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser);
+//
+//                    String statisticalLogLine = generateStatisticalLogLine(parser, "NCP");
+//                    StatisticalLogger.log(statisticalLogLine);
+//                    PersonalLogger.log(personalLogLine);
+//                }
+//                return "norex";
+//
+//            } catch (Exception e) {
+//                log.error("Elmo was null and fetching elmo failed somehow.", e);
+//                model.addAttribute("error", "Fetching study data failed");
+//                return "error";
+//            }
+//
+//        }
         return "norex";
     }
 
@@ -241,4 +246,7 @@ public class ThymeController {
         return statisticalLogLine;
     }
 
+    private WayfUser getCurrentUser() {
+        return (WayfUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 }

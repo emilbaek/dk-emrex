@@ -21,7 +21,7 @@ angular.module('courseSelection', [])
             if (opportunity.type)
                 $scope.typeOptions[opportunity.type] = true;
 
-            if (opportunity.specifies.learningOpportunityInstance.credit.level) {
+            if (opportunity.specifies.learningOpportunityInstance.credit && opportunity.specifies.learningOpportunityInstance.credit.level) {
                 var indexOf = $scope.levelOptions.indexOf(opportunity.specifies.learningOpportunityInstance.credit.level)
                 if (indexOf < 0)
                     $scope.levelOptions.push(opportunity.specifies.learningOpportunityInstance.credit.level);
