@@ -11,7 +11,12 @@
     margin: 10px;
 }
 .custom-selected {
-    background-color:  whitesmoke;
+    /*background-color:  whitesmoke;*/
+}
+
+.custom-deselected {
+    background-color: whitesmoke;
+    color:gray;
 }
 
 .custom-option-margin {
@@ -56,4 +61,42 @@ fieldset {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: 100%;
+}
+
+.idpSelection {
+    display:flex;
+    justify-content:center;
+    margin:4em 0;
+    width:100%;
+    position:relative;
+}
+
+.idpSelection .idpSelection__header {
+    display:flex; justify-content: flex-end; align-items: center;
+    width:50%;
+    padding:0 4em;
+}
+
+.idpSelection .idpSelection__items {
+    width:50%;
+}
+
+.idpSelection .idpSelection__items form label {
+    cursor:pointer;
+    padding:0.5em;
+    font-size:1.1em;
+    font-weight:normal;
+    border-radius: 1em;
+    transition:background-color 200ms, transform 200ms;
+    will-change: transform, background-color;
+    transform-origin: 0 50%;
+}
+
+.idpSelection .idpSelection__items form label:hover, .idpSelection .idpSelection__items form label:active {
+    background-color:whitesmoke;
+    transform:scale(1.1);
+}
+
+.idpSelection .idpSelection__items form label > input[type=radio] {
+    display:none;
 }

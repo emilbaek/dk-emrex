@@ -115,7 +115,11 @@ public class JsonController {
 
         try {
 
-            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+            final WayfUser user = getCurrentUser();
+            final String elmo = studyFetcher.fetchStudies(user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParser(elmo);
+
             String xmlString;
             if (courses != null) {
                 log.debug("Courses count: {}", courses.length);
