@@ -50,7 +50,7 @@ public class JsonControllerTest {
         final String sessionId = SESSION_ID;
         Mockito.when(mockHttpSession.getAttribute(SESSION_ID)).thenReturn(sessionId);
 
-        Mockito.when(mockVirtaClient.fetchStudies(Matchers.anyString(), Matchers.anyString())).thenReturn(ELMO_XML);
+        Mockito.when(mockVirtaClient.fetchStudies(Matchers.anyString())).thenReturn(ELMO_XML);
 
         final Map<String, Object> result = instance.fetchElmoXml(mockHttpServletRequest);
         assertEquals(RETURN_URL, result.get(RETURN_URL));
@@ -60,7 +60,7 @@ public class JsonControllerTest {
         Mockito.verify(mockHttpServletRequest, Mockito.times(2)).getSession();
         Mockito.verify(mockHttpSession).getAttribute(RETURN_URL);
         Mockito.verify(mockHttpSession).getAttribute(SESSION_ID);
-        Mockito.verify(mockVirtaClient).fetchStudies(Matchers.anyString(), Matchers.anyString());
+        Mockito.verify(mockVirtaClient).fetchStudies(Matchers.anyString());
 
     }
 }

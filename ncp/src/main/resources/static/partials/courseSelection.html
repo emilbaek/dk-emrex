@@ -11,6 +11,7 @@
         <h3>{{learner.fullName}} {{learner.bday.content}}</h3>
         <br>
 
+        <!--
         <h3>Filter Results</h3>
 
         <div class="pure-g">
@@ -67,12 +68,16 @@
                 </form>
             </div>
         </div>
-        <button class="pure-button custom-go-button" ng-click="sendIds()">Import selected</button>
-        <div class="custom-inline" ng-bind-html="abort"/>
+        -->
 
         <div ng-repeat="learningReport in reports | filter:issuerFilter">
             <learning-report-directive report='learningReport' level-filter='selectedLevel'
                                        type-filter='typeOptions' start-date="startdate" end-date="enddate"></learning-report-directive>
         </div>
+
+        <br/>
+        <button class="pure-button custom-go-button" ng-click="sendIds()">Import selected</button>
+        <div class="custom-inline" ng-bind-html="abort"/>
+
     </div>
 </div>
