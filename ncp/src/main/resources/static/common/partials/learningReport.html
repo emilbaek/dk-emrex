@@ -1,6 +1,7 @@
 <div>
     <h3>{{issuerName}} ({{report.learner.fullName}}) </h3>
-    <table class="pure-table">
+    <table class="table">
+        <caption><h2>Find and select results to import</h2></caption>
         <thead>
         <th> <div ng-hide="onlyViewing"><input type="checkbox" ng-model="selectAll"
                                                ng-change="selectAllClicked()">
@@ -13,7 +14,7 @@
         <th>Date</th>
         </thead>
         <tbody>
-        <tr ng-class="{'custom-selected' : opportunity.selected}" ng-repeat="opportunity in flattenedLearningOpportunities | filter:selectedTypes | filter:selectedLevel | filter:selectedTimeInterval">
+        <tr ng-class="{'custom-deselected' : !opportunity.selected}" ng-repeat="opportunity in flattenedLearningOpportunities | filter:selectedTypes | filter:selectedLevel | filter:selectedTimeInterval">
             <td>
                 <div ng-hide="onlyViewing"><input type="checkbox" ng-model="opportunity.selected"
                                             ng-change="checkBoxChanged(opportunity)">

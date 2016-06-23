@@ -127,7 +127,7 @@ public class ThymeController {
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
         model.addAttribute("buttonText", "Cancel");
         model.addAttribute("returnCode", "NCP_CANCEL");
-        model.addAttribute("buttonClass", "pure-button custom-panic-button custom-inline");
+        model.addAttribute("buttonClass", "btn btn-link");
         return "review";
     }
 

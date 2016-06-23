@@ -14,17 +14,22 @@
 
 <body ng-app="idpSelection">
 
-    <div ng-controller="idpSelector" class="container ng-cloak">
-        <form name="idpForm" th:attr="action=${idpDiscoReturnURL}" method="get">
-            <ul th:each="idp : ${idps}">
-                <li>
-                    <label>
-                        <input type="radio" th:attr="name=${idpDiscoReturnParam}, value=${idp.getId()}" ng-click="onIdpSelect()" />
-                        <span th:text="${idp.getName()}">Name of IDP</span>
-                    </label>
-                </li>
-            </ul>
-        </form>
+    <div class="idpSelection">
+        <div class="idpSelection__header">
+            <h2>Select your University</h2>
+        </div>
+        <div class="idpSelection__items">
+            <div ng-controller="idpSelector" class="ng-cloak">
+                <form name="idpForm" th:attr="action=${idpDiscoReturnURL}" method="get">
+                    <div th:each="idp : ${idps}">
+                        <label>
+                            <input type="radio" th:attr="name=${idpDiscoReturnParam}, value=${idp.getId()}" ng-click="onIdpSelect()" />
+                            <span th:text="${idp.getName()}">Name of IDP</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="../js/angular-bootstrap.js" type="text/javascript"></script>
