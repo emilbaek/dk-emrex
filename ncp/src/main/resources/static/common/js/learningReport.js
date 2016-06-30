@@ -43,7 +43,8 @@ angular.module('learningReport', [])
                 };
 
                 $scope.selectedLevel = function (opportunity) {
-                    var visible = ($scope.onlyViewing || $scope.levelFilter == "Any") || $scope.levelFilter == opportunity.specifies.learningOpportunityInstance.credit.level;
+                    var creditLevel = opportunity.specifies.learningOpportunityInstance.credit && opportunity.specifies.learningOpportunityInstance.credit.level;
+                    var visible = ($scope.onlyViewing || $scope.levelFilter == "Any") || ($scope.levelFilter == creditLevel);
                     unselectInvisibleOpportunity(visible, opportunity);
                     return visible;
                 };
@@ -68,7 +69,6 @@ angular.module('learningReport', [])
                     unselectInvisibleOpportunity(visible, opportunity);
                     return visible;
                 };
-
 
                 function recursiveOpportunityFlattening(learningOpportunityArray, partOf) {
                     angular.forEach(learningOpportunityArray, function (opportunityWrapper) {

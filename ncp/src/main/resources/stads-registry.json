@@ -1,22 +1,6 @@
 [
 
   {
-    "institutionId": "testidp.wayf.dk",
-    "institutionName": "WAYF Test IDP",
-    "hosts": [
-      { "host": "localhost:9100" }
-    ]
-  },
-
-  {
-    "institutionId": "umit.dk",
-    "institutionName": "IT Department of the Ministry of Higher Education",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
     "institutionId": "ku.dk",
     "institutionName": "University of Copenhagen",
     "hosts": [
@@ -75,6 +59,22 @@
   {
     "institutionId": "itu.dk",
     "institutionName": "IT University of Copenhagen",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "testidp.wayf.dk",
+    "institutionName": "WAYF Test IDP",
+    "hosts": [
+      { "host": "localhost:9100" }
+    ]
+  },
+
+  {
+    "institutionId": "umit.dk",
+    "institutionName": "IT Department of the Ministry of Higher Education",
     "hosts": [
       { "host": "stads.example.com" }
     ]

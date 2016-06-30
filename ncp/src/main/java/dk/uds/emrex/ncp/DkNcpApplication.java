@@ -47,7 +47,7 @@ public class DkNcpApplication {
             @Cacheable
             @Override
             public String fetchStudies(String ssn) throws IOException {
-                try (InputStream resourceStream = resourceLoader.getResource("classpath:/kaisa.xml").getInputStream()) {
+                try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
                     return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
                 }
             }

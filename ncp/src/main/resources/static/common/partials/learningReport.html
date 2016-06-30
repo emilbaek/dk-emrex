@@ -1,12 +1,13 @@
 <div>
-    <h3>{{issuerName}} ({{report.learner.fullName}}) </h3>
     <table class="table">
-        <caption><h2>Find and select results to import</h2></caption>
+        <caption style="border-bottom:1px solid gray;">{{report.learner.fullName}} at {{issuerName}}</caption>
         <thead>
-        <th> <div ng-hide="onlyViewing"><input type="checkbox" ng-model="selectAll"
-                                               ng-change="selectAllClicked()">
-        </div></th>
-        <td>ID</td>
+        <th>
+            <div ng-hide="onlyViewing">
+                <input type="checkbox" ng-model="selectAll" ng-change="selectAllClicked()" />
+            </div>
+        </th>
+        <th>ID</th>
         <th>Code</th>
         <th>Title</th>
         <th>Credits</th>
