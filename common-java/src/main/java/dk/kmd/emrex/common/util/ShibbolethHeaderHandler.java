@@ -1,6 +1,6 @@
-package dk.uds.emrex.common.util;
+package dk.kmd.emrex.common.util;
 
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 import java.io.UnsupportedEncodingException;
 import lombok.extern.slf4j.Slf4j;
 

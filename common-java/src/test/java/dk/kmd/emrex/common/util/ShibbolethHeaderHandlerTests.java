@@ -1,6 +1,6 @@
-package dk.uds.emrex.common.util;
+package dk.kmd.emrex.common.util;
 
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

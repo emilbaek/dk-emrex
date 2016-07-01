@@ -1,4 +1,4 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

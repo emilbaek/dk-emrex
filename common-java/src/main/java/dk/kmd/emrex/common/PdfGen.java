@@ -1,4 +1,4 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;

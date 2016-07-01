@@ -1,6 +1,6 @@
-package dk.uds.emrex.common.elmo;
+package dk.kmd.emrex.common.elmo;
 
-import fi.csc.emrex.common.util.TestUtil;
+import dk.kmd.emrex.common.util.TestUtil;
 import junit.framework.TestCase;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
