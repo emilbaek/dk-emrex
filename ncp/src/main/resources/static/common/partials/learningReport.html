@@ -10,12 +10,12 @@
         <th>ID</th>
         <th>Code</th>
         <th>Title</th>
-        <th>Credits</th>
         <th>Results</th>
+        <th>Credits</th>
         <th>Date</th>
         </thead>
         <tbody>
-        <tr ng-class="{'custom-deselected' : !opportunity.selected}" ng-repeat="opportunity in flattenedLearningOpportunities | filter:selectedTypes | filter:selectedLevel | filter:selectedTimeInterval">
+        <tr ng-class="{'custom-deselected' : !opportunity.selected}" ng-repeat="opportunity in flattenedLearningOpportunities">
             <td>
                 <div ng-hide="onlyViewing"><input type="checkbox" ng-model="opportunity.selected"
                                             ng-change="checkBoxChanged(opportunity)">
@@ -24,8 +24,8 @@
             <td>{{opportunity.elmoIdentifier}}</td>
             <td>{{opportunity.localIdentifier}}</td>
             <td>{{getRightLanguage(opportunity.title)}}</td>
-            <td>{{opportunity.specifies.learningOpportunityInstance.credit.value}} {{opportunity.specifies.learningOpportunityInstance.credit.scheme}}</td>
             <td>{{opportunity.specifies.learningOpportunityInstance.resultLabel}}</td>
+            <td>{{opportunity.specifies.learningOpportunityInstance.credit.value}} {{opportunity.specifies.learningOpportunityInstance.credit.scheme}}</td>
             <td>{{opportunity.specifies.learningOpportunityInstance.date}}</td>
         </tr>
         </tbody>

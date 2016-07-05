@@ -64,10 +64,15 @@ public class ThymeController {
     @RequestMapping(value = "/review", method = RequestMethod.GET)
     public String review(@RequestParam(value = "courses", required = false) String[] courses,
             Model model) throws Exception {
+        final WayfUser wayfUser = this.getCurrentUser();
 
         model.addAttribute("sessionId", context.getSession().getAttribute("sessionId"));
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
-        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+
+        final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getCpr());
+        ElmoParser parser = ElmoParser.elmoParser(elmoXml);
+
+//        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
 
         String xmlString;
 

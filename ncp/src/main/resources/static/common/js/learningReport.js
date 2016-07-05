@@ -22,7 +22,7 @@ angular.module('learningReport', [])
                         opportunity.selected = $scope.selectAll;
                         $scope.checkBoxChanged(opportunity);
                     });
-                }
+                };
 
                 if (!angular.isArray($scope.report.learningOpportunitySpecification))
                     $scope.report.learningOpportunitySpecification = [{learningOpportunitySpecification: $scope.report.learningOpportunitySpecification}];
@@ -118,6 +118,14 @@ angular.module('learningReport', [])
 
                 var flatArray = [];
                 flatArray = recursiveOpportunityFlattening($scope.report.learningOpportunitySpecification);
+
+                // Sort by date
+                flatArray.sort(function(a, b) {
+                    var d1 = a.specifies.learningOpportunityInstance.date || "1970-01-01";
+                    var d2 = b.specifies.learningOpportunityInstance.date || "1970-01-01";
+                    return d1 == d2 ? 0 : d1 > d2 ? -1 : 1;
+                });
+
                 $scope.flattenedLearningOpportunities = flatArray;
 
                 $scope.issuerName = helperService.getRightLanguage($scope.report.issuer.title);
