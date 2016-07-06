@@ -29,8 +29,8 @@
 
     <dependencies>
         <dependency>
-            <!--<groupId>dk.kmd.emrex</groupId>-->
-            <groupId>fi.csc.emrex</groupId>
+            <groupId>dk.kmd.emrex</groupId>
+            <!--<groupId>fi.csc.emrex</groupId>-->
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
