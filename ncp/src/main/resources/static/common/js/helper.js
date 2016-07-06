@@ -61,8 +61,7 @@ angular.module('helper', [])
                 var count = 0;
                 angular.forEach(learningOpportunityArray, function (opportunity) {
                     if (opportunity.learningOpportunitySpecification) {
-                        debugger;
-                        count += opportunity.learningOpportunitySpecification.credit.value || 0;
+                        count += opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit.value || 0;
                         if (opportunity.learningOpportunitySpecification.hasPart)
                             count = count + calculateCourses(opportunity.learningOpportunitySpecification.hasPart)
                     }

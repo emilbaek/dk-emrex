@@ -118,13 +118,14 @@ public class JsonController {
 //            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             final WayfUser user = getCurrentUser();
             final String elmo = studyFetcher.fetchStudies(user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParser(elmo);
+            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
 
             String xmlString;
             if (courses != null) {
                 log.debug("Courses count: {}", courses.length);
                 List<String> courseList = Arrays.asList(courses);
-                xmlString = parser.getCourseData(courseList);
+                xmlString = parser.getCourseData(); // TODO
+//                xmlString = parser.getCourseData(courseList);
             } else {
                 log.debug("Courses count: null");
                 xmlString = parser.getCourseData(null);

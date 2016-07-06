@@ -70,30 +70,33 @@ public class ThymeController {
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
 
         final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getCpr());
-        ElmoParser parser = ElmoParser.elmoParser(elmoXml);
+        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmoXml);
 
 //        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
 
         String xmlString;
 
         // Generate pdf with existing courses and add pdf to xml
-        xmlString = getElmoXml(courses, parser);
+        {
+            xmlString = getElmoXml(courses, parser);
 
-        PdfGen pdfGenerator = new PdfGen();
-
-        byte[] pdf = pdfGenerator.generatePdf(xmlString);
-
-        parser.addPDFAttachment(pdf);
-
-        xmlString = getElmoXml(courses, parser);
-
-        ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
-
-        String source = "NCP";
-        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
-        StatisticalLogger.log(statisticalLogLine);
-
-        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
+            // TODO
+//            PdfGen pdfGenerator = new PdfGen();
+//
+//            byte[] pdf = pdfGenerator.generatePdf(xmlString);
+//
+//            parser.addPDFAttachment(pdf);
+//
+//            xmlString = getElmoXml(courses, parser);
+//
+//            ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
+        }
+//          TODO
+//        String source = "NCP";
+//        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
+//        StatisticalLogger.log(statisticalLogLine);
+//
+//        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
         if (courses != null) {
             model.addAttribute("returnCode", context.getSession().getAttribute("returnCode"));
             model.addAttribute("elmo", xmlString);
@@ -101,9 +104,9 @@ public class ThymeController {
             model.addAttribute("returnCode", "NCP_NO_RESULTS");
             model.addAttribute("elmo", null);
         }
-        model.addAttribute("buttonText", "Confirm selection");
+        model.addAttribute("buttonText", "Confirm selected results");
 
-        model.addAttribute("buttonClass", "pure-button custom-go-button custom-inline");
+        model.addAttribute("buttonClass", "btn btn-success");
 
         return "review";
     }
