@@ -6,8 +6,8 @@
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
-import fi.csc.emrex.common.elmo.ElmoParser;
-import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
 import org.json.JSONObject;
 import org.json.XML;

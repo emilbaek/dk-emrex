@@ -1,6 +1,6 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common;
 
-import fi.csc.emrex.common.util.TestUtil;
+import dk.kmd.emrex.common.util.TestUtil;
 import junit.framework.TestCase;
 import org.junit.Test;
 

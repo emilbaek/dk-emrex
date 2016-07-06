@@ -1,6 +1,6 @@
 package dk.uds.emrex.smp;
 
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;

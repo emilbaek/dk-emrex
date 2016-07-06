@@ -1,7 +1,7 @@
 package dk.uds.emrex.smp;
 
-import fi.csc.emrex.common.elmo.ElmoParser;
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.model.Person;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 

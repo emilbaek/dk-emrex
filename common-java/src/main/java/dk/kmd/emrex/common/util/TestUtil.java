@@ -1,4 +1,4 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common.util;
 
 import org.apache.commons.io.FileUtils;
 
@@ -8,29 +8,25 @@ import java.nio.charset.StandardCharsets;
 /**
  * Created by marko.hollanti on 06/10/15.
  */
-public class FileReader {
+public class TestUtil {
 
     private final static String ENCODING = StandardCharsets.UTF_8.name();
 
-    private static FileReader instance;
+    private static TestUtil instance;
 
-    private FileReader() {
-    }
-
-    public static String getFilePath(String filename) throws Exception {
-        return getFile(filename).getAbsolutePath();
+    private TestUtil() {
     }
 
     public static String getFileContent(String filename) throws Exception {
         if (instance == null) {
-            instance = new FileReader();
+            instance = new TestUtil();
         }
         return FileUtils.readFileToString(FileUtils.toFile(instance.getClass().getResource("/" + filename)), ENCODING);
     }
 
     public static File getFile(String filename) throws Exception {
         if (instance == null) {
-            instance = new FileReader();
+            instance = new TestUtil();
         }
         return FileUtils.toFile(instance.getClass().getResource("/" + filename));
     }

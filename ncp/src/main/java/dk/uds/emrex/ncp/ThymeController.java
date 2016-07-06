@@ -6,12 +6,12 @@
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
-import fi.csc.emrex.common.PdfGen;
-import fi.csc.emrex.common.PersonalLogger;
-import fi.csc.emrex.common.StatisticalLogger;
-import fi.csc.emrex.common.elmo.ElmoParser;
-import fi.csc.emrex.common.util.Security;
-import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
+import dk.kmd.emrex.common.PdfGen;
+import dk.kmd.emrex.common.PersonalLogger;
+import dk.kmd.emrex.common.StatisticalLogger;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.util.Security;
+import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,7 @@
 package dk.uds.emrex.smp;
 
 import dk.uds.emrex.smp.model.VerifiedReport;
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 import dk.uds.emrex.smp.model.Link;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

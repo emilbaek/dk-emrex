@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.uds.emrex.common.elmo;
+package dk.kmd.emrex.common.elmo;
 
 import com.github.ooxi.jdatauri.DataUri;
-import fi.csc.emrex.common.elmo.jaxb.Util;
+import dk.kmd.emrex.common.elmo.jaxb.Util;
 
 import java.nio.charset.Charset;
 import org.slf4j.LoggerFactory;

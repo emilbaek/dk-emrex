@@ -1,4 +1,4 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common;
 
 import java.util.List;
 

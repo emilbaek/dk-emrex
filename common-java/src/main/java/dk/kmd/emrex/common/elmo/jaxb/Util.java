@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.uds.emrex.common.elmo.jaxb;
+package dk.kmd.emrex.common.elmo.jaxb;
 
-import fi.csc.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.elmo.ElmoParser;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification;
 
