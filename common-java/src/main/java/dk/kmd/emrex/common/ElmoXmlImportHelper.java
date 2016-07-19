@@ -1,4 +1,4 @@
-package dk.uds.emrex.common;
+package dk.kmd.emrex.common;
 
 /**
  * Created by marko.hollanti on 20/08/15.

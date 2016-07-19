@@ -1,0 +1,83 @@
+[
+
+  {
+    "institutionId": "ku.dk",
+    "institutionName": "University of Copenhagen",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "au.dk",
+    "institutionName": "Aarhus University",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "sdu.dk",
+    "institutionName": "University of Southern Denmark",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "ruc.dk",
+    "institutionName": "Roskilde University",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "aau.dk",
+    "institutionName": "Aalborg University",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "dtu.dk",
+    "institutionName": "Technical University of Denmark",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "cbs.dk",
+    "institutionName": "Copenhagen Business School",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "itu.dk",
+    "institutionName": "IT University of Copenhagen",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  },
+
+  {
+    "institutionId": "testidp.wayf.dk",
+    "institutionName": "WAYF Test IDP",
+    "hosts": [
+      { "host": "localhost:9100" }
+    ]
+  },
+
+  {
+    "institutionId": "umit.dk",
+    "institutionName": "IT Department of the Ministry of Higher Education",
+    "hosts": [
+      { "host": "stads.example.com" }
+    ]
+  }
+
+]

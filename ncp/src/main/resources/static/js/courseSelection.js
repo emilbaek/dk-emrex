@@ -8,11 +8,14 @@ angular.module('courseSelection', [])
         var findOptionsRecursively = function (innerFunction, learningOpportunityArray, partOf) {
             angular.forEach(learningOpportunityArray, function (opportunityWrapper) {
                 var opportunity = opportunityWrapper.learningOpportunitySpecification;
-                innerFunction(opportunity);
 
+                if (opportunity) {
+                    innerFunction(opportunity);
 
-                if (opportunity.hasPart)
-                    findOptionsRecursively(innerFunction, opportunity.hasPart, opportunity)
+                    if (opportunity.hasPart) {
+                        findOptionsRecursively(innerFunction, opportunity.hasPart, opportunity)
+                    }
+                }
             });
             return;
         };

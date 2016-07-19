@@ -6,12 +6,12 @@
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
-import fi.csc.emrex.common.PdfGen;
-import fi.csc.emrex.common.PersonalLogger;
-import fi.csc.emrex.common.StatisticalLogger;
-import fi.csc.emrex.common.elmo.ElmoParser;
-import fi.csc.emrex.common.util.Security;
-import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
+import dk.kmd.emrex.common.PdfGen;
+import dk.kmd.emrex.common.PersonalLogger;
+import dk.kmd.emrex.common.StatisticalLogger;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.util.Security;
+import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,31 +64,39 @@ public class ThymeController {
     @RequestMapping(value = "/review", method = RequestMethod.GET)
     public String review(@RequestParam(value = "courses", required = false) String[] courses,
             Model model) throws Exception {
+        final WayfUser wayfUser = this.getCurrentUser();
 
         model.addAttribute("sessionId", context.getSession().getAttribute("sessionId"));
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
-        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+
+        final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getCpr());
+        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmoXml);
+
+//        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
 
         String xmlString;
 
         // Generate pdf with existing courses and add pdf to xml
-        xmlString = getElmoXml(courses, parser);
+        {
+            xmlString = getElmoXml(courses, parser);
 
-        PdfGen pdfGenerator = new PdfGen();
-
-        byte[] pdf = pdfGenerator.generatePdf(xmlString);
-
-        parser.addPDFAttachment(pdf);
-
-        xmlString = getElmoXml(courses, parser);
-
-        ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
-
-        String source = "NCP";
-        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
-        StatisticalLogger.log(statisticalLogLine);
-
-        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
+            // TODO
+//            PdfGen pdfGenerator = new PdfGen();
+//
+//            byte[] pdf = pdfGenerator.generatePdf(xmlString);
+//
+//            parser.addPDFAttachment(pdf);
+//
+//            xmlString = getElmoXml(courses, parser);
+//
+//            ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
+        }
+//          TODO
+//        String source = "NCP";
+//        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
+//        StatisticalLogger.log(statisticalLogLine);
+//
+//        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
         if (courses != null) {
             model.addAttribute("returnCode", context.getSession().getAttribute("returnCode"));
             model.addAttribute("elmo", xmlString);
@@ -96,9 +104,9 @@ public class ThymeController {
             model.addAttribute("returnCode", "NCP_NO_RESULTS");
             model.addAttribute("elmo", null);
         }
-        model.addAttribute("buttonText", "Confirm selection");
+        model.addAttribute("buttonText", "Confirm selected results");
 
-        model.addAttribute("buttonClass", "pure-button custom-go-button custom-inline");
+        model.addAttribute("buttonClass", "btn btn-success");
 
         return "review";
     }
@@ -127,7 +135,7 @@ public class ThymeController {
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
         model.addAttribute("buttonText", "Cancel");
         model.addAttribute("returnCode", "NCP_CANCEL");
-        model.addAttribute("buttonClass", "pure-button custom-panic-button custom-inline");
+        model.addAttribute("buttonClass", "btn btn-link");
         return "review";
     }
 

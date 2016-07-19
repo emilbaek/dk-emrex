@@ -6,8 +6,8 @@
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
-import fi.csc.emrex.common.elmo.ElmoParser;
-import fi.csc.emrex.common.util.ShibbolethHeaderHandler;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
 import org.json.JSONObject;
 import org.json.XML;
@@ -115,12 +115,17 @@ public class JsonController {
 
         try {
 
-            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+            final WayfUser user = getCurrentUser();
+            final String elmo = studyFetcher.fetchStudies(user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+
             String xmlString;
             if (courses != null) {
                 log.debug("Courses count: {}", courses.length);
                 List<String> courseList = Arrays.asList(courses);
-                xmlString = parser.getCourseData(courseList);
+                xmlString = parser.getCourseData(); // TODO
+//                xmlString = parser.getCourseData(courseList);
             } else {
                 log.debug("Courses count: null");
                 xmlString = parser.getCourseData(null);

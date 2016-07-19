@@ -1,7 +1,7 @@
 package dk.uds.emrex.smp;
 
 import dk.uds.emrex.smp.openpgp.PGPEncryptor;
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;

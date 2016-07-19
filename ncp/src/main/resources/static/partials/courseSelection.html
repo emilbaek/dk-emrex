@@ -1,78 +1,48 @@
-<div class="pure-g">
-    <div class="pure-u-1-1">
-        <ng-include src="'common/partials/header.html'"></ng-include>
-
-    </div>
-    <div class="pure-u-1-1">
-        <h2>Find and select results to import</h2>
-        <hr/>
-        <br>
-
-        <h3>{{learner.fullName}} {{learner.bday.content}}</h3>
-        <br>
-
-        <h3>Filter Results</h3>
-
-        <div class="pure-g">
-            <div class="pure-u-1-4 custom-border">
-                <form class="pure-form pure-form-stacked custom-zero-margin">
-                    <fieldset>
-                        <legend>Education Institutions</legend>
-                        <div class="custom-option-margin">
-                            <div ng-repeat="(key, value) in educationInstitutionOptions">
-                                <input type="checkbox" name="educationInstitutionOptions[]"
-                                       ng-model="educationInstitutionOptions[key]">{{key}}</input>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="pure-u-1-4 custom-border">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-                        <legend>Type</legend>
-                        <div class="custom-option-margin">
-                            <div class="custom-option" ng-repeat="(key, value) in typeOptions">
-                                <input type="checkbox" name="typeOptions[]" ng-model="typeOptions[key]">{{key}}</input>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="pure-u-1-4 custom-border">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-                        <legend>Level</legend>
-                        <div class="custom-option-margin">
-                            <select ng-options="level for level in levelOptions" ng-model="selectedLevel"
-                                    ng-init="selectedLevel = levelOptions[0]"></select>
-                        </div>
-
-                    </fieldset>
-                </form>
-            </div>
-            <div class="pure-u-1-4 custom-border">
-                <form class="pure-form pure-form-stacked">
-                    <fieldset>
-                        <legend>Time Period</legend>
-                        <div class="custom-option-margin">
-                            <datepicker date-format="yyyy-MM-dd">
-                                <input placeholder="" ng-model="startdate" type="text"/>
-                            </datepicker>
-                            <datepicker date-format="yyyy-MM-dd">
-                                <input ng-model="enddate" type="text"/>
-                            </datepicker>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
+<div class="row">
+    <div class="col-xs-12" style="display:flex;margin-bottom:2em; background-color:rgb(0,20,145);color:white;">
+        <img src="../common/img/emrex.png" style="margin-right:2em; height:86px;" />
+        <div style="height:86px;line-height:86px;">
+            <span style="font-size:2.5em;font-weight:lighter; white-space: nowrap;">EMREX - Danish National Contact Point</span>
         </div>
-        <button class="pure-button custom-go-button" ng-click="sendIds()">Import selected</button>
-        <div class="custom-inline" ng-bind-html="abort"/>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-xs-12">
+        <span>
+            <h2>Find and select results to import</h2>
+            Select the results you want to import (only passed results are shown) and click "Import selected".<br/>
+            After this you will be asked to confirm your selection of results.
+        </span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Jens Jensen, 06-03-1995</h3> <!-- TODO -->
+        <!--<h3>{{learner.fullName}}, {{learner.bday.content}}</h3>-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
         <div ng-repeat="learningReport in reports | filter:issuerFilter">
             <learning-report-directive report='learningReport' level-filter='selectedLevel'
                                        type-filter='typeOptions' start-date="startdate" end-date="enddate"></learning-report-directive>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="custom-inline" ng-bind-html="abort"/>
+        <button class="btn btn-default btn-success pull-right" ng-click="sendIds()">Import selected results</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <br/><br/>
+        <span>If something is not working, please contact your home university or <a href="mailto:emrex-support@emrex.eu">emrex-support@emrex.eu</a>.</span>
     </div>
 </div>

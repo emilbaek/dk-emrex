@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.uds.emrex.common.util;
+package dk.kmd.emrex.common.util;
 
 import java.util.regex.Pattern;
 

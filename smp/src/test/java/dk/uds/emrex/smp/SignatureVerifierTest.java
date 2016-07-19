@@ -1,7 +1,7 @@
 package dk.uds.emrex.smp;
 
 
-import fi.csc.emrex.common.util.TestUtil;
+import dk.kmd.emrex.common.util.TestUtil;
 import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;

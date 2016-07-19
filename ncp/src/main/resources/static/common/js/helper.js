@@ -57,6 +57,18 @@ angular.module('helper', [])
                 return count;
             };
 
+            var calculateEcts = function(learningOpportunityArray) {
+                var count = 0;
+                angular.forEach(learningOpportunityArray, function (opportunity) {
+                    if (opportunity.learningOpportunitySpecification) {
+                        count += opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit.value || 0;
+                        if (opportunity.learningOpportunitySpecification.hasPart)
+                            count = count + calculateCourses(opportunity.learningOpportunitySpecification.hasPart)
+                    }
+                });
+                return count;
+            };
+
             var filterProperReports = function (reports) {
                 return reports.filter(function (report) {
                     var goodReport = true;
@@ -72,6 +84,7 @@ angular.module('helper', [])
                 angular.forEach(reports, function (report) {
                     if (report.learningOpportunitySpecification) {
                         report.numberOfCourses = calculateCourses(report.learningOpportunitySpecification);
+                        report.numberOfEcts = calculateEcts(report.learningOpportunitySpecification);
                     }
                 });
                 return filterProperReports(reports);
