@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StreamUtils;
@@ -51,11 +52,12 @@ public class DkNcpApplication {
     private String idpConfigPathFallback;
 
     @Bean
+    @Profile("dev")
     public StudyFetcher studyFetcher() {
         return new StudyFetcher() {
             @Cacheable
             @Override
-            public String fetchStudies(String ssn) throws IOException {
+            public String fetchStudies(String institutionId, String ssn) throws IOException {
                 try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
                     return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
                 }
