@@ -1,6 +1,8 @@
 package dk.uds.emrex.ncp;
 
+import dk.kmd.emrex.common.idp.IdpConfigListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +10,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StreamUtils;
 
@@ -41,6 +44,12 @@ public class DkNcpApplication {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Value("${idp.configPath}")
+    private String idpConfigPath;
+
+    @Value("${idp.configPath.fallback}")
+    private String idpConfigPathFallback;
+
     @Bean
     public StudyFetcher studyFetcher() {
         return new StudyFetcher() {
@@ -52,5 +61,22 @@ public class DkNcpApplication {
                 }
             }
         };
+    }
+
+    @Bean
+    public IdpConfigListService idpConfigListService() throws IOException {
+        try (final InputStream jsonStream = getIdpConfigResource().getInputStream()) {
+            return IdpConfigListService.fromJson(jsonStream);
+        }
+    }
+
+    private Resource getIdpConfigResource() {
+        Resource resource = this.resourceLoader.getResource(this.idpConfigPath);
+
+        if (!resource.exists()) {
+            resource = this.resourceLoader.getResource(this.idpConfigPathFallback);
+        }
+
+        return resource;
     }
 }

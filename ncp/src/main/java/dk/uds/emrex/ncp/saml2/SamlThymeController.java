@@ -1,5 +1,7 @@
 package dk.uds.emrex.ncp.saml2;
 
+import dk.kmd.emrex.common.idp.IdpConfig;
+import dk.kmd.emrex.common.idp.IdpConfigListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class SamlThymeController {
     private static final Logger LOG = LoggerFactory.getLogger(SamlThymeController.class);
 
     @Autowired
-    private SamlBirkIdpListService idpListService;
+    private IdpConfigListService idpListService;
 
     @RequestMapping("/idpSelection")
     public ModelAndView idpSelection(HttpServletRequest request) {
@@ -33,14 +35,10 @@ public class SamlThymeController {
         modelAndView.addObject("idpDiscoReturnParam", idpDiscoReturnParam);
 
         // Get IDP list and filter it
-        try {
-            Iterable<SamlIdp> idps = idpListService.getIdps();
+        Iterable<IdpConfig> idps = idpListService.getIdpConfigs();
 
-            // Add IDP list to modelAndView
-            modelAndView.addObject("idps", idps);
-        } catch (IOException e) {
-            modelAndView.addObject("error", e);
-        }
+        // Add IDP list to modelAndView
+        modelAndView.addObject("idps", idps);
 
         return modelAndView;
     }

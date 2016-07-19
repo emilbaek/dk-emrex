@@ -1,82 +1,82 @@
 [
 
   {
-    "institutionId": "ku.dk",
-    "institutionName": "University of Copenhagen",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "au.dk",
-    "institutionName": "Aarhus University",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "sdu.dk",
-    "institutionName": "University of Southern Denmark",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "ruc.dk",
-    "institutionName": "Roskilde University",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "aau.dk",
-    "institutionName": "Aalborg University",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "dtu.dk",
-    "institutionName": "Technical University of Denmark",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "cbs.dk",
-    "institutionName": "Copenhagen Business School",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
-    "institutionId": "itu.dk",
-    "institutionName": "IT University of Copenhagen",
-    "hosts": [
-      { "host": "stads.example.com" }
-    ]
-  },
-
-  {
     "institutionId": "testidp.wayf.dk",
-    "institutionName": "WAYF Test IDP",
-    "hosts": [
-      { "host": "localhost:9100" }
+    "institutionName": "WAYF Test IdP",
+    "urls": [
+      { "url": "http://localhost:9100/getStudentsResult" }
     ]
   },
 
   {
     "institutionId": "umit.dk",
     "institutionName": "IT Department of the Ministry of Higher Education",
-    "hosts": [
-      { "host": "stads.example.com" }
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "ku.dk",
+    "institutionName": "University of Copenhagen",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "au.dk",
+    "institutionName": "Aarhus University",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "sdu.dk",
+    "institutionName": "University of Southern Denmark",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "ruc.dk",
+    "institutionName": "Roskilde University",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "aau.dk",
+    "institutionName": "Aalborg University",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "dtu.dk",
+    "institutionName": "Technical University of Denmark",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "cbs.dk",
+    "institutionName": "Copenhagen Business School",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+    ]
+  },
+
+  {
+    "institutionId": "itu.dk",
+    "institutionName": "IT University of Copenhagen",
+    "urls": [
+      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
     ]
   }
 
