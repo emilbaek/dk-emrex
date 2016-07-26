@@ -1,5 +1,6 @@
 package dk.uds.emrex.ncp.stads;
 
+import dk.kmd.emrex.common.UrlBuilder;
 import dk.kmd.emrex.common.idp.IdpConfig;
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.StudyFetcher;
@@ -46,9 +47,11 @@ public class StadsStudyFetcher implements StudyFetcher {
     private String fetchStudies(Iterable<IdpConfig.IdpConfigUrl> urls, String ssn) {
         for (IdpConfig.IdpConfigUrl idpConfigUrl : urls) {
             try {
-                final String url = buildUrl(idpConfigUrl.getUrl(), ssn);
+                final URL url = new UrlBuilder(idpConfigUrl.getUrl())
+                        .setParameter("cpr", ssn)
+                        .toUrl();
 
-                final URLConnection urlConnection = new URL(url).openConnection();
+                final URLConnection urlConnection = url.openConnection();
                 urlConnection.setConnectTimeout(this.connectionTimeout);
 
                 urlConnection.connect();
@@ -65,16 +68,5 @@ public class StadsStudyFetcher implements StudyFetcher {
         }
 
         // TODO Throw error: Not able to connect to any STADS URL
-    }
-
-    private String buildUrl(final String baseUrl, final String ssn) {
-        try {
-            // TODO Check parameters with the spec
-            return baseUrl + "?" + "ssn=" + URLEncoder.encode(ssn, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            // Should never happen
-            throw new UnsupportedOperationException(e);
-        }
-
     }
 }
