@@ -19,7 +19,7 @@ import java.time.LocalDate;
  */
 @Slf4j
 @Setter
-@Component
+//@Component
 public class VirtaClient implements StudyFetcher {
 
     /**
@@ -38,8 +38,8 @@ public class VirtaClient implements StudyFetcher {
 
     
     @Override
-    public String fetchStudies(String ssn) {
-        return fetchStudies(new VirtaUser("", ssn));
+    public String fetchStudies(String institutionId, String ssn) {
+        return fetchStudies(new VirtaUser(institutionId, ssn));
     }
 
     public String fetchStudies(VirtaUser virtaUser) {

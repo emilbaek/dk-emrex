@@ -14,6 +14,7 @@ import dk.kmd.emrex.common.util.Security;
 import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -75,7 +76,7 @@ public class ThymeController {
             final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getOrganizationId(), wayfUser.getCpr());
             parser = ElmoParser.elmoParserFromVirta(elmoXml);
         } catch (IOException e) {
-            log.error(e);
+            log.error("Failed to fetch study data.", e);
             throw e;
         }
 
