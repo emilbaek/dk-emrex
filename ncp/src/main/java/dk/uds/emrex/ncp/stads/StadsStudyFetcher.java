@@ -5,9 +5,6 @@ import dk.kmd.emrex.common.idp.IdpConfig;
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.StudyFetcher;
 import org.apache.commons.collections.BufferUnderflowException;
-import org.apache.commons.collections.ListUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +24,9 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.*;
-import java.nio.BufferOverflowException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.util.Base64;
 import java.util.UUID;
 
@@ -119,10 +114,11 @@ public class StadsStudyFetcher implements StudyFetcher {
         throw new IOException("Unable to connect to any URL in list.");
     }
 
-    private static StadsResponse parseResponse(InputStream resStream) throws IOException {
+    private  StadsResponse parseResponse(InputStream resStream) throws IOException {
         try {
             final Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(resStream);
             final XPath xPath = XPathFactory.newInstance().newXPath();
+
             final XPathExpression requestIdXPath = xPath.compile("");
             final XPathExpression elmoXPath = xPath.compile("");
 
