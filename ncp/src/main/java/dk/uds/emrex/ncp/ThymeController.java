@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -69,8 +70,14 @@ public class ThymeController {
         model.addAttribute("sessionId", context.getSession().getAttribute("sessionId"));
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
 
-        final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getCpr());
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmoXml);
+        ElmoParser parser;
+        try {
+            final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getOrganizationId(), wayfUser.getCpr());
+            parser = ElmoParser.elmoParserFromVirta(elmoXml);
+        } catch (IOException e) {
+            log.error(e);
+            throw e;
+        }
 
 //        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
 
@@ -109,6 +116,7 @@ public class ThymeController {
         model.addAttribute("buttonClass", "btn btn-success");
 
         return "review";
+
     }
 
     private String getElmoXml(@RequestParam(value = "courses", required = false) String[] courses, ElmoParser parser) throws ParserConfigurationException {

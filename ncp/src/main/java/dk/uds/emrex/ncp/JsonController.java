@@ -70,7 +70,7 @@ public class JsonController {
 
         try {
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getCpr());
+            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
             final ElmoParser parser = ElmoParser.elmoParser(elmo);
 
 //            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
@@ -117,7 +117,7 @@ public class JsonController {
 
 //            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getCpr());
+            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
             final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
 
             String xmlString;

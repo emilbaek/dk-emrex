@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -24,6 +25,11 @@ public class UrlBuilder {
         return this;
     }
 
+//    public UrlBuilder setParameter(String key, byte[] value) {
+//        params.put(key, Base64.getEncoder().encodeToString(value));
+//        return this;
+//    }
+//
     @Override
     public String toString() {
         final String enc = "UTF-8";
