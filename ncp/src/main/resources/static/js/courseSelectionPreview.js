@@ -9,12 +9,14 @@ angular.module('courseSelection')
         });
 
         $scope.numberOfCourses = 0;
+        $scope.totalEcts = 0;
 
         apiService.getElmoSelected(selectedCoursesService.selectedCourseIds).then(function (reports) {
 
             var reports = helperService.calculateAndFilter(reports);
             angular.forEach(reports, function(report){
                 $scope.numberOfCourses += report.numberOfCourses;
+                $scope.totalEcts += report.numberOfEcts;
             });
             $scope.reports = reports;
         });

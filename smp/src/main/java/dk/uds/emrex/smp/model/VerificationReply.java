@@ -5,7 +5,7 @@
  */
 package dk.uds.emrex.smp.model;
 
-import fi.csc.emrex.common.model.Person;
+import dk.kmd.emrex.common.model.Person;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

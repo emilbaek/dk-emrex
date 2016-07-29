@@ -28,8 +28,8 @@
 
     <dependencies>
         <dependency>
-            <!--<groupId>dk.kmd.emrex</groupId>-->
-            <groupId>fi.csc.emrex</groupId>
+            <!--<groupId>fi.csc.emrex</groupId>-->
+            <groupId>dk.kmd.emrex</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -101,11 +101,16 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.security.extensions</groupId>
             <artifactId>spring-security-saml2-core</artifactId>
             <version>1.0.2.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>woodstox-core-asl</artifactId>
+            <version>4.4.1</version>
         </dependency>
 
     </dependencies>

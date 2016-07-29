@@ -1,3 +1,15 @@
+body {
+    font-family:Roboto, sans-serif;
+    font-size:12pt;
+    padding:0 0 2em;
+}
+
+h2 {
+    font-family:Roboto, sans-serif;
+    font-weight:100;
+    font-size:1.5em;
+}
+
 .custom-border {
     border: 1px solid #cbcbcb;
     box-sizing: border-box;
@@ -8,10 +20,15 @@
 }
 
 .custom-container {
-    margin: 10px;
+    margin-top: 2em;
 }
 .custom-selected {
-    background-color:  whitesmoke;
+    /*background-color:  whitesmoke;*/
+}
+
+.custom-deselected {
+    background-color: whitesmoke;
+    color:gray;
 }
 
 .custom-option-margin {
@@ -56,4 +73,61 @@ fieldset {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: 100%;
+}
+
+.idpSelection {
+    display:flex;
+    flex-flow: row wrap;
+    /*justify-content:center;*/
+    /*width:100%;*/
+    /*position:relative;*/
+}
+
+.idpSelection .idpSelection__header span {
+    /*display:flex; justify-content: flex-end; align-items: center;*/
+    /*width:50%;*/
+    /*padding:0 4em;*/
+    font-size: 2em;
+    font-weight:100;
+    white-space: nowrap;
+    margin-right:2em;
+}
+
+.idpSelection .idpSelection__header aside {
+    /*display:flex; justify-content: flex-end; align-items: center;*/
+    /*width:50%;*/
+    /*padding:0 4em;*/
+    font-size: 0.8em;
+    font-weight:100;
+    font-style: italic;
+}
+
+.idpSelection .idpSelection__items {
+    /*width:50%;*/
+}
+
+.idpSelection .idpSelection__items ul li {
+
+}
+
+.idpSelection .idpSelection__items form label {
+    cursor:pointer;
+    padding:0.5em;
+    font-size:1.1em;
+    font-weight:normal;
+    transition:background-color 500ms, transform 200ms;
+    will-change: transform, background-color;
+    transform-origin: 0 50%;
+    width:100%;
+    text-align: left;
+    background-color:transparent;
+}
+
+.idpSelection .idpSelection__items form label:hover, .idpSelection .idpSelection__items form label:active {
+    background-color:whitesmoke;
+    /*transform:scale(1.1);*/
+}
+
+.idpSelection .idpSelection__items form label > input[type=radio] {
+    display:none;
 }

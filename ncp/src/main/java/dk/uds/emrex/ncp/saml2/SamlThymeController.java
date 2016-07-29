@@ -1,14 +1,27 @@
 package dk.uds.emrex.ncp.saml2;
 
+import dk.kmd.emrex.common.idp.IdpConfig;
+import dk.kmd.emrex.common.idp.IdpConfigListService;
+import org.opensaml.saml2.common.Extensions;
+import org.opensaml.saml2.metadata.EntityDescriptor;
+import org.opensaml.saml2.metadata.provider.MetadataProviderException;
+import org.opensaml.xml.schema.XSAny;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.saml.metadata.MetadataManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.namespace.QName;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by sj on 23-05-16.
@@ -18,8 +31,29 @@ import java.io.IOException;
 public class SamlThymeController {
     private static final Logger LOG = LoggerFactory.getLogger(SamlThymeController.class);
 
+    private static class IdpEntry {
+        private String id;
+        private String name;
+
+        public IdpEntry(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
     @Autowired
-    private SamlBirkIdpListService idpListService;
+    private IdpConfigListService idpListService;
+
+    @Autowired
+    private MetadataManager metadataManager;
 
     @RequestMapping("/idpSelection")
     public ModelAndView idpSelection(HttpServletRequest request) {
@@ -33,15 +67,53 @@ public class SamlThymeController {
         modelAndView.addObject("idpDiscoReturnParam", idpDiscoReturnParam);
 
         // Get IDP list and filter it
+        final List<IdpEntry> idps = new LinkedList<>();
         try {
-            Iterable<SamlIdp> idps = idpListService.getIdps();
+            for (IdpConfig idpConfig : idpListService.getIdpConfigs()) {
 
-            // Add IDP list to modelAndView
-            modelAndView.addObject("idps", idps);
-        } catch (IOException e) {
-            modelAndView.addObject("error", e);
+                final String idpEntityId = findEntityIdForIdp(idpConfig.getId());
+                final String idpName = idpConfig.getName();
+
+                idps.add(new IdpEntry(idpEntityId, idpName));
+            }
+        } catch (MetadataProviderException e) {
+            LOG.warn("IDP metadata not available", e);
         }
 
+        // Add IDP list to modelAndView
+        modelAndView.addObject("idps", idps);
+
         return modelAndView;
+    }
+
+    private String findEntityIdForIdp(String idpId) throws MetadataProviderException {
+        // Search through all known IDPs for the one where md:IDPSSODescriptor/Extensions/Scope is equal to idpId
+
+        final String entityId = this.getIdpIdToEntityIdMap().get(idpId);
+
+        if (entityId != null) {
+            return entityId;
+        } else {
+            LOG.warn("Could not resolve BIRK scope for IDP ID {}", idpId);
+
+            return idpId;
+        }
+    }
+
+    @Cacheable
+    private Map<String, String> getIdpIdToEntityIdMap() throws MetadataProviderException {
+        final Map<String, String> map = new TreeMap<>();
+
+        for (final String entityId : metadataManager.getIDPEntityNames()) {
+            final EntityDescriptor entityDescriptor = metadataManager.getEntityDescriptor(entityId);
+            final Extensions idpSsoExtensions = entityDescriptor.getIDPSSODescriptor("urn:oasis:names:tc:SAML:2.0:protocol").getExtensions();
+            final XSAny idpScopeObj = (XSAny) idpSsoExtensions.getUnknownXMLObjects(new QName("urn:mace:shibboleth:metadata:1.0", "Scope")).get(0);
+
+            final String idpScope = idpScopeObj.getTextContent();
+
+            map.put(idpScope, entityId);
+        }
+
+        return map;
     }
 }
