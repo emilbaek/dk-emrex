@@ -33,8 +33,6 @@ import java.util.UUID;
 /**
  * Created by sj on 30-03-16.
  */
-@Service
-@Profile("!dev")
 public class StadsStudyFetcher implements StudyFetcher {
     private static class StadsResponse {
         private UUID requestId;

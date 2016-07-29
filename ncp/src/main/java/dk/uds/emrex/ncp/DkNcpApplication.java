@@ -1,6 +1,7 @@
 package dk.uds.emrex.ncp;
 
 import dk.kmd.emrex.common.idp.IdpConfigListService;
+import dk.uds.emrex.ncp.stads.StadsStudyFetcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -53,18 +54,24 @@ public class DkNcpApplication {
     @Value("${idp.configPath.fallback}")
     private String idpConfigPathFallback;
 
+    @Value("${stads.useMock}")
+    private boolean useTestStudyFetcher;
+
     @Bean
-    @Profile("dev")
     public StudyFetcher studyFetcher() {
-        return new StudyFetcher() {
-            @Cacheable
-            @Override
-            public String fetchStudies(String institutionId, String ssn) throws IOException {
-                try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
-                    return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
+        if (useTestStudyFetcher) {
+            return new StudyFetcher() {
+                @Cacheable
+                @Override
+                public String fetchStudies(String institutionId, String ssn) throws IOException {
+                    try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
+                        return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
+                    }
                 }
-            }
-        };
+            };
+        } else {
+            return new StadsStudyFetcher();
+        }
     }
 
     @Bean
