@@ -254,6 +254,39 @@
                     <argLine>-Xmx256M</argLine>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>dk.uds.emrex.stads.wsdl</generatePackage>
+<!--
+                    <schemaExcludes>
+                        <exclude>*.*</exclude>
+                    </schemaExcludes>
+-->
+                    <schemaIncludes>
+                        <schemaInclude>STADS*.wsdl</schemaInclude>
+                    </schemaIncludes>
+<!--
+                    <schemas>
+                        <schema>
+                            <url>classpath://STADS_getStudentsResults.wsdl</url>
+                        </schema>
+                    </schemas>
+-->
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
