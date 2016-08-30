@@ -9,8 +9,8 @@ import dk.uds.emrex.stads.wsdl.GetStudentsResultsResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.WebServiceException;
+import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.Iterator;
 import java.util.UUID;
+import java.util.stream.StreamSupport;
 
 /**
  * Created by sj on 30-03-16.
@@ -32,15 +34,16 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
     @Autowired
     private IdpConfigListService idpConfigListService;
 
-    @Value("${stads.timeout}")
-    private int connectionTimeout;
-
     @Override
-    public String fetchStudies(String institutionId, String ssn) throws IOException {
+    public String fetchStudies(@NotNull String institutionId, @NotNull String ssn) throws IOException {
         for (final IdpConfig idpConfig : idpConfigListService.getIdpConfigs()) {
             if (idpConfig.getId().equalsIgnoreCase(institutionId)) {
                 try {
-                    return fetchStudies(idpConfig.getGetStudentsResultWebserviceEndpoints(), ssn);
+                    final Iterator<String> urlIterator =
+                            StreamSupport.stream(idpConfig.getGetStudentsResultWebserviceEndpoints().spliterator(), false)
+                            .map((IdpConfig.IdpConfigUrl idpConfigUrl) -> idpConfigUrl.getUrl())
+                            .iterator();
+                    return fetchStudies(urlIterator, ssn);
                 } catch (IOException e) {
                     throw new IOException(String.format("Unable to connect to any STADS servers for IDP {}", institutionId), e);
                 }
@@ -50,16 +53,16 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
         throw new IOException(String.format("No STADS servers known for IDP {}", institutionId));
     }
 
-    private String fetchStudies(Iterable<IdpConfig.IdpConfigUrl> urls, String ssn) throws IOException {
-        for (IdpConfig.IdpConfigUrl idpConfigUrl : urls) {
+    public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
+        while (urls.hasNext()) {
+            final String url = urls.next();
 
-            final String url = idpConfigUrl.getUrl();
             LOG.info("Opening connection to STADS with URL {}", url);
 
             try {
                 return getStudentsResults(url, ssn);
             } catch (IOException | WebServiceException ex) {
-                LOG.warn(String.format("Error when connecting to STADS web-service at {}.", url), ex);
+                LOG.warn(String.format("Error when connecting to STADS web-service at %s.", url), ex);
             }
         }
 
@@ -94,7 +97,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
         input.setCPR(formatCprToStads(cpr));
         input.setRequestId(requestId);
 
-        request.setInputStruct(new GetStudentsResultInput());
+        request.setInputStruct(input);
 
         final GetStudentsResultsResponse response = (GetStudentsResultsResponse) this.getWebServiceTemplate()
                 .marshalSendAndReceive(
@@ -115,7 +118,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 
                 return xmlWriter.toString();
             default:
-                throw new IOException(String.format("STADS error: {0} - {1}", receipt.getReceiptCode(), receipt.getReceiptText()));
+                throw new IOException(String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));
         }
     }
 

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.WebApplicationInitializer;
 
@@ -58,7 +59,14 @@ public class DkNcpApplication {
     private boolean useTestStudyFetcher;
 
     @Bean
-    public StudyFetcher studyFetcher() {
+    public Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setContextPath("dk.uds.emrex.stads.wsdl");
+        return marshaller;
+    }
+
+    @Bean
+    public StudyFetcher studyFetcher(Jaxb2Marshaller marshaller) {
         if (useTestStudyFetcher) {
             return new StudyFetcher() {
                 @Cacheable
@@ -70,7 +78,10 @@ public class DkNcpApplication {
                 }
             };
         } else {
-            return new StadsStudyFetcher();
+            final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
+            studyFetcher.setMarshaller(marshaller);
+            studyFetcher.setUnmarshaller(marshaller);
+            return studyFetcher;
         }
     }
 
