@@ -22,7 +22,7 @@ public class StadsStudyFetcherTest {
     private static Logger LOG = LoggerFactory.getLogger(StadsStudyFetcher.class);
 
     private static String STADS_URL = "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0";
-    private static String SSN = "1111110101";
+    private static String[] SSN_ARRAY = { "020575-6557", "010101-aps1" };
 
     private StadsStudyFetcher studyFetcher;
 
@@ -45,11 +45,12 @@ public class StadsStudyFetcherTest {
     @Test
     public void testFetchStudies() throws Exception {
         try {
-            final Iterator<String> urlIterator = Collections.singleton(STADS_URL).iterator();
-
-            final String elmo = this.studyFetcher.fetchStudies(urlIterator, SSN);
-            if (StringUtils.isEmpty(elmo)) {
-                fail("ELMO response was empty");
+            for (final String ssn : SSN_ARRAY) {
+                final Iterator<String> urlIterator = Collections.singleton(STADS_URL).iterator();
+                final String elmo = this.studyFetcher.fetchStudies(urlIterator, ssn);
+                if (StringUtils.isEmpty(elmo)) {
+                    fail("ELMO response was empty");
+                }
             }
         } catch (Exception ex) {
             LOG.warn("Error in test", ex);

@@ -3,9 +3,7 @@ package dk.uds.emrex.ncp.stads;
 import dk.kmd.emrex.common.idp.IdpConfig;
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.StudyFetcher;
-import dk.uds.emrex.stads.wsdl.GetStudentsResultInput;
-import dk.uds.emrex.stads.wsdl.GetStudentsResults;
-import dk.uds.emrex.stads.wsdl.GetStudentsResultsResponse;
+import dk.uds.emrex.stads.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,8 @@ import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
 import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -54,6 +54,10 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
     }
 
     public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
+        if (!urls.hasNext()) {
+            LOG.warn("No STADS urls given.");
+        }
+
         while (urls.hasNext()) {
             final String url = urls.next();
 
@@ -106,17 +110,23 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
                         new SoapActionCallback(url)
                 );
 
-        final GetStudentsResultsResponse.ReceiptStructure receipt = response.getReceiptStructure();
+        final GetStudentsResultsOutput.ReceiptStructure receipt = response.getReturn().getReceiptStructure();
 
         switch (receipt.getReceiptCode()) {
             case 0:
                 // Get ELMO document as XML string
                 final StringWriter xmlWriter = new StringWriter();
                 final StreamResult marshalResult = new StreamResult(xmlWriter);
+                final Elmo elmoDocument = response.getReturn().getElmoDocument();
 
-                this.getMarshaller().marshal(response.getElmoDocument(), marshalResult);
+                final JAXBElement<Elmo> elmoJAXBElement = new JAXBElement<>(new QName("elmo"), Elmo.class, elmoDocument);
 
-                return xmlWriter.toString();
+                this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
+//                this.getMarshaller().marshal(response.getReturn().getElmoDocument(), marshalResult);
+
+                final String elmoString = xmlWriter.toString();
+                LOG.debug("Returning ELMO string:\n{}", elmoString);
+                return elmoString;
             default:
                 throw new IOException(String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));
         }

@@ -269,21 +269,17 @@
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>dk.uds.emrex.stads.wsdl</generatePackage>
-<!--
                     <schemaExcludes>
                         <exclude>*.*</exclude>
                     </schemaExcludes>
--->
-                    <schemaIncludes>
-                        <schemaInclude>STADS*.wsdl</schemaInclude>
-                    </schemaIncludes>
-<!--
+                    <!--<schemaIncludes>-->
+                        <!--<schemaInclude>STADS*.wsdl</schemaInclude>-->
+                    <!--</schemaIncludes>-->
                     <schemas>
                         <schema>
-                            <url>classpath://STADS_getStudentsResults.wsdl</url>
+                            <url>http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0?wsdl</url>
                         </schema>
                     </schemas>
--->
                 </configuration>
             </plugin>
 
