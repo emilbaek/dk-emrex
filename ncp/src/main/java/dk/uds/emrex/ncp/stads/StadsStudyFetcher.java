@@ -45,7 +45,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
                             .iterator();
                     return fetchStudies(urlIterator, ssn);
                 } catch (IOException e) {
-                    throw new IOException(String.format("Unable to connect to any STADS servers for IDP {}", institutionId), e);
+                    throw new IOException(String.format("Unable to connect to any STADS servers for IDP %s", institutionId), e);
                 }
             }
         }

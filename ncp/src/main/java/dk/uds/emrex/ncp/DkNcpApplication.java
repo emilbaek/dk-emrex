@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 @SpringBootApplication
 @Configuration
@@ -67,22 +68,23 @@ public class DkNcpApplication {
 
     @Bean
     public StudyFetcher studyFetcher(Jaxb2Marshaller marshaller) {
+        final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
+        studyFetcher.setMarshaller(marshaller);
+        studyFetcher.setUnmarshaller(marshaller);
+
         if (useTestStudyFetcher) {
             return new StudyFetcher() {
                 @Cacheable
                 @Override
                 public String fetchStudies(String institutionId, String ssn) throws IOException {
-                    try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
-                        return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
-                    }
+                    return studyFetcher.fetchStudies(
+                            Collections.singleton("http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0").iterator(),
+                            "010101-aps1");
                 }
             };
-        } else {
-            final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
-            studyFetcher.setMarshaller(marshaller);
-            studyFetcher.setUnmarshaller(marshaller);
-            return studyFetcher;
         }
+
+        return studyFetcher;
     }
 
     @Bean

@@ -1,5248 +1,771 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elmo>
-
-    <generatedDate>2016-08-09T10:39:43.440Z</generatedDate>
-
+<elmo xmlns:ns2="http://GetStudentsResultWS_V1_0.webservice.stads.logica.dk/">
+    <generatedDate>2016-09-07T13:34:26.539Z</generatedDate>
     <learner>
-
         <citizenship>DK</citizenship>
-
-        <identifier>020575-6557</identifier>
-
+        <identifier type="nationalIdentifier">020575-6557</identifier>
+        <identifier type="studentIdentifier">AA021511</identifier>
+        <identifier type="stadsIdentifier">14683</identifier>
         <givenNames>CX</givenNames>
-
         <familyName>CX</familyName>
-
         <bday>1975-05-02</bday>
-
     </learner>
-
     <report>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>diplomingeniøruddannelse</title>
-
+            <identifier>GRPMAT/DIP</identifier>
+            <title>01005/01905 til GæstDK samt GÆSTUD 2005</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
+                    <start>2006-09-01Z</start>
+                    <date>2009-08-31Z</date>
+                    <resultLabel>02</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>91111</identifier>
+            <title>91111 Mechanics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
                     <start>1998-09-01Z</start>
-
                     <date>2001-02-12Z</date>
-
                     <academicTerm>
-
-                        <title>E98</title>
-
-                        <start>1998-09-01Z</start>
-
-                        <end>1999-01-31Z</end>
-
+                        <title>F99</title>
+                        <start>1999-02-01Z</start>
+                        <end>1999-08-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>02</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0.54166666666667</value>
-
+                        <value>7.500</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
+            <identifier>91312</identifier>
+            <title>91312 Analytical and Inorganic Chemistry, Laboratory Course</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>1998-09-01Z</start>
-
                     <date>2001-02-12Z</date>
-
                     <academicTerm>
-
                         <title>E98</title>
-
                         <start>1998-09-01Z</start>
-
                         <end>1999-01-31Z</end>
-
                     </academicTerm>
-
+                    <resultLabel>G</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0.54166666666667</value>
-
+                        <value>2.5000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Første år</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.5</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>1. halvår</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.33333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91111 Mekanik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>02</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.125</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91312 Uorganisk kvalitativ analyse, laboratoriekursus</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>G</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.04166666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91112 Matematik 1</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91711 Introduktion til kemisk procesteknik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>G</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>01901 Matematik med informationsteknologi 1</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>26170 Almen kemi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>26470 Organisk kemi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>-3</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>2. halvår</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91321 Uorganisk kemi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91123 Datalogi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>12</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91721 Fluid mekanik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91326 Uorganisk kvantitativ analyse, laboratoriekursus</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>G</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.04166666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91122 Matematik 2</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>-3</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>91722 Fluid mekanik, øvelser</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>G</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.04166666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>26270 Fysisk kemi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>00</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>26172 Uorganisk kemi</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>-3</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>3. halvår</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.04166666666667</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91132 Matematik 3</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.04166666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91332 Organisk kemi</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>EM</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91323 Organisk syntese, laboratoriekursus</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>IG</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91531 Biologisk kemi</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>EM</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91331 Fysisk kemi 1</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>EM</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91731 Kemiteknik</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>EM</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91532 Biologisk kemi, øvelser</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>91531 Biologisk kemi</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>4. halvår</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>1. element</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>2. element</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>5. halvår</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>6.-7. halvår</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Individuelt valgte kurser</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>Individuelt valgte kurser</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>1998-09-01Z</start>
-
-                                    <date>2001-02-12Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E98</title>
-
-                                        <start>1998-09-01Z</start>
-
-                                        <end>1999-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>Kurser fra MAT</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>1998-09-01Z</start>
-
-                                            <date>2001-02-12Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E98</title>
-
-                                                <start>1998-09-01Z</start>
-
-                                                <end>1999-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                    <hasPart>
-
-                                        <learningOpportunitySpecification>
-
-                                            <identifier>020575-6557</identifier>
-
-                                            <title>01905 DiploMat - 4 timers skriftlig prøve</title>
-
-                                            <type>Course</type>
-
-                                            <specifies>
-
-                                                <learningOpportunityInstance>
-
-                                                    <start>1998-09-01Z</start>
-
-                                                    <date>2001-02-12Z</date>
-
-                                                    <academicTerm>
-
-                                                        <title>E98</title>
-
-                                                        <start>1998-09-01Z</start>
-
-                                                        <end>1999-01-31Z</end>
-
-                                                    </academicTerm>
-
-                                                    <resultLabel>00</resultLabel>
-
-                                                    <credit>
-
-                                                        <scheme>ECTS</scheme>
-
-                                                        <level>-</level>
-
-                                                        <value>0</value>
-
-                                                    </credit>
-
-                                                </learningOpportunityInstance>
-
-                                            </specifies>
-
-                                        </learningOpportunitySpecification>
-
-                                    </hasPart>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Afgangsprojekt</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Specialkurser</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>1998-09-01Z</start>
-
-                            <date>2001-02-12Z</date>
-
-                            <academicTerm>
-
-                                <title>E98</title>
-
-                                <start>1998-09-01Z</start>
-
-                                <end>1999-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01901 Matematik med informationsteknologi 1</title>
-
+            <identifier>91112</identifier>
+            <title>91112 Mathematics 1</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>F00</title>
+                        <start>2000-02-01Z</start>
+                        <end>2000-08-31Z</end>
                     </academicTerm>
-
-                    <resultLabel>03</resultLabel>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01901 Matematik med informationsteknologi 1</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01902 Matematik med informationsteknologi 2</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01902 Matematik med informationsteknologi 2</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26170 Almen kemi</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
-                    <resultLabel>03</resultLabel>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26170 Almen kemi</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26470 Organisk kemi</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
                     <resultLabel>00</resultLabel>
-
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>5.0000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26470 Organisk kemi</title>
-
+            <identifier>91711</identifier>
+            <title>91711 Introduction to Chemical Process Engineering</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>E98</title>
+                        <start>1998-09-01Z</start>
+                        <end>1999-01-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>G</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>5.0000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26270 Fysisk kemi</title>
-
+            <identifier>91123</identifier>
+            <title>91123 Computer Science</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>F99</title>
+                        <start>1999-02-01Z</start>
+                        <end>1999-08-31Z</end>
                     </academicTerm>
-
-                    <resultLabel>03</resultLabel>
-
+                    <resultLabel>12</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>5.0000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26270 Fysisk kemi</title>
-
+            <identifier>91326</identifier>
+            <title>91326 Inorganic Quantitative Analysis, laboratory course</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>F99</title>
+                        <start>1999-02-01Z</start>
+                        <end>1999-08-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>G</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>2.5000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01905 DiploMat - indledende fælleskursus for dipomretningerne</title>
-
+            <identifier>91722</identifier>
+            <title>91722 Fluid Mechanics, Laboratory Course</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>F99</title>
+                        <start>1999-02-01Z</start>
+                        <end>1999-08-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>G</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>2.5000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26172 Uorganisk kemi</title>
-
+            <identifier>91132</identifier>
+            <title>91132 Mathematics 3</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
+                    <start>1998-09-01Z</start>
+                    <date>2001-02-12Z</date>
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>F00</title>
+                        <start>2000-02-01Z</start>
+                        <end>2000-08-31Z</end>
                     </academicTerm>
-
-                    <resultLabel>00</resultLabel>
-
+                    <resultLabel>02</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0</value>
-
+                        <value>2.5000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>26172 Uorganisk kemi</title>
-
+            <identifier>01995</identifier>
+            <title>01905 Advanced Calculus</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>2002-02-01Z</start>
-
                     <date>2005-07-26Z</date>
-
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>E04</title>
+                        <start>2004-09-01Z</start>
+                        <end>2005-01-31Z</end>
                     </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01905 DiploMat - 1. delprøve</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2002-02-01Z</start>
-
-                    <date>2005-07-26Z</date>
-
-                    <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
-                    </academicTerm>
-
                     <resultLabel>5</resultLabel>
-
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
                         <value>0</value>
-
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01905 DiploMat projekt</title>
-
+            <identifier>01996</identifier>
+            <title>01905 Advanced Calculus</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>2002-02-01Z</start>
-
                     <date>2005-07-26Z</date>
-
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>E04</title>
+                        <start>2004-09-01Z</start>
+                        <end>2005-01-31Z</end>
                     </academicTerm>
-
                     <resultLabel>9</resultLabel>
-
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
                         <value>0</value>
-
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01905 DiploMat - 4 timers skriftlig prøve</title>
-
+            <identifier>01997</identifier>
+            <title>01905 Advanced Calculus</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>2002-02-01Z</start>
-
                     <date>2005-07-26Z</date>
-
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>E04</title>
+                        <start>2004-09-01Z</start>
+                        <end>2005-01-31Z</end>
                     </academicTerm>
-
                     <resultLabel>5</resultLabel>
-
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0.16666666666667</value>
-
+                        <value>10.000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>01905 Matematik for diplomingeniører</title>
-
+            <identifier>01905-1</identifier>
+            <title>01905 Advanced Calculus</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>2002-02-01Z</start>
-
                     <date>2005-07-26Z</date>
-
                     <academicTerm>
-
-                        <title>F02</title>
-
-                        <start>2002-02-01Z</start>
-
-                        <end>2002-08-31Z</end>
-
+                        <title>E04</title>
+                        <start>2004-09-01Z</start>
+                        <end>2005-01-31Z</end>
                     </academicTerm>
-
                     <resultLabel>6</resultLabel>
-
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0.16666666666667</value>
-
+                        <value>10.000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>åben uddannelse</title>
-
+            <identifier>01905-1</identifier>
+            <title>01905 Advanced Calculus</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2006-09-01Z</start>
-
-                    <date>2009-08-31Z</date>
-
-                    <academicTerm>
-
-                        <title>E06</title>
-
-                        <start>2006-09-01Z</start>
-
-                        <end>2007-01-31Z</end>
-
-                    </academicTerm>
-
-                    <resultLabel>2.000000</resultLabel>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0.16666666666667</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2006-09-01Z</start>
-
-                    <date>2009-08-31Z</date>
-
-                    <academicTerm>
-
-                        <title>E06</title>
-
-                        <start>2006-09-01Z</start>
-
-                        <end>2007-01-31Z</end>
-
-                    </academicTerm>
-
-                    <resultLabel>2.000000</resultLabel>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0.16666666666667</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Kernestof-kurser</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2006-09-01Z</start>
-
-                            <date>2009-08-31Z</date>
-
-                            <academicTerm>
-
-                                <title>E06</title>
-
-                                <start>2006-09-01Z</start>
-
-                                <end>2007-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Valgfri og diversegruppen for 2005</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2006-09-01Z</start>
-
-                            <date>2009-08-31Z</date>
-
-                            <academicTerm>
-
-                                <title>E06</title>
-
-                                <start>2006-09-01Z</start>
-
-                                <end>2007-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>01005/01905 til GæstDK samt GÆSTUD 2005</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2006-09-01Z</start>
-
-                            <date>2009-08-31Z</date>
-
-                            <academicTerm>
-
-                                <title>E06</title>
-
-                                <start>2006-09-01Z</start>
-
-                                <end>2007-01-31Z</end>
-
-                            </academicTerm>
-
-                            <resultLabel>02</resultLabel>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.16666666666667</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>01905 Matematik for diplomingeniører</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2006-09-01Z</start>
-
-                                    <date>2009-08-31Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E06</title>
-
-                                        <start>2006-09-01Z</start>
-
-                                        <end>2007-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Valgfri gruppe for åben uddannelsesstuderende</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2006-09-01Z</start>
-
-                            <date>2009-08-31Z</date>
-
-                            <academicTerm>
-
-                                <title>E06</title>
-
-                                <start>2006-09-01Z</start>
-
-                                <end>2007-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>åben uddannelse</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
                     <start>2009-09-01Z</start>
-
                     <date>2010-06-26Z</date>
-
                     <academicTerm>
-
-                        <title>E09</title>
-
-                        <start>2009-09-01Z</start>
-
-                        <end>2010-01-31Z</end>
-
+                        <title>E04</title>
+                        <start>2004-09-01Z</start>
+                        <end>2005-01-31Z</end>
                     </academicTerm>
-
-                    <resultLabel>2.000000</resultLabel>
-
+                    <resultLabel>02</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>0.16666666666667</value>
-
+                        <value>10.000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
+            <identifier>31037</identifier>
+            <title>31037 Analogue Design</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
-                    <start>2009-09-01Z</start>
-
-                    <date>2010-06-26Z</date>
-
-                    <academicTerm>
-
-                        <title>E09</title>
-
-                        <start>2009-09-01Z</start>
-
-                        <end>2010-01-31Z</end>
-
-                    </academicTerm>
-
-                    <resultLabel>2.000000</resultLabel>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0.16666666666667</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Valgfrie aktiviteter på bacheloruddannelsen</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2009-09-01Z</start>
-
-                            <date>2010-06-26Z</date>
-
-                            <academicTerm>
-
-                                <title>E09</title>
-
-                                <start>2009-09-01Z</start>
-
-                                <end>2010-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diverse09</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2009-09-01Z</start>
-
-                            <date>2010-06-26Z</date>
-
-                            <academicTerm>
-
-                                <title>E09</title>
-
-                                <start>2009-09-01Z</start>
-
-                                <end>2010-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.16666666666667</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>01905 Matematik for diplomingeniører</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2009-09-01Z</start>
-
-                                    <date>2010-06-26Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E09</title>
-
-                                        <start>2009-09-01Z</start>
-
-                                        <end>2010-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diverse, Åben uddannelse</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2009-09-01Z</start>
-
-                            <date>2010-06-26Z</date>
-
-                            <academicTerm>
-
-                                <title>E09</title>
-
-                                <start>2009-09-01Z</start>
-
-                                <end>2010-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>åben uddannelse</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2010-09-01Z</start>
-
-                    <date>2012-06-06Z</date>
-
-                    <academicTerm>
-
-                        <title>E10</title>
-
-                        <start>2010-09-01Z</start>
-
-                        <end>2011-01-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
-                    <start>2010-09-01Z</start>
-
-                    <date>2012-06-06Z</date>
-
-                    <academicTerm>
-
-                        <title>E10</title>
-
-                        <start>2010-09-01Z</start>
-
-                        <end>2011-01-31Z</end>
-
-                    </academicTerm>
-
-                    <credit>
-
-                        <scheme>ECTS</scheme>
-
-                        <level>-</level>
-
-                        <value>0</value>
-
-                    </credit>
-
-                </learningOpportunityInstance>
-
-            </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Valgfrie aktiviteter på bacheloruddannelsen</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2010-09-01Z</start>
-
-                            <date>2012-06-06Z</date>
-
-                            <academicTerm>
-
-                                <title>E10</title>
-
-                                <start>2010-09-01Z</start>
-
-                                <end>2011-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>Valgfrie Grundlæggende kurser</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2010-09-01Z</start>
-
-                                    <date>2012-06-06Z</date>
-
-                                    <academicTerm>
-
-                                        <title>E10</title>
-
-                                        <start>2010-09-01Z</start>
-
-                                        <end>2011-01-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>Grundlæggende kurser fra IMM</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2010-09-01Z</start>
-
-                                            <date>2012-06-06Z</date>
-
-                                            <academicTerm>
-
-                                                <title>E10</title>
-
-                                                <start>2010-09-01Z</start>
-
-                                                <end>2011-01-31Z</end>
-
-                                            </academicTerm>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                    <hasPart>
-
-                                        <learningOpportunitySpecification>
-
-                                            <identifier>020575-6557</identifier>
-
-                                            <title>02323 Sandsynlighedsregning og statistik</title>
-
-                                            <type>Course</type>
-
-                                            <specifies>
-
-                                                <learningOpportunityInstance>
-
-                                                    <start>2010-09-01Z</start>
-
-                                                    <date>2012-06-06Z</date>
-
-                                                    <academicTerm>
-
-                                                        <title>E10</title>
-
-                                                        <start>2010-09-01Z</start>
-
-                                                        <end>2011-01-31Z</end>
-
-                                                    </academicTerm>
-
-                                                    <resultLabel>-3</resultLabel>
-
-                                                    <credit>
-
-                                                        <scheme>ECTS</scheme>
-
-                                                        <level>-</level>
-
-                                                        <value>0</value>
-
-                                                    </credit>
-
-                                                </learningOpportunityInstance>
-
-                                            </specifies>
-
-                                        </learningOpportunitySpecification>
-
-                                    </hasPart>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diverse09</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2010-09-01Z</start>
-
-                            <date>2012-06-06Z</date>
-
-                            <academicTerm>
-
-                                <title>E10</title>
-
-                                <start>2010-09-01Z</start>
-
-                                <end>2011-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diverse, Åben uddannelse</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2010-09-01Z</start>
-
-                            <date>2012-06-06Z</date>
-
-                            <academicTerm>
-
-                                <title>E10</title>
-
-                                <start>2010-09-01Z</start>
-
-                                <end>2011-01-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-        </learningOpportunitySpecification>
-
-        <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
-            <title>diplomingeniøruddannelse</title>
-
-            <type>Course</type>
-
-            <specifies>
-
-                <learningOpportunityInstance>
-
                     <start>2011-02-01Z</start>
-
                     <academicTerm>
-
-                        <title>F11</title>
-
-                        <start>2011-02-01Z</start>
-
-                        <end>2011-08-31Z</end>
-
+                        <title>F13</title>
+                        <start>2013-02-01Z</start>
+                        <end>2013-08-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>10</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>2.58333333333331</value>
-
+                        <value>5.0000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diplomingeniør.</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>2.58333333333331</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
         </learningOpportunitySpecification>
-
         <learningOpportunitySpecification>
-
-            <identifier>020575-6557</identifier>
-
+            <identifier>30090</identifier>
+            <title>30090 Digital Systems, Design of</title>
             <type>Course</type>
-
             <specifies>
-
                 <learningOpportunityInstance>
-
                     <start>2011-02-01Z</start>
-
                     <academicTerm>
-
-                        <title>F11</title>
-
-                        <start>2011-02-01Z</start>
-
-                        <end>2011-08-31Z</end>
-
+                        <title>F12</title>
+                        <start>2012-02-01Z</start>
+                        <end>2012-08-31Z</end>
                     </academicTerm>
-
+                    <resultLabel>12</resultLabel>
                     <credit>
-
                         <scheme>ECTS</scheme>
-
                         <level>-</level>
-
-                        <value>2.58333333333331</value>
-
+                        <value>5.0000</value>
                     </credit>
-
                 </learningOpportunityInstance>
-
             </specifies>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Afgangsprojekt</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Første år Elektro</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.99999999999999</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>1. semester Elektro</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.49999999999999</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>31033 Projektarbejde i elektroteknik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>7</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>01906 Indledende matematik for diplomingeniører</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>BE</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>01907 Videregående matematik for diplomingeniører</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>BE</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>31032 Elektroteknik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>02</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.16666666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>02318 Indledende programmering i C</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>4</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>2. semester Elektro</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.5</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>30080 Digital- og datateknik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>7</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.16666666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>02319 Videregående programmering</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>7</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>01964 Matematik 2</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>4</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.08333333333333</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                            <hasPart>
-
-                                <learningOpportunitySpecification>
-
-                                    <identifier>020575-6557</identifier>
-
-                                    <title>31022 Analog elektronik</title>
-
-                                    <type>Course</type>
-
-                                    <specifies>
-
-                                        <learningOpportunityInstance>
-
-                                            <start>2011-02-01Z</start>
-
-                                            <academicTerm>
-
-                                                <title>F11</title>
-
-                                                <start>2011-02-01Z</start>
-
-                                                <end>2011-08-31Z</end>
-
-                                            </academicTerm>
-
-                                            <resultLabel>7</resultLabel>
-
-                                            <credit>
-
-                                                <scheme>ECTS</scheme>
-
-                                                <level>-</level>
-
-                                                <value>0.16666666666667</value>
-
-                                            </credit>
-
-                                        </learningOpportunityInstance>
-
-                                    </specifies>
-
-                                </learningOpportunitySpecification>
-
-                            </hasPart>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>3. semester Elektro</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.41666666666667</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>02323 Sandsynlighedsregning og statistik</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>-3</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31038 Lineære systemer, digital signalbehandling og signalprocessorer</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>7</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.25</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31035 Anvendt elektromagnetisme</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>7</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>4. semester Elektro</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.49999999999999</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31037 Analog design</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>10</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>30090 Digitale systemer</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>12</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>10917 Fysik 1</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31301 Reguleringsteknik 1</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>10</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31036 Elektriske energisystemer</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>BE</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Forhåndsgodkendte kurser Elektro 2008</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.58333333333333</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31354 Kredsløbsteknologi og EMC</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>BE</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31340 Datamatbaseret regulering</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31310 Reguleringsteknik 2</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>02</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.16666666666667</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31305 Projekter i praktisk regulering</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>7</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>02325 Datakommunikation</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>10</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>02325 Datakommunikation</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>31445 Signalintegritet i højhasstighedselektronik</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>6 - 7 semester Elektro</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
-            <hasPart>
-
-                <learningOpportunitySpecification>
-
-                    <identifier>020575-6557</identifier>
-
-                    <title>Diverse</title>
-
-                    <type>Course</type>
-
-                    <specifies>
-
-                        <learningOpportunityInstance>
-
-                            <start>2011-02-01Z</start>
-
-                            <academicTerm>
-
-                                <title>F11</title>
-
-                                <start>2011-02-01Z</start>
-
-                                <end>2011-08-31Z</end>
-
-                            </academicTerm>
-
-                            <credit>
-
-                                <scheme>ECTS</scheme>
-
-                                <level>-</level>
-
-                                <value>0.08333333333333</value>
-
-                            </credit>
-
-                        </learningOpportunityInstance>
-
-                    </specifies>
-
-                    <hasPart>
-
-                        <learningOpportunitySpecification>
-
-                            <identifier>020575-6557</identifier>
-
-                            <title>02403 Introduktion til statistik</title>
-
-                            <type>Course</type>
-
-                            <specifies>
-
-                                <learningOpportunityInstance>
-
-                                    <start>2011-02-01Z</start>
-
-                                    <academicTerm>
-
-                                        <title>F11</title>
-
-                                        <start>2011-02-01Z</start>
-
-                                        <end>2011-08-31Z</end>
-
-                                    </academicTerm>
-
-                                    <resultLabel>4</resultLabel>
-
-                                    <credit>
-
-                                        <scheme>ECTS</scheme>
-
-                                        <level>-</level>
-
-                                        <value>0.08333333333333</value>
-
-                                    </credit>
-
-                                </learningOpportunityInstance>
-
-                            </specifies>
-
-                        </learningOpportunitySpecification>
-
-                    </hasPart>
-
-                </learningOpportunitySpecification>
-
-            </hasPart>
-
         </learningOpportunitySpecification>
-
-        <issueDate>2016-08-09T10:39:43.440Z</issueDate>
-
+        <learningOpportunitySpecification>
+            <identifier>02403-1</identifier>
+            <title>02403 Introduction to Statistics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F12</title>
+                        <start>2012-02-01Z</start>
+                        <end>2012-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>4</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31354</identifier>
+            <title>31354 Circuit Technology and EMC</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E12</title>
+                        <start>2012-09-01Z</start>
+                        <end>2013-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>BE</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>30080</identifier>
+            <title>30080 Digital and Data Technique</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F10</title>
+                        <start>2010-02-01Z</start>
+                        <end>2010-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31033</identifier>
+            <title>31033 Project Work in Electrotechnics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F07</title>
+                        <start>2007-02-01Z</start>
+                        <end>2007-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>02319-1</identifier>
+            <title>02319 Advanced Programming</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F10</title>
+                        <start>2010-02-01Z</start>
+                        <end>2010-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31038</identifier>
+            <title>31038 Linear Systems, Digital Signal Processing, and Signal Processors</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E10</title>
+                        <start>2010-09-01Z</start>
+                        <end>2011-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>15.00</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31035</identifier>
+            <title>31035 Engineering Electromagnetics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E11</title>
+                        <start>2011-09-01Z</start>
+                        <end>2012-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>10917</identifier>
+            <title>10917 Physics 1</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F12</title>
+                        <start>2012-02-01Z</start>
+                        <end>2012-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>02</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31301</identifier>
+            <title>31301 Linear Control Design 1</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F11</title>
+                        <start>2011-02-01Z</start>
+                        <end>2011-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>10</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31036</identifier>
+            <title>31036 Electrical Energy Systems</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F11</title>
+                        <start>2011-02-01Z</start>
+                        <end>2011-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>BE</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>01906-1</identifier>
+            <title>01906 Calculus and Algebra 1</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <resultLabel>BE</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>01907-1</identifier>
+            <title>01907 Calculus and Algebra 2</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <resultLabel>BE</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31340</identifier>
+            <title>31340 Computer Control Systems</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E11</title>
+                        <start>2011-09-01Z</start>
+                        <end>2012-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>02</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31032</identifier>
+            <title>31032 Electrotechnics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F11</title>
+                        <start>2011-02-01Z</start>
+                        <end>2011-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>02</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>02318-1</identifier>
+            <title>02318 Elementary Programming in C</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E09</title>
+                        <start>2009-09-01Z</start>
+                        <end>2010-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>4</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>01964-1</identifier>
+            <title>01964 Mathematics 2</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E10</title>
+                        <start>2010-09-01Z</start>
+                        <end>2011-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>4</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31022</identifier>
+            <title>31022 Analogue Electronics</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E09</title>
+                        <start>2009-09-01Z</start>
+                        <end>2010-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31310</identifier>
+            <title>31310 Linear Control Design 2</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E12</title>
+                        <start>2012-09-01Z</start>
+                        <end>2013-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>02</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>10.000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>31305</identifier>
+            <title>31305 Projects in Control Practice</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>E13</title>
+                        <start>2013-09-01Z</start>
+                        <end>2014-01-31Z</end>
+                    </academicTerm>
+                    <resultLabel>7</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <learningOpportunitySpecification>
+            <identifier>02325-1</identifier>
+            <title>02325 Data Communication</title>
+            <type>Course</type>
+            <specifies>
+                <learningOpportunityInstance>
+                    <start>2011-02-01Z</start>
+                    <academicTerm>
+                        <title>F13</title>
+                        <start>2013-02-01Z</start>
+                        <end>2013-08-31Z</end>
+                    </academicTerm>
+                    <resultLabel>10</resultLabel>
+                    <credit>
+                        <scheme>ECTS</scheme>
+                        <level>-</level>
+                        <value>5.0000</value>
+                    </credit>
+                </learningOpportunityInstance>
+            </specifies>
+        </learningOpportunitySpecification>
+        <issueDate>2016-09-07T13:34:26.539Z</issueDate>
     </report>
-
 </elmo>
