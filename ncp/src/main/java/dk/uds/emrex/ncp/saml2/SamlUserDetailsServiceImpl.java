@@ -18,6 +18,8 @@ package dk.uds.emrex.ncp.saml2;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.opensaml.saml2.core.Attribute;
+import org.opensaml.xml.XMLObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.saml.SAMLCredential;
 import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 public class SamlUserDetailsServiceImpl implements SAMLUserDetailsService {
@@ -63,35 +73,70 @@ public class SamlUserDetailsServiceImpl implements SAMLUserDetailsService {
     }
 
     private void fillUserFields(SAMLCredential samlCredential, Object user) throws IllegalAccessException {
+
         for (Field field : user.getClass().getDeclaredFields()) {
             final SamlAttribute samlAttributeAnnotation = field.getAnnotation(SamlAttribute.class);
             if (samlAttributeAnnotation != null) {
-                final String samlAttributeName = samlAttributeAnnotation.value();
+                final List<String> samlAttributeNames = Arrays.asList(samlAttributeAnnotation.value());
 
-                final String[] samlAttributeValues = samlCredential.getAttributeAsStringArray(samlAttributeName);
+                final Stream<Object> samlAttributeValues =
+                        samlAttributeNames.stream()
+                                .flatMap(an ->
+                                        Optional.ofNullable(samlCredential.getAttribute(an))
+                                                .map(attribute -> attribute.getAttributeValues()
+                                                        .stream().map(this::getValueOfXmlObject)
+                                                )
+                                                .orElse(null)
+                                );
 
                 setFieldOnObject(user, field, samlAttributeValues);
             }
         }
     }
 
-    private static void setFieldOnObject(Object obj, Field field, String[] values) throws IllegalAccessException {
-        if (values == null || values.length == 0) {
-            return;
+    private Object getValueOfXmlObject(XMLObject xmlObject) {
+        try {
+            return xmlObject.getClass().getMethod("getValue").invoke(xmlObject);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            LOG.error("Failed to read value of xmlObject " + xmlObject.toString());
+            throw new RuntimeException(e);
         }
+    }
 
+    private static void setFieldOnObject(@NotNull Object obj, @NotNull Field field, @NotNull Stream<Object> values) throws IllegalAccessException {
         field.setAccessible(true);
 
         final Class<?> fieldType = field.getType();
 
-        if (fieldType == String.class && !"null".equals(values[0])) {
-            field.set(obj, values[0]);
+        if (fieldType == String.class) {
+
+            final Optional<Object> value = values.filter(s -> !"null".equals(s))
+                    .findFirst();
+
+            if (value.isPresent()) {
+                field.set(obj, value.get());
+            }
         } else if (Iterable.class.isAssignableFrom(fieldType)) {
-            field.set(obj, Arrays.asList(values));
+
+            field.set(obj, values.collect(Collectors.toList()));
         } else if (DateTime.class.isAssignableFrom(fieldType)) {
-            field.set(obj, DateTime.parse(values[0], DateTimeFormat.forPattern("yyyyMMdd")));
+
+            final Optional<DateTime> value = values
+                    .findFirst()
+                    .map(s -> DateTime.parse((String) s, DateTimeFormat.forPattern("yyyyMMdd")));
+
+            if (value.isPresent()) {
+                field.set(obj, value.get());
+            }
         } else if (fieldType == int.class || fieldType == Integer.class) {
-            field.set(obj, Integer.parseInt(values[0]));
+
+            Optional<Integer> value = values
+                    .findFirst()
+                    .map(s -> Integer.parseInt((String)s));
+
+            if (value.isPresent()) {
+                field.set(obj, value.get());
+            }
         } else {
             throw new IllegalArgumentException("Unknown SAML field type: " + fieldType.getName());
         }
