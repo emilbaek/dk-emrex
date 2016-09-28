@@ -148,7 +148,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SAMLContextProviderImpl contextProvider() {
         final Matcher urlMatcher = Pattern.compile(
-                "^(?<scheme>[^:]*)://(?<serverName>[^/:]*)(?::(?<serverPort>[^/]+))?(?<contextPath>.*)$"
+                "^(?<scheme>[^:]*)://(?<serverName>[^/:]*)(?::(?<serverPort>[^/]+))?(?<contextPath>.+)?$"
         ).matcher(entityBaseUrl);
 
         if (!urlMatcher.matches()) {
@@ -159,7 +159,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         final String serverName = urlMatcher.group("serverName");
         final int serverPort = Optional.ofNullable(urlMatcher.group("serverPort"))
                 .map(Integer::parseInt).orElse(0);
-        final String contextPath = urlMatcher.group("contextPath");
+        final String contextPath = Optional.ofNullable(urlMatcher.group("contextPath"))
+                .orElse("/");
 
         LOG.debug("\nsamlContextProvider"
             + "\n- scheme=" + scheme
