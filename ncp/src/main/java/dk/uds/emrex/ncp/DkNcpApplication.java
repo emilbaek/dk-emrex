@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.WebApplicationInitializer;
 
@@ -24,6 +25,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
 
 @SpringBootApplication
 @Configuration
@@ -58,20 +60,31 @@ public class DkNcpApplication {
     private boolean useTestStudyFetcher;
 
     @Bean
-    public StudyFetcher studyFetcher() {
+    public Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setContextPath("dk.uds.emrex.stads.wsdl");
+        return marshaller;
+    }
+
+    @Bean
+    public StudyFetcher studyFetcher(Jaxb2Marshaller marshaller) {
+        final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
+        studyFetcher.setMarshaller(marshaller);
+        studyFetcher.setUnmarshaller(marshaller);
+
         if (useTestStudyFetcher) {
             return new StudyFetcher() {
                 @Cacheable
                 @Override
                 public String fetchStudies(String institutionId, String ssn) throws IOException {
-                    try (InputStream resourceStream = resourceLoader.getResource("classpath:/Example-elmo-Sweden-1.0.xml").getInputStream()) {
-                        return StreamUtils.copyToString(resourceStream, Charset.forName("UTF-8"));
-                    }
+                    return studyFetcher.fetchStudies(
+                            Collections.singleton("http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0").iterator(),
+                            "010101-aps1");
                 }
             };
-        } else {
-            return new StadsStudyFetcher();
         }
+
+        return studyFetcher;
     }
 
     @Bean

@@ -28,6 +28,8 @@ import org.opensaml.saml2.metadata.provider.MetadataProvider;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
 import org.opensaml.xml.parse.ParserPool;
 import org.opensaml.xml.parse.StaticBasicParserPool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,6 +47,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.saml.*;
 import org.springframework.security.saml.context.SAMLContextProviderImpl;
+import org.springframework.security.saml.context.SAMLContextProviderLB;
 import org.springframework.security.saml.context.SAMLMessageContext;
 import org.springframework.security.saml.key.JKSKeyManager;
 import org.springframework.security.saml.key.KeyManager;
@@ -70,11 +73,14 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final static Logger LOG = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Value("${saml.wayf.idpMetadataUrl}")
     private String wayfIdpMetadataURL;
@@ -87,6 +93,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${saml.wayfEntityId}")
     private String wayfEntityId;
+
+    @Value("${saml.entityBaseUrl}")
+    private String entityBaseUrl;
 
     @Autowired
     private SAMLUserDetailsService samlUserDetailsServiceImpl;
@@ -138,7 +147,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // Provider of default SAML Context
     @Bean
     public SAMLContextProviderImpl contextProvider() {
-        return new SAMLContextProviderImpl();
+        final Matcher urlMatcher = Pattern.compile(
+                "^(?<scheme>[^:]*)://(?<serverName>[^/:]*)(?::(?<serverPort>[^/]+))?(?<contextPath>.+)?$"
+        ).matcher(entityBaseUrl);
+
+        if (!urlMatcher.matches()) {
+            throw new IllegalArgumentException("Incorrect format of entityBaseUrl. Must be a valid url.");
+        }
+
+        final String scheme = urlMatcher.group("scheme");
+        final String serverName = urlMatcher.group("serverName");
+        final int serverPort = Optional.ofNullable(urlMatcher.group("serverPort"))
+                .map(Integer::parseInt).orElse(0);
+        final String contextPath = Optional.ofNullable(urlMatcher.group("contextPath"))
+                .orElse("/");
+
+        LOG.debug("\nsamlContextProvider"
+            + "\n- scheme=" + scheme
+            + "\n- serverName=" + serverName
+            + "\n- serverPort=" + serverPort
+            + "\n- contextPath=" + contextPath
+        );
+
+        final SAMLContextProviderLB samlContextProvider = new SAMLContextProviderLB();
+        samlContextProvider.setScheme(scheme);
+        samlContextProvider.setServerName(serverName);
+        samlContextProvider.setServerPort(serverPort);
+        samlContextProvider.setContextPath(contextPath);
+        samlContextProvider.setIncludeServerPortInRequestURL(false);
+        return samlContextProvider;
+//        return new SAMLContextProviderImpl();
     }
 
     // Initialization of OpenSAML library
@@ -340,6 +378,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         metadataGenerator.setIncludeDiscoveryExtension(this.wayfUseBirk);
 
+        metadataGenerator.setEntityBaseURL(entityBaseUrl);
+
         return metadataGenerator;
     }
 
@@ -365,7 +405,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public SimpleUrlAuthenticationFailureHandler authenticationFailureHandler() {
         SimpleUrlAuthenticationFailureHandler failureHandler =
                 new SimpleUrlAuthenticationFailureHandler();
-        failureHandler.setUseForward(true);
+        failureHandler.setUseForward(false);
         failureHandler.setDefaultFailureUrl("/saml/error"); // TODO
         return failureHandler;
     }

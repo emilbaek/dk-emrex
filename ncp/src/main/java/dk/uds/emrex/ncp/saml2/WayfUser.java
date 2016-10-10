@@ -18,51 +18,51 @@ public class WayfUser {
     /**
      * http://www.wayf.dk/da/component/content/article/120
      */
-    @SamlAttribute("urn:oid:2.5.4.4")
+    @SamlAttribute({"urn:oid:2.5.4.4", "sn"})
     private String surName;
 
     /**
      * http://www.wayf.dk/da/component/content/article/121
      */
-    @SamlAttribute("urn:oid:2.5.4.42")
+    @SamlAttribute({"urn:oid:2.5.4.42", "gn"})
     private String givenName;
 
     /**
      * http://www.wayf.dk/da/component/content/article/122
      */
-    @SamlAttribute("urn:oid:2.5.4.3")
+    @SamlAttribute({"urn:oid:2.5.4.3", "cn}"})
     private String commonName;
 
     /**
      * Brugerens unikke ID inden for organisationen (identitetsudbyderen) hvor man er logget på
      * http://www.wayf.dk/da/component/content/article/123
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.6")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.6", "eduPersonPrincipleName"})
     private String principalName;
 
     /**
      * http://www.wayf.dk/da/component/content/article/124
      */
-    @SamlAttribute("urn:oid:0.9.2342.19200300.100.1.3")
+    @SamlAttribute({"urn:oid:0.9.2342.19200300.100.1.3", "mail"})
     private Iterable<String> emailAddress;
 
     /**
      * http://www.wayf.dk/da/component/content/article/125
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.5")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.5", "eduPersonPrimaryAffiliation"})
     private String primaryAffiliation;
 
     /**
      * http://www.wayf.dk/da/component/content/article/126
      */
-    @SamlAttribute("urn:oid:2.5.4.10")
+    @SamlAttribute({"urn:oid:2.5.4.10", "organizationName"})
     private String organizationName;
 
     /**
      * Beskriver det sikkerhedsniveau hvorpå hjemmeorganisationen (IdP'en) garanterer en brugers identitet.
      * http://www.wayf.dk/da/component/content/article/127
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.11")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.11", "eduPersonAssurance"})
     private Integer assuranceLevel;
 
     /**
@@ -70,54 +70,69 @@ public class WayfUser {
      * http://www.wayf.dk/da/component/content/article/128
      * Example: urn:mace:terena.org:schac:personalUniqueID:dk:CPR:0101801234
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.25178.1.2.15")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.25178.1.2.15", "schacPersonalUniqueID"})
     private Iterable<String> personalUniqueIDs;
 
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.25178.1.2.5")
+    /**
+     * http://www.wayf.dk/da/component/content/article/413
+     */
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.25178.1.2.5", "schacCountryOfCitizenship"})
     private Iterable<String> countryOfCitizenships;
 
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.9")
+    /**
+     * http://www.wayf.dk/da/component/content/article/129
+     */
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.9", "eduPersonScopedAffiliation"})
     private Iterable<String> scopedAffiliations;
 
-    @SamlAttribute("urn:oid:2.16.840.1.113730.3.1.39")
+    /**
+     * http://www.wayf.dk/da/component/content/article/130
+     */
+    @SamlAttribute({"urn:oid:2.16.840.1.113730.3.1.39", "preferredLanguage"})
     private Iterable<String> preferredLanguages;
 
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.7")
+    /**
+     * http://www.wayf.dk/da/component/content/article/131
+     */
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.7", "eduPersonEntitlement"})
     private Iterable<String> entitlements;
 
     /**
      * Lokalt identifikationsnummer
      * http://www.wayf.dk/da/component/content/article/132
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.2428.90.1.4")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.2428.90.1.4", "norEduPersonLIN"})
     private Iterable<String> localIds;
 
     /**
      * Hjemmeorganisationens entydige ID
      * http://www.wayf.dk/da/component/content/article/133
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.25178.1.2.9")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.25178.1.2.9", "schacHomeOrganization"})
     private String organizationId;
 
     /**
      * http://www.wayf.dk/da/component/content/article/134
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.5923.1.1.1.10")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.5923.1.1.1.10", "eduPersonTargetedID"})
     private Iterable<String> wayfUserIds;
 
     /**
      * http://www.wayf.dk/da/component/content/article/507
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.25178.1.2.3")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.25178.1.2.3", "schacDateOfBirth"})
     private DateTime dateOfBirth;
 
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.25178.1.0.2.3")
+    /**
+     * http://www.wayf.dk/da/component/content/article/135
+     */
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.25178.1.0.2.3", "schacYearOfBirth"})
     private Integer yearOfBirth;
 
     /**
      * http://www.wayf.dk/da/component/content/article/567
      */
-    @SamlAttribute("urn:oid:1.3.6.1.4.1.1466.115.121.1.15")
+    @SamlAttribute({"urn:oid:1.3.6.1.4.1.1466.115.121.1.15", "schacHomeOrganizationType}"})
     private String organizationType;
 
     public WayfUser() {
