@@ -3,7 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dk.kmd.emrex</groupId>
     <artifactId>ncp</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -27,6 +26,26 @@
     </properties>
 
     <dependencies>
+    	<dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+	
+		<dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+    
+    
         <dependency>
             <!--<groupId>fi.csc.emrex</groupId>-->
             <groupId>dk.kmd.emrex</groupId>
