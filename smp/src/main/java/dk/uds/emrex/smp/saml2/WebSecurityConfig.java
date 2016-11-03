@@ -566,8 +566,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(samlFilter(), BasicAuthenticationFilter.class);
         http
                 .authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/error").permitAll()
+                //.antMatchers("/").permitAll()
+                //.antMatchers("/error").permitAll()
                 .antMatchers("/saml/**", "/css/**", "/common/**", "/js/**").permitAll()
                 .anyRequest().authenticated();
         http

@@ -64,7 +64,10 @@ public class ObjectNodeToSamlIdpConverter/* implements Converter<ObjectNode, Sam
         // Search through all known IDPs for the one where md:IDPSSODescriptor/Extensions/Scope is equal to idpId
 
         final String entityId = this.getIdpIdToEntityIdMap().get(idpId);
-
+        LOG.info("Printing idps from getIdpIdToEntityIdMap");
+        for(String aKey : this.getIdpIdToEntityIdMap().keySet()){
+        	LOG.info("key:"+aKey);
+        }
         if (entityId != null) {
             return entityId;
         } else {
@@ -81,13 +84,15 @@ public class ObjectNodeToSamlIdpConverter/* implements Converter<ObjectNode, Sam
         for (final String entityId : metadataManager.getIDPEntityNames()) {
             final EntityDescriptor entityDescriptor = metadataManager.getEntityDescriptor(entityId);
             final Extensions idpSsoExtensions = entityDescriptor.getIDPSSODescriptor("urn:oasis:names:tc:SAML:2.0:protocol").getExtensions();
-            final XSAny idpScopeObj = (XSAny) idpSsoExtensions.getUnknownXMLObjects(new QName("urn:mace:shibboleth:metadata:1.0", "Scope")).get(0);
-
-            final String idpScope = idpScopeObj.getTextContent();
-
-            map.put(idpScope, entityId);
+            XSAny idpScopeObj = null;
+            List<XMLObject> unknownXMLObjects = idpSsoExtensions.getUnknownXMLObjects(new QName("urn:mace:shibboleth:metadata:1.0", "Scope"));
+            
+            if( unknownXMLObjects != null) {
+            	idpScopeObj = (XSAny) unknownXMLObjects.get(0); 
+            	String idpScope = idpScopeObj.getTextContent();
+            	map.put(idpScope, entityId);
+            }
         }
-
         return map;
     }
 }

@@ -261,7 +261,7 @@ public class ThymeController {
         return personalLogLine;
     }
 
-    // FIXME serti jostain muualta
+    // FIXME serti jostain muualta //TODO Flyt certifikat fra klassen.  
     private String getCertificate() {
         return "-----BEGIN CERTIFICATE-----\n"
                 + "MIIB+TCCAWICCQDiZILVgSkjojANBgkqhkiG9w0BAQUFADBBMQswCQYDVQQGEwJG\n"
