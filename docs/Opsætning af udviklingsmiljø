@@ -1,0 +1,16 @@
+Opsætning af udviklingsmiljø:
+-----------------------------
+
+Installer JDK 8
+Installer Eclipse Java EE
+Sæt Eclipse til at bruge JDK i stedet for JRE
+Installer Spring Tool Suite fra Eclipse Market place
+Installer m2ee connector for build-helper-maven-plugin
+Installer m2ee connector for WRO4J (bruges WRO4J overhovedet?)
+Importer projekt og alle underprojekter fra GITHUBS https://github.com/emilbaek/dk-emrex.git
+
+OBS! Lav IKKE 'MAVEN update project' undervejs
+
+Installer stable version af nginx
+
+
