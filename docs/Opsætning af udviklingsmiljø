@@ -11,6 +11,9 @@ Importer projekt og alle underprojekter fra GITHUBS https://github.com/emilbaek/
 
 OBS! Lav IKKE 'MAVEN update project' undervejs
 
+<<<<<<< HEAD
 Installer stable version af nginx
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/emilbaek/dk-emrex.git
