@@ -12,7 +12,7 @@
     "institutionId": "umit.dk",
     "institutionName": "IT Department of the Ministry of Higher Education",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -20,7 +20,7 @@
     "institutionId": "ku.dk",
     "institutionName": "University of Copenhagen",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -28,7 +28,7 @@
     "institutionId": "au.dk",
     "institutionName": "Aarhus University",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -36,7 +36,7 @@
     "institutionId": "sdu.dk",
     "institutionName": "University of Southern Denmark",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -44,7 +44,7 @@
     "institutionId": "ruc.dk",
     "institutionName": "Roskilde University",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -52,7 +52,7 @@
     "institutionId": "aau.dk",
     "institutionName": "Aalborg University",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -60,7 +60,7 @@
     "institutionId": "dtu.dk",
     "institutionName": "Technical University of Denmark",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -68,7 +68,7 @@
     "institutionId": "cbs.dk",
     "institutionName": "Copenhagen Business School",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   },
 
@@ -76,7 +76,7 @@
     "institutionId": "itu.dk",
     "institutionName": "IT University of Copenhagen",
     "urls": [
-      { "url": "https://stads.example.com:8941/ws_stax/services/getStudentsResult" }
+      { "url": "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0" }
     ]
   }
 
