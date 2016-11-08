@@ -1,15 +1,18 @@
 package dk.kmd.emrex.common.idp;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.ToString;
+
 /**
  * Created by sj on 19-07-16.
  */
+@ToString
 public class IdpConfigListService {
 
     public static IdpConfigListService fromJson(final InputStream jsonStream) throws IOException {

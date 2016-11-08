@@ -1,15 +1,17 @@
 package dk.kmd.emrex.common.idp;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import java.util.ArrayList;
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.ToString;
 
 /**
  * Created by sj on 19-07-16.
  */
+@ToString
 public class IdpConfig {
+	@ToString
     public static class IdpConfigUrl {
         @JsonProperty("url")
         private String url;
