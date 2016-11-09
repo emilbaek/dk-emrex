@@ -1,0 +1,5 @@
+Opsætning EMREX weblogic server
+-------------------------------
+1) Weblogic installation
+2) SMP og NCP installation
+3) SSL Certifikat
