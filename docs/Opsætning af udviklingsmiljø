@@ -11,9 +11,5 @@ Importer projekt og alle underprojekter fra GITHUBS https://github.com/emilbaek/
 
 OBS! Lav IKKE 'MAVEN update project' undervejs
 
-<<<<<<< HEAD
-Installer stable version af nginx
-
-
-=======
->>>>>>> branch 'master' of https://github.com/emilbaek/dk-emrex.git
+Installer og start stable version af nginx konfigurerer med dk-emrex/ncp/nginx-proxy.conf
+I etc/hosts sættes stads.dk og emrex.stads.dk til at pege på 127.0.0.1
