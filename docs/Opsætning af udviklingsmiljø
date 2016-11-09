@@ -13,3 +13,4 @@ OBS! Lav IKKE 'MAVEN update project' undervejs
 
 Installer og start stable version af nginx konfigurerer med dk-emrex/ncp/nginx-proxy.conf
 I etc/hosts sættes stads.dk og emrex.stads.dk til at pege på 127.0.0.1
+Opsæt fakemail på port 2525 med adgange som specificeret i klassen PDFWriterTests.java
