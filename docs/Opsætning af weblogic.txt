@@ -1,5 +1,38 @@
 Opsætning EMREX weblogic server
 -------------------------------
 1) Weblogic installation
+	Sæt JDK i PATH
+	Placer dig i sti hvor installation skal ske
+	java -jar 'installationfil'.jar
+	Installation er nu i ./wls12212
+	Skift til wls12212
+	Udfør wlserver\server\bin\setWLSEnv.cmd
+	mkdir emrex
+	cd emrex
+	%JAVA_HOME%\bin\java.exe  weblogic.Server
+		User : weblogic
+		Password : weblogic123
+	Restart weblogic
+	Peg browser på http://localhost:7001/console/
+	
+TODO logback : http://docs.spring.io/spring-boot/docs/current/reference/html/howto-traditional-deployment.html
+	weblogic.xml har besynderlige udkommenteringer
+	
 2) SMP og NCP installation
+	Sæt spring boot profile til 'test' i startWebLogic.cmd : -Dspring.profiles.active=test
+
 3) SSL Certifikat
+	Generer valideret med zerossl.com eller self-signed med http://www.selfsignedcertificate.com/
+	
+	
+4) Apache opsætning
+	Installer apache 2.4
+	Installer weblogic plugins i Apache
+	
+	
+
+4) Test opsætning 
+	 Weblogic på dans-emrex.kmd.dk 
+	 Apache på dans-emrexws.kmd.dk
+
+4) Mail server
