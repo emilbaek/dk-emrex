@@ -87,8 +87,6 @@ public class PDFWriterTests extends TestCase {
         System.out.println(properties.getProperty("mail.smtp.port"));
         System.out.println("========================================");
         wiser.start();
-        Thread.sleep(2000);
-        
     }
     
     @Override 
