@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,7 @@ public class PDFWriterTests extends TestCase {
     private static String institutionDir1 = "testFolderFor";
     private static String institutionDir2 = "Blaablaa";
     private static String institutionDir3 = "example";
-    private final int SMTP_TEST_PORT = 25000;
+    private final int SMTP_TEST_PORT =9050;
     private Wiser wiser;
     @Before
     public void setup() {
@@ -71,20 +72,28 @@ public class PDFWriterTests extends TestCase {
     }
     
     @Override
-    protected void setUp() throws Exception{
+    @Before
+    public void setUp() throws Exception{
     	super.setUp();
     	Properties properties = System.getProperties(); 
     	properties.setProperty("mail.smtp.host", "localhost");
         properties.setProperty("mail.smtp.port", Integer.toString(SMTP_TEST_PORT));
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.user", "user");
+        properties.setProperty("mail.smtp.pass", "pass");
         wiser = new Wiser();
         wiser.setPort(SMTP_TEST_PORT); 
+        System.out.println("===============PORTNUMBER===============");
+        System.out.println(properties.getProperty("mail.smtp.port"));
+        System.out.println("========================================");
         wiser.start();
+        Thread.sleep(2000);
         
     }
     
     @Override 
-    protected void tearDown() throws Exception{
-    	super.tearDown();
+    @After
+    public void tearDown() throws Exception{
     	wiser.stop();
     }
 
