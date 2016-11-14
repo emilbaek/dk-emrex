@@ -1,0 +1,20 @@
+Apache server 
+	Installer Apache 2.2 på dans-emrexws.kmd.dk
+	Adgange med sudo -iu apache
+	Konfigurer med httpd.test.conf fra NCP projekt lagt som httpd.conf
+	Start server med sudo /sbin/service httpd start
+	Restart server med sudo /sbin/service httpd restart
+	Stop server med sudo /sbin/service httpd stop
+	 
+Weblogic 
+	Installeres dans-emrex.kmd.dk
+	Adgange med sudo -iu weblogic eller xsudo weblogic
+	Adminstrationskonsol på http://dans-emrex.kmd.dk:7001/console
+	EMREX domæne i /App/weblogic/Oracle_Home/wlserver/domains/emrex
+	Start server med /App/weblogic/Oracle_Home/wlserver/domains/emrex/startWebLogic.sh
+	Finel /App/weblogic/Oracle_Home/wlserver/domains/emrex/startWebLogic.sh tilføjes
+		spring.profiles.active=test
+		export spring.profile.active
+	Server 'ncp-server' installeres på port 9001
+	NCP WAR-file installeres i rod context 	
+	 	
