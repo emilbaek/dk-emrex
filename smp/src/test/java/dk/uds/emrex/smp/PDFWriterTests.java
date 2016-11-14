@@ -1,15 +1,18 @@
 package dk.uds.emrex.smp;
 
-import dk.kmd.emrex.common.model.Person;
-import junit.framework.TestCase;
+import java.io.File;
+import java.util.Properties;
+
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.subethamail.wiser.Wiser;
 
-import java.io.File;
-import java.util.Properties;
+import dk.kmd.emrex.common.model.Person;
+import junit.framework.TestCase;
 
 /**
  * Created by jpentika on 02/11/15.
@@ -26,7 +29,8 @@ public class PDFWriterTests extends TestCase {
     private static String institutionDir1 = "testFolderFor";
     private static String institutionDir2 = "Blaablaa";
     private static String institutionDir3 = "example";
-
+    private final int SMTP_TEST_PORT =9050;
+    private Wiser wiser;
     @Before
     public void setup() {
         File resourcesDirectory = new File("src/test/resources");
@@ -63,17 +67,32 @@ public class PDFWriterTests extends TestCase {
         user3.setHomeOrganization("blaablaa.fi");
 
         institutionDataWriter3 = new InstitutionDataWriter(user3, mapFile, pdfBaseDir);
-        //institutionDataWriter3.setEmailHost("smtp.gmail.com");
         institutionDataWriter3.setEmailTopic("emrex testmail");
         institutionDataWriter3.setEmailBodyFile(resourcePath + "/emailbody.txt");
-
-                // Setup mail server
-        Properties properties =  System.getProperties();
-        properties.setProperty("mail.smtp.host", "mailtrap.io");
-        properties.setProperty("mail.smtp.port", "2525");
-        properties.setProperty("mail.smtp.user", "51654912ca3888833");
-        properties.setProperty("mail.smtp.pass", "8b80f0550205cd");
+    }
+    
+    @Override
+    @Before
+    public void setUp() throws Exception{
+    	super.setUp();
+    	Properties properties = System.getProperties(); 
+    	properties.setProperty("mail.smtp.host", "localhost");
+        properties.setProperty("mail.smtp.port", Integer.toString(SMTP_TEST_PORT));
         properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.user", "user");
+        properties.setProperty("mail.smtp.pass", "pass");
+        wiser = new Wiser();
+        wiser.setPort(SMTP_TEST_PORT); 
+        System.out.println("===============PORTNUMBER===============");
+        System.out.println(properties.getProperty("mail.smtp.port"));
+        System.out.println("========================================");
+        wiser.start();
+    }
+    
+    @Override 
+    @After
+    public void tearDown() throws Exception{
+    	wiser.stop();
     }
 
     @Before

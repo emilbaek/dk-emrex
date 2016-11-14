@@ -52,10 +52,17 @@ public class DkNcpApplication {
 
     @Value("${idp.configPath}")
     private String idpConfigPath;
-
+ 
     @Value("${idp.configPath.fallback}")
     private String idpConfigPathFallback;
 
+    
+    @Value("stads.testURL")
+    private String testStudyFetcherURL;
+    
+    @Value("stads.testCPR")
+    private String testCPR;
+    
     @Value("${stads.useMock}")
     private boolean useTestStudyFetcher;
 
@@ -77,9 +84,7 @@ public class DkNcpApplication {
                 @Cacheable
                 @Override
                 public String fetchStudies(String institutionId, String ssn) throws IOException {
-                    return studyFetcher.fetchStudies(
-                            Collections.singleton("http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0").iterator(),
-                            "010101-aps1");
+                    return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
                 }
             };
         }
