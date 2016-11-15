@@ -1,18 +1,24 @@
 package dk.uds.emrex.ncp.virta;
 
-import dk.uds.emrex.ncp.DateConverter;
-import dk.uds.emrex.ncp.StudyFetcher;
-import fi.csc.tietovaranto.emrex.*;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
+
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.springframework.beans.factory.annotation.Value;
+
+import dk.uds.emrex.ncp.DateConverter;
+import dk.uds.emrex.ncp.StudyFetcher;
+import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoRequest;
+import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoResponse;
+import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoService;
+import fi.csc.tietovaranto.emrex.Hakuehdot;
+import fi.csc.tietovaranto.emrex.Kutsuja;
+import fi.csc.tietovaranto.emrex.ObjectFactory;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by marko.hollanti on 28/09/15.
@@ -57,8 +63,8 @@ public class VirtaClient implements StudyFetcher {
     private ELMOOpiskelijavaihtoResponse sendRequest(VirtaUser virtaUser) throws MalformedURLException {
         ELMOOpiskelijavaihtoRequest request = createRequest(virtaUser);
         ELMOOpiskelijavaihtoResponse temp = getService().getELMOOpiskelijavaihtoSoap11().elmoOpiskelijavaihto(request);
-        System.out.println(temp.toString());
-        System.out.println(temp.getElmo());
+        log.info(temp.toString());
+        log.info(temp.getElmo().toString());
         return temp;
     }
 

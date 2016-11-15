@@ -1,7 +1,13 @@
 package dk.uds.emrex.ncp.saml2;
 
-import dk.kmd.emrex.common.idp.IdpConfig;
-import dk.kmd.emrex.common.idp.IdpConfigListService;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.namespace.QName;
+
 import org.opensaml.saml2.common.Extensions;
 import org.opensaml.saml2.metadata.EntityDescriptor;
 import org.opensaml.saml2.metadata.provider.MetadataProviderException;
@@ -15,13 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.namespace.QName;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import dk.kmd.emrex.common.idp.IdpConfig;
+import dk.kmd.emrex.common.idp.IdpConfigListService;
 
 /**
  * Created by sj on 23-05-16.
@@ -40,11 +41,13 @@ public class SamlThymeController {
             this.name = name;
         }
 
+        @SuppressWarnings("unused")
         public String getId() {
             return id;
         }
 
-        public String getName() {
+        @SuppressWarnings("unused")
+		public String getName() {
             return name;
         }
     }

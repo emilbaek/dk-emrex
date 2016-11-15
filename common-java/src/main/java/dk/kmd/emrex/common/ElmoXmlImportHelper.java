@@ -1,24 +1,20 @@
 package dk.kmd.emrex.common;
 
-/**
- * Created by marko.hollanti on 20/08/15.
- */
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.util.ArrayList;
-import java.util.List;
 
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class ElmoXmlImportHelper {
-
-    private final Logger logger = LoggerFactory.getLogger(ElmoXmlImportHelper.class);
 
     public ElmoDocument getDocument(Node report) throws Exception {
         ElmoDocument doc = new ElmoDocument();
@@ -78,7 +74,8 @@ public class ElmoXmlImportHelper {
         }
     }
 
-    private String getLevel(Node los, XPath xpath) throws Exception {
+    @SuppressWarnings("unused")
+	private String getLevel(Node los, XPath xpath) throws Exception {
         String simpleLevel = getValueForTag(los, "level");
         if (!simpleLevel.isEmpty()) {
             return simpleLevel;
@@ -115,7 +112,7 @@ public class ElmoXmlImportHelper {
         try {
             return xpath.evaluate(exp, node);
         } catch (Exception e) {
-            logger.info("XPATH error", e);
+        	log.info("XPATH error", e);
             return null;
         }
     }

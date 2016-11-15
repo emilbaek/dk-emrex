@@ -5,30 +5,26 @@
  */
 package dk.kmd.emrex.common.elmo.jaxb;
 
-import dk.kmd.emrex.common.elmo.ElmoParser;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification;
-
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import org.slf4j.LoggerFactory;
+
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author salum
  */
+@Slf4j
 public class Util {
-
-    final static org.slf4j.Logger log = LoggerFactory.getLogger(ElmoParser.class);
-
     public static List<LearningOpportunitySpecification> getAllLearningOpportunities(LearningOpportunitySpecification los, List<LearningOpportunitySpecification> losList) {
         if (los != null) {
             losList.add(los);
@@ -93,7 +89,7 @@ public class Util {
             //log.debug(toString);
             return marshalElmo(elmo);
         } catch (JAXBException ex) {
-            Logger.getLogger(ElmoParser.class.getName()).log(Level.SEVERE, null, ex);
+            log.error(ex.getMessage(), ex);
         }
         return null;
     }
@@ -102,7 +98,6 @@ public class Util {
         try {
             Elmo elmo = getElmo(elmoString);
             List<Elmo.Report> reports = elmo.getReport();
-            ArrayList<LearningOpportunitySpecification> elmoLoSList = new ArrayList<LearningOpportunitySpecification>();
             log.debug("reports: " + reports.size());
             for (Elmo.Report report : reports) {
                 ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
@@ -126,7 +121,7 @@ public class Util {
             }
             return marshalElmo(elmo);
         } catch (JAXBException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        	log.error(ex.getMessage(), ex);
         }
         return null;
 

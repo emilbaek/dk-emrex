@@ -35,10 +35,13 @@ import org.bouncycastle.openpgp.PGPPublicKeyRing;
 import org.bouncycastle.openpgp.PGPPublicKeyRingCollection;
 import org.bouncycastle.openpgp.PGPUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Implementation of the Bouncy Castle (BC) PGP Encryption/Decryption algorithm.
  * Used to encryptFile files
  */
+@Slf4j
 public class PGPEncryptor {
 
     private BouncyCastleProvider bcp = null;
@@ -66,19 +69,19 @@ public class PGPEncryptor {
         try {
 // get public key
             PGPPublicKey encKey = readPublicKey(keyFile);
-            System.out.println(
+            log.info(
                     "Key Strength = " + encKey.getBitStrength()
             );
-            System.out.println(
+            log.info(
                     "Algorithm = " + encKey.getAlgorithm()
             );
 
             int count = 0;
             for (java.util.Iterator iterator = encKey.getUserIDs(); iterator.hasNext();) {
                 count++;
-                System.out.println((String) iterator.next());
+                log.info((String) iterator.next());
             }
-            System.out.println(
+            log.info(
                     "Key Count = " + count
             );
 
@@ -121,19 +124,19 @@ public class PGPEncryptor {
         try {
 // get public key
             PGPPublicKey encKey = readPublicKey(keyFile);
-            System.out.println(
+            log.info(
                     "Key Strength = " + encKey.getBitStrength()
             );
-            System.out.println(
+            log.info(
                     "Algorithm = " + encKey.getAlgorithm()
             );
 
             int count = 0;
             for (java.util.Iterator iterator = encKey.getUserIDs(); iterator.hasNext();) {
                 count++;
-                System.out.println((String) iterator.next());
+                log.info((String) iterator.next());
             }
-            System.out.println(
+            log.info(
                     "Key Count = " + count
             );
 
