@@ -1,5 +1,7 @@
-Installer Apache 2.2 i /usr/local/apache2
-Konfigurer Apache med httpd.conf fra NCP projekt
+Installer Apache 2.2 i /etc/httpd
+Konfigurer Apaches /etc/httpd/conf/httpd.conf med indholdet af httpd{env}.conf fra NCP projekt  
+Læg filen mime.types i /etc/httpd/conf  
+Placer server SSL certifikat og nøgle (server.crt og server.key) i /etc/httpd/conf/ssl
+
 Windows : httpd -k install -n "EMREX-NCP-PROXY"
 Windows : httpd -k start -n "EMREX-NCP-PROXY"
-(Eventuelt SSL certifikat og nøgle (dans-emrexws.kmd.dk.cert og dans-emrexws.kmd.dk.key) som server.crt og server.key i /usr/local/apache2/conf/ssl) 

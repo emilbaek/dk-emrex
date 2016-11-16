@@ -1,6 +1,6 @@
 Opsætning EMREX weblogic server
 -------------------------------
-1) Weblogic installation
+1) Weblogic installation på Windows
 	Sæt JDK i PATH
 	Placer dig i sti hvor installation skal ske
 	java -jar fmw_12.1.3.0.0_wls.jar.jar
@@ -18,14 +18,4 @@ Opsætning EMREX weblogic server
 TODO logback : http://docs.spring.io/spring-boot/docs/current/reference/html/howto-traditional-deployment.html
 	weblogic.xml har besynderlige udkommenteringer
 	
-2) SMP og NCP installation
-	Sæt spring boot profile til 'test' i startWebLogic.cmd : spring.profiles.active=test
-	Installer ny server 'ncp-server' på port 9001	
-
-4) Apache opsætning
-	Installer Apache 2.2
-	Konfigurer Apache med httpd.conf
-	Installer eventuelt SSL certifikat
-
-4) Mail server
-
+Mail server ?
