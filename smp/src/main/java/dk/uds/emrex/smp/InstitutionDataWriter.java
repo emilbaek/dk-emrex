@@ -158,7 +158,7 @@ public class InstitutionDataWriter {
             
             JSONObject home = (JSONObject) root.get(user.getHomeOrganization());
             if (home != null) {
-                System.out.println(home);
+            	log.info(home.toString());
                 this.email = (String) home.get("email");
                 this.key = (String) home.get("key");
                 String path = (String) home.get("path");
@@ -259,7 +259,7 @@ public class InstitutionDataWriter {
             t.setStartTLS(true);
             
             if ("true".equals(properties.getProperty("mail.smtp.auth"))) {
-                System.out.println(properties.getProperty("mail.smtp.host") + ", "
+                log.info(properties.getProperty("mail.smtp.host") + ", "
                         + properties.getProperty("mail.smtp.port") + ", "
                         + properties.getProperty("mail.smtp.user") + ", "
                         + properties.getProperty("mail.smtp.pass"));

@@ -1,5 +1,15 @@
 package dk.uds.emrex.ncp.saml2;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.validation.constraints.NotNull;
+
 /*
  * Copyright 2016 Vincenzo De Notaris
  *
@@ -18,7 +28,6 @@ package dk.uds.emrex.ncp.saml2;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
-import org.opensaml.saml2.core.Attribute;
 import org.opensaml.xml.XMLObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,18 +37,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.saml.SAMLCredential;
 import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import javax.validation.constraints.NotNull;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 @Service
 public class SamlUserDetailsServiceImpl implements SAMLUserDetailsService {

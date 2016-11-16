@@ -1,25 +1,23 @@
 package dk.uds.emrex.ncp.stads;
 
-import org.apache.commons.collections.IteratorUtils;
-import org.apache.commons.lang.StringUtils;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import static org.junit.Assert.fail;
 
 import java.util.Collections;
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
+import org.apache.commons.lang.StringUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by sj on 30-08-16.
  */
+@Slf4j
 public class StadsStudyFetcherTest {
-    private static Logger LOG = LoggerFactory.getLogger(StadsStudyFetcher.class);
 
     private static String STADS_URL = "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0";
     private static String[] SSN_ARRAY = { "020575-6557", "010101-aps1" };
@@ -53,7 +51,7 @@ public class StadsStudyFetcherTest {
                 }
             }
         } catch (Exception ex) {
-            LOG.warn("Error in test", ex);
+        	log.warn("Error in test", ex);
             throw ex;
         }
     }

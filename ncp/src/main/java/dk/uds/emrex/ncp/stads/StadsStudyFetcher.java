@@ -1,22 +1,5 @@
 package dk.uds.emrex.ncp.stads;
 
-import dk.kmd.emrex.common.idp.IdpConfig;
-import dk.kmd.emrex.common.idp.IdpConfigListService;
-import dk.uds.emrex.ncp.StudyFetcher;
-import dk.uds.emrex.stads.wsdl.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ws.WebServiceException;
-import org.springframework.ws.client.core.WebServiceTemplate;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.springframework.ws.soap.client.SoapFaultClientException;
-import org.springframework.ws.soap.client.core.SoapActionCallback;
-
-import javax.validation.constraints.NotNull;
-import javax.xml.bind.JAXBElement;
-import javax.xml.namespace.QName;
-import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
@@ -25,11 +8,34 @@ import java.util.Iterator;
 import java.util.UUID;
 import java.util.stream.StreamSupport;
 
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
+import javax.xml.transform.stream.StreamResult;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.WebServiceException;
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.client.SoapFaultClientException;
+import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import dk.kmd.emrex.common.idp.IdpConfig;
+import dk.kmd.emrex.common.idp.IdpConfigListService;
+import dk.uds.emrex.ncp.StudyFetcher;
+import dk.uds.emrex.stads.wsdl.Elmo;
+import dk.uds.emrex.stads.wsdl.GetStudentsResultInput;
+import dk.uds.emrex.stads.wsdl.GetStudentsResults;
+import dk.uds.emrex.stads.wsdl.GetStudentsResultsOutput;
+import dk.uds.emrex.stads.wsdl.GetStudentsResultsResponse;
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Created by sj on 30-03-16.
  */
+@Slf4j
 public class StadsStudyFetcher extends WebServiceGatewaySupport implements StudyFetcher {
-    private static Logger LOG = LoggerFactory.getLogger(StadsStudyFetcher.class);
 
     @Autowired
     private IdpConfigListService idpConfigListService;
@@ -55,18 +61,18 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 
     public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
         if (!urls.hasNext()) {
-            LOG.warn("No STADS urls given.");
+            log.warn("No STADS urls given.");
         }
 
         while (urls.hasNext()) {
             final String url = urls.next();
 
-            LOG.info("Opening connection to STADS with URL {}", url);
+           log.info("Opening connection to STADS with URL {}", url);
 
             try {
                 return getStudentsResults(url, ssn);
             } catch (IOException | WebServiceException ex) {
-                LOG.warn(String.format("Error when connecting to STADS web-service at %s.", url), ex);
+                log.warn(String.format("Error when connecting to STADS web-service at %s.", url), ex);
             }
         }
 
@@ -122,10 +128,9 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
                 final JAXBElement<Elmo> elmoJAXBElement = new JAXBElement<>(new QName("elmo"), Elmo.class, elmoDocument);
 
                 this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
-//                this.getMarshaller().marshal(response.getReturn().getElmoDocument(), marshalResult);
 
                 final String elmoString = xmlWriter.toString();
-                LOG.debug("Returning ELMO string:\n{}", elmoString);
+                log.debug("Returning ELMO string:\n{}", elmoString);
                 return elmoString;
             default:
                 throw new IOException(String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));

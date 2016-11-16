@@ -1,8 +1,7 @@
 package dk.uds.emrex.ncp.virta;
 
-import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoResponse;
-import lombok.extern.slf4j.Slf4j;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+import java.io.StringWriter;
+
 //import org.purl.net.elmo.ElmoBase.ElmoBase;
 //import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import javax.xml.bind.JAXBContext;
@@ -10,7 +9,10 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
-import java.io.StringWriter;
+
+import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoResponse;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by marko.hollanti on 13/10/15.

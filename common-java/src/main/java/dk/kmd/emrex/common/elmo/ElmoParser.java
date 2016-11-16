@@ -5,11 +5,28 @@
  */
 package dk.kmd.emrex.common.elmo;
 
-import com.github.ooxi.jdatauri.DataUri;
-import dk.kmd.emrex.common.elmo.jaxb.Util;
-
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
-import org.slf4j.LoggerFactory;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,36 +37,19 @@ import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import javax.xml.bind.DatatypeConverter;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.net.MalformedURLException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.w3c.dom.Attr;
+import com.github.ooxi.jdatauri.DataUri;
+
+import dk.kmd.emrex.common.elmo.jaxb.Util;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A class representing a single Elmo xml.
  *
  * @author salum
  */
+@Slf4j
 public class ElmoParser {
-
-    final static org.slf4j.Logger log = LoggerFactory.getLogger(ElmoParser.class);
-
-    static final String elmoSchema = "src/main/resources/schema-10.xsd";
+   static final String elmoSchema = "src/main/resources/schema-10.xsd";
     static final String euroPassSchema = "src/main/resources/EUROPASS_ISOCountries_V1.1.xsd";
     static final String xmldsigSchema = "src/main/resources/xmldsig-core-schema.xsd";
     static final String[] schemas = {euroPassSchema, xmldsigSchema, elmoSchema};
@@ -215,7 +215,7 @@ public class ElmoParser {
     }
 
     public int getETCSCount() throws Exception {
-        HashMap<String, Integer> result = new HashMap();
+        HashMap<String, Integer> result = new HashMap<>();
         NodeList list = document.getElementsByTagName("report");
         XPath xpath = XPathFactory.newInstance().newXPath();
         XPathExpression learningOpportunityExpression = xpath.compile("//learningOpportunitySpecification");

@@ -1,15 +1,13 @@
 package dk.kmd.emrex.common;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by jpentika on 17/11/15.
  */
+@Slf4j
 public class PersonalLogger {
-    final static Logger logger = LoggerFactory.getLogger(PersonalLogger.class);
-
     public static void log(String something){
-        logger.info(something);
+        log.info(something);
     }
 }
