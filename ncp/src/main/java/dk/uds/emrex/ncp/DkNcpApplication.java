@@ -57,10 +57,10 @@ public class DkNcpApplication {
     private String idpConfigPathFallback;
 
     
-    @Value("stads.testURL")
+    @Value("${stads.testURL}")
     private String testStudyFetcherURL;
     
-    @Value("stads.testCPR")
+    @Value("${stads.testCPR}")
     private String testCPR;
     
     @Value("${stads.useMock}")
