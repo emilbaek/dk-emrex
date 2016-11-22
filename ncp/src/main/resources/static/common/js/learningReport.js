@@ -128,7 +128,11 @@ angular.module('learningReport', [])
 
                 $scope.flattenedLearningOpportunities = flatArray;
 
-                $scope.issuerName = helperService.getRightLanguage($scope.report.issuer.title);
+                if (typeof $scope.report.issuer === "undefined") {
+                	$scope.issuerName = "TODO : Undefined issuer"
+                } else {
+                    $scope.issuerName = helperService.getRightLanguage($scope.report.issuer.title);
+                }
 
                 var selectParent = function (child) {
                     if (child.partOf != '-')

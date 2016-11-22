@@ -78,6 +78,7 @@ public class JsonController {
             
             xmlString = parser.getCourseData();
             log.debug(xmlString);
+            log.debug(user.getOrganizationName());
             JSONObject json = XML.toJSONObject(xmlString);
             return json.toString();
         } catch (Exception e) {
