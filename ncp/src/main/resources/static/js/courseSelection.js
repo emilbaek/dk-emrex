@@ -34,9 +34,10 @@ angular.module('courseSelection', [])
         var collectDataFromReports = function(reports){
             angular.forEach(reports, function (report) {
                 $scope.learner = report.learner;
-                var issuerTitle = "Unknown issuer";
-                if (typeof report.issuer !== "undefined")  {
-                    issuerTitle = helperService.getRightLanguage(report.issuer.title);
+
+                var issuerTitle = "TODO : unknown issuer"; 
+                if (typeof report.issuer !== "undefined") {
+                	issuerTitle = helperService.getRightLanguage(report.issuer.title);
                 }
                 $scope.educationInstitutionOptions[issuerTitle] = true;
 
@@ -60,10 +61,11 @@ angular.module('courseSelection', [])
         });
 
         $scope.issuerFilter = function (report) {
-            var title = "TODO : Undefined issuer";
-            if (typeof report.issuer !== "undefined")  {
-                title = helperService.getRightLanguage(report.issuer.title);
+        	var title = "TODO : unknown issuer";
+            if (typeof report.issuer !== "undefined") {
+            	title = helperService.getRightLanguage(report.issuer.title);
             }
+        		
             var visible = (!!$scope.educationInstitutionOptions[title]);
 
             var deselectInvisibleOpportunities = function(opportunity){
