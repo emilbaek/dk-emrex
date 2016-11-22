@@ -25,7 +25,7 @@ angular.module('helper', [])
 
             function getRightLanguage(titles) {
                 var result = "";
-                var planB = "";
+                var planB = titles;
                 if (angular.isArray(titles))
                     angular.forEach(titles, function (title) {
 

@@ -91,8 +91,13 @@ angular.module('learningReport', [])
                                         opportunity.localIdentifier = identifier.content;
                                 })
                             else if (opportunity.identifier) {
-                                opportunity.elmoIdentifier = opportunity.identifier.content;
-                                opportunity.localIdentifier = opportunity.identifier.content;
+                            	if (typeof opportunity.identifier.content !== "undefined") {
+                                    opportunity.elmoIdentifier = opportunity.identifier.content;
+                                    opportunity.localIdentifier = opportunity.identifier.content;
+                            	} else {
+                                    opportunity.elmoIdentifier = opportunity.identifier;
+                                    opportunity.localIdentifier = opportunity.identifier;
+                            	}
                             }
                             // Find parents Elmo identifier
                             if (partOf && partOf.elmoIdentifier)
@@ -128,10 +133,10 @@ angular.module('learningReport', [])
 
                 $scope.flattenedLearningOpportunities = flatArray;
 
-                if (typeof $scope.report.issuer === "undefined") {
-                	$scope.issuerName = "TODO : Undefined issuer"
-                } else {
+                if (typeof $scope.report.issuer !== "undefined") {
                     $scope.issuerName = helperService.getRightLanguage($scope.report.issuer.title);
+                } else {
+                    $scope.issuerName = "TODO : unknown issuer";
                 }
 
                 var selectParent = function (child) {
