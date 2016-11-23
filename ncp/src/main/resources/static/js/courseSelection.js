@@ -33,8 +33,6 @@ angular.module('courseSelection', [])
 
         var collectDataFromReports = function(reports){
             angular.forEach(reports, function (report) {
-                $scope.learner = report.learner;
-
                 var issuerTitle = "TODO : unknown issuer"; 
                 if (typeof report.issuer !== "undefined") {
                 	issuerTitle = helperService.getRightLanguage(report.issuer.title);
@@ -44,7 +42,11 @@ angular.module('courseSelection', [])
                 findOptionsRecursively(collectOptions, report.learningOpportunitySpecification);
             });
         };
-
+        
+        apiService.getElmoLearner().then(function(learner){
+        	$scope.learner = learner; 
+    	});
+        
         if (!selectedCoursesService.reports)
             apiService.getElmoAll().then(function (reports) {
                 collectDataFromReports(reports);
