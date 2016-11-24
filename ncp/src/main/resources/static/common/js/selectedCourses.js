@@ -15,9 +15,11 @@ angular.module('selectedCourses', [])
         };
 
         var reports = null;
+        var learner = null; 
 
         return {selectedCourseIds: selectedCourseIds,
                 addId : addId,
                 removeId :removeId,
-                reports : reports
+                reports : reports, 
+                learner : learner
     }});

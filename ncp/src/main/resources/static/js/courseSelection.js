@@ -4,6 +4,7 @@ angular.module('courseSelection', [])
         $scope.educationInstitutionOptions = {}; // {'Helsinki University' : true, 'Oulu AMK' : true};
         $scope.typeOptions = {};
         $scope.levelOptions = ["Any"];
+        $scope.learner = {givenNames:'',familyName:'',bday:''};        
 
         var findOptionsRecursively = function (innerFunction, learningOpportunityArray, partOf) {
             angular.forEach(learningOpportunityArray, function (opportunityWrapper) {
@@ -43,19 +44,18 @@ angular.module('courseSelection', [])
             });
         };
         
-        apiService.getElmoLearner().then(function(learner){
-        	$scope.learner = learner; 
-    	});
-        
         if (!selectedCoursesService.reports)
-            apiService.getElmoAll().then(function (reports) {
-                collectDataFromReports(reports);
-                $scope.reports = reports;
-                selectedCoursesService.reports = reports;
+            apiService.getElmoEverthing().then(function (data) {
+                collectDataFromReports(data.reports);
+                $scope.reports = data.reports;
+                selectedCoursesService.reports = data.reports;
+                $scope.learner = data.learner;
+                selectedCoursesService.learner = data.learner;
             })
         else {
             collectDataFromReports(selectedCoursesService.reports)
             $scope.reports = selectedCoursesService.reports;
+            $scope.learner = selectedCoursesService.learner;
         }
 
         apiService.getAbortHtml().then(function (html) {
