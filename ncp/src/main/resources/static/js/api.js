@@ -28,11 +28,19 @@ angular.module('api', [])
         var getElmoSelected = function(courses){
             var deferred = $q.defer();
             $http({
-                url: '/ncp/api/elmo/',
-                method: 'GET',
-                params: {courses: courses}
+                url: '/ncp/api/fullelmo/',
+                method: 'GET'//,
             }).success(function (response) {
-                deferred.resolve(helperService.fixReports(response.elmo.report));
+            	var report = response.elmo.report;  
+            	var fixedReports = helperService.fixReports(response.elmo.report);
+            	fixedReports[0].learningOpportunitySpecification = fixedReports[0].learningOpportunitySpecification.filter(function(c){
+            			return courses.indexOf(''+c.learningOpportunitySpecification.identifier) > -1; 
+            	}); 
+            	var returnObj = {
+            		reports : fixedReports,
+            		learner : response.elmo.learner
+            	};
+            	deferred.resolve(returnObj);
             }).error(function (error){
                 deferred.reject(error);
             });
