@@ -2,6 +2,8 @@ package dk.uds.emrex.ncp;
 
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.stads.StadsStudyFetcher;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -84,8 +86,13 @@ public class DkNcpApplication {
                 @Cacheable
                 @Override
                 public String fetchStudies(String institutionId, String ssn) throws IOException {
-                    return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
+                	return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
                 }
+
+				@Override
+				public Elmo fetchElmo(String institutionId, String ssn) throws IOException {
+                	return studyFetcher.fetchElmo(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
+				}
             };
         }
 
