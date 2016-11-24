@@ -11,6 +11,16 @@ angular.module('api', [])
             });
             return deferred.promise;
         };
+        
+        var getElmoLearner = function(){
+        	var deferred = $q.defer();
+            $http.get('/ncp/api/fullelmo').success(function (response) {
+            	deferred.resolve(response.elmo.learner);
+            }).error(function(error){
+            	deferred.reject(error);
+            });
+            return deferred.promise;
+        };
 
         var getElmoSelected = function(courses){
             var deferred = $q.defer();
@@ -56,7 +66,8 @@ angular.module('api', [])
 
 
         return {getElmoAll: getElmoAll,
-                getElmoSelected: getElmoSelected,
+                getElmoLearner: getElmoLearner,
+        		getElmoSelected: getElmoSelected,
                 getSubmitHtml : getSubmitHtml,
                 getAbortHtml : getAbortHtml};
 
