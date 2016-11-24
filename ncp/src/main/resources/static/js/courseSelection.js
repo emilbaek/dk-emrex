@@ -4,6 +4,7 @@ angular.module('courseSelection', [])
         $scope.educationInstitutionOptions = {}; // {'Helsinki University' : true, 'Oulu AMK' : true};
         $scope.typeOptions = {};
         $scope.levelOptions = ["Any"];
+        $scope.learner = {givenNames:'',familyName:'',bday:''};        
 
         var findOptionsRecursively = function (innerFunction, learningOpportunityArray, partOf) {
             angular.forEach(learningOpportunityArray, function (opportunityWrapper) {
@@ -49,12 +50,12 @@ angular.module('courseSelection', [])
                 $scope.reports = data.reports;
                 selectedCoursesService.reports = data.reports;
                 $scope.learner = data.learner;
-                selectedCoursesService.learner = learner;
+                selectedCoursesService.learner = data.learner;
             })
         else {
             collectDataFromReports(selectedCoursesService.reports)
             $scope.reports = selectedCoursesService.reports;
-            $scope.learner = learner;
+            $scope.learner = selectedCoursesService.learner;
         }
 
         apiService.getAbortHtml().then(function (html) {
