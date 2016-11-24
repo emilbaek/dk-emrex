@@ -43,19 +43,18 @@ angular.module('courseSelection', [])
             });
         };
         
-        apiService.getElmoLearner().then(function(learner){
-        	$scope.learner = learner; 
-    	});
-        
         if (!selectedCoursesService.reports)
-            apiService.getElmoAll().then(function (reports) {
-                collectDataFromReports(reports);
-                $scope.reports = reports;
-                selectedCoursesService.reports = reports;
+            apiService.getElmoEverthing().then(function (data) {
+                collectDataFromReports(data.reports);
+                $scope.reports = data.reports;
+                selectedCoursesService.reports = data.reports;
+                $scope.learner = data.learner;
+                selectedCoursesService.learner = learner;
             })
         else {
             collectDataFromReports(selectedCoursesService.reports)
             $scope.reports = selectedCoursesService.reports;
+            $scope.learner = learner;
         }
 
         apiService.getAbortHtml().then(function (html) {
