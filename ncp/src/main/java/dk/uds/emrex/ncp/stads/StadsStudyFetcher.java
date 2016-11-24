@@ -4,18 +4,21 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.StreamSupport;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.stream.StreamResult;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.oxm.XmlMappingException;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.WebServiceException;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.SoapFaultClientException;
@@ -89,7 +92,23 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 
         return new BigInteger(buffer.array());
     }
+    
+	private GetStudentsResultsResponse getStudentResult(@NotNull String url, @NotNull String cpr) {
+		final BigInteger requestId = uuidToBigInteger(UUID.randomUUID());
 
+		final GetStudentsResults request = new GetStudentsResults();
+
+		final GetStudentsResultInput input = new GetStudentsResultInput();
+		input.setCPR(formatCprToStads(cpr));
+		input.setRequestId(requestId);
+
+		request.setInputStruct(input);
+
+		final GetStudentsResultsResponse response = (GetStudentsResultsResponse) this.getWebServiceTemplate()
+				.marshalSendAndReceive(url, request, new SoapActionCallback(url));
+		return response;
+	}
+	
     /***
      *
      * @param url
@@ -99,45 +118,76 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
      * @throws SoapFaultClientException
      */
     private String getStudentsResults(String url, String cpr) throws IOException, WebServiceException {
-        final BigInteger requestId = uuidToBigInteger(UUID.randomUUID());
-
-        final GetStudentsResults request = new GetStudentsResults();
-
-        final GetStudentsResultInput input = new GetStudentsResultInput();
-        input.setCPR(formatCprToStads(cpr));
-        input.setRequestId(requestId);
-
-        request.setInputStruct(input);
-
-        final GetStudentsResultsResponse response = (GetStudentsResultsResponse) this.getWebServiceTemplate()
-                .marshalSendAndReceive(
-                        url,
-                        request,
-                        new SoapActionCallback(url)
-                );
-
+    	GetStudentsResultsResponse response = getStudentResult(url, cpr);
+    	
         final GetStudentsResultsOutput.ReceiptStructure receipt = response.getReturn().getReceiptStructure();
 
         switch (receipt.getReceiptCode()) {
             case 0:
                 // Get ELMO document as XML string
-                final StringWriter xmlWriter = new StringWriter();
-                final StreamResult marshalResult = new StreamResult(xmlWriter);
-                final Elmo elmoDocument = response.getReturn().getElmoDocument();
-
-                final JAXBElement<Elmo> elmoJAXBElement = new JAXBElement<>(new QName("elmo"), Elmo.class, elmoDocument);
-
-                this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
-
-                final String elmoString = xmlWriter.toString();
+            	Elmo stadsElmo = response.getReturn().getElmoDocument();
+            	
+                //String elmoString = marshall(stadsElmo);
+                String elmoString = marshall(StadsToElmoConverter.toElmo(stadsElmo));
                 log.debug("Returning ELMO string:\n{}", elmoString);
                 return elmoString;
             default:
                 throw new IOException(String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));
         }
     }
+    
+    private String marshall(https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo elmo) {
+        final StringWriter xmlWriter = new StringWriter();
+        final StreamResult marshalResult = new StreamResult(xmlWriter);
+        try {
+        	Jaxb2Marshaller elmoMarshaller = new Jaxb2Marshaller();
+        	
+            Map<String, Object> properties = new HashMap<String, Object>();
+            properties.put(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            elmoMarshaller.setMarshallerProperties(properties );
+            elmoMarshaller.setContextPath("https.github_com.emrex_eu.elmo_schemas.tree.v1");
+            
+            elmoMarshaller.marshal(elmo, marshalResult);
+		} catch (XmlMappingException e) {
+            log.error("Error marshalling : " + elmo, e);
+		}
+        String xml = xmlWriter.toString();
+        log.debug("Marshalled to : ", xml);
+		return xml;
+    }
+    
+    private String marshall(GetStudentsResultsResponse response) {
+        final StringWriter xmlWriter = new StringWriter();
+        final StreamResult marshalResult = new StreamResult(xmlWriter);
+        try {
+			this.getMarshaller().marshal(response, marshalResult);
+		} catch (XmlMappingException e) {
+            log.error("Error marshalling : " + response, e);
+		} catch (IOException e) {
+            log.error("Error marshalling : " + response, e);
+		}
+        String xml = xmlWriter.toString();
+        log.debug("Marshalled to : ", xml);
+		return xml;
+	}
 
-    private static String formatCprToStads(@NotNull String cpr) {
+    private String marshall(Elmo elmo) {
+        final StringWriter xmlWriter = new StringWriter();
+        final StreamResult marshalResult = new StreamResult(xmlWriter);
+        final JAXBElement<Elmo> elmoJAXBElement = new JAXBElement<Elmo>(new QName("elmo"), Elmo.class, elmo);
+        try {
+			this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
+		} catch (XmlMappingException e) {
+            log.error("Error marshalling : " + elmo, e);
+		} catch (IOException e) {
+            log.error("Error marshalling : " + elmo, e);
+		}
+        String xml = xmlWriter.toString();
+        log.debug("Marshalled to : ", xml);
+		return xml;
+	}
+
+	private static String formatCprToStads(@NotNull String cpr) {
         if (cpr.length() == 10) {
             return cpr.substring(0, 6) + "-" + cpr.substring(6);
         } else if (cpr.length() == 11) {

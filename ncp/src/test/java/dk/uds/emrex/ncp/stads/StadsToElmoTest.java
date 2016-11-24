@@ -17,7 +17,7 @@ import org.junit.Test;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import dk.uds.emrex.ncp.util.TestUtil;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+import dk.uds.emrex.stads.wsdl.GetStudentsResultsResponse;
 
 /**
  * Examples created with StadsStudyFetcherTest class.
@@ -50,15 +50,36 @@ public class StadsToElmoTest {
         transformer.transform(source, result);	
     }
 */	
+	
 	@Test
-	public void testConvertStadsToElmo() throws Exception {
+	public void testElmoUnmarshall() throws Throwable {
 		try {
 			String stadsXml = TestUtil.getFileContent("stads-elmo1.xml");
+	        JAXBContext stadsContext = JAXBContext.newInstance(dk.uds.emrex.stads.wsdl.Elmo.class);
+	        Unmarshaller stadsUnmarshaller = stadsContext.createUnmarshaller();
+	        dk.uds.emrex.stads.wsdl.Elmo stads = (dk.uds.emrex.stads.wsdl.Elmo) stadsUnmarshaller.unmarshal(new StringReader(stadsXml));
+			
+			String elmoXml = TestUtil.getFileContent("Example-elmo-sweden-1.0.xml");
 	        JAXBContext elmoContext = JAXBContext.newInstance("https.github_com.emrex_eu.elmo_schemas.tree.v1");
-	        //JAXBContext jc = JAXBContext.newInstance(dk.uds.emrex.stads.wsdl.Elmo.class);
-	        Unmarshaller elmoUn = elmoContext.createUnmarshaller();
-	        dk.uds.emrex.stads.wsdl.Elmo elmo = (dk.uds.emrex.stads.wsdl.Elmo) u.unmarshal(new StringReader(stadsXml));
+	        Unmarshaller elmoUnmarshaller = elmoContext.createUnmarshaller();
+	        https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo elmo = (https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo) elmoUnmarshaller.unmarshal(new StringReader(elmoXml));
 	        assertNotNull(elmo);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			throw t;
+		}
+	}
+	
+	@Test
+	public void testStadsUnmarshall() throws Throwable {
+		try {
+			String stadsXml = TestUtil.getFileContent("stads-elmo1.xml");
+
+	        //JAXBContext stadsContext = JAXBContext.newInstance("http://GetStudentsResultWS_V1_0.webservice.stads.logica.dk/");
+	        JAXBContext stadsContext = JAXBContext.newInstance(GetStudentsResultsResponse.class);
+	        Unmarshaller stadsUnmarshaller = stadsContext.createUnmarshaller();
+	        dk.uds.emrex.stads.wsdl.Elmo stads = (dk.uds.emrex.stads.wsdl.Elmo) stadsUnmarshaller.unmarshal(new StringReader(stadsXml));
+	        assertNotNull(stads);
 		} catch (Throwable t) {
 			t.printStackTrace();
 			throw t;

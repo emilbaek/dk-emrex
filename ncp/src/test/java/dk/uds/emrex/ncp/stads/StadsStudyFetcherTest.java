@@ -3,7 +3,11 @@ package dk.uds.emrex.ncp.stads;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+
+import javax.xml.bind.Marshaller;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
@@ -27,6 +31,9 @@ public class StadsStudyFetcherTest {
     @Before
     public void setUp() throws Exception {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.setMarshallerProperties(properties );
         marshaller.setContextPath("dk.uds.emrex.stads.wsdl");
 
         this.studyFetcher = new StadsStudyFetcher();
