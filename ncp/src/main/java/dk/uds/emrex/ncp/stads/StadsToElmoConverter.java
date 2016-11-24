@@ -141,6 +141,7 @@ public class StadsToElmoConverter {
 		elmoLearner.setCitizenship(asCountryCode(stadsLearner.getCitizenship()));
 		elmoLearner.setBday(stadsLearner.getBday());
 		elmoLearner.setFamilyName(stadsLearner.getFamilyName());
+		elmoLearner.setGivenNames(stadsLearner.getGivenNames());
 		List<Learner.Identifier> identifiers = elmoLearner.getIdentifier();
 		for (dk.uds.emrex.stads.wsdl.Elmo.Learner.Identifier stadsIdentifier : stadsLearner.getIdentifier()) {
 			Learner.Identifier identifier = new Learner.Identifier();

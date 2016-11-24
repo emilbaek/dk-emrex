@@ -7,6 +7,7 @@
     </appender>
 
     <logger name="dk.uds.emrex" level="DEBUG" />
+    <logger name="dk.kmd.emrex" level="DEBUG" />
 
     <root level="WARN">
         <appender-ref ref="STDOUT" />

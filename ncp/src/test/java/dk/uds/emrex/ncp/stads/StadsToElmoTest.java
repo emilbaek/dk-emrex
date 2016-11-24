@@ -50,7 +50,7 @@ public class StadsToElmoTest {
         transformer.transform(source, result);	
     }
 */	
-	
+/*	
 	@Test
 	public void testElmoUnmarshall() throws Throwable {
 		try {
@@ -85,5 +85,5 @@ public class StadsToElmoTest {
 			throw t;
 		}
 	}
-	
+*/	
 }

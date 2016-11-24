@@ -1,16 +1,19 @@
 angular.module('api', [])
     .service('apiService', function ($http, $q, $sce, helperService) {
-
-        var getElmoAll = function() {
-            var deferred = $q.defer();
+        
+        var getElmoEverthing = function(){
+        	var deferred = $q.defer();
             $http.get('/ncp/api/fullelmo').success(function (response) {
-                var reports = helperService.fixReports(response.elmo.report);
-                deferred.resolve(reports);
+                var elmo = { 
+                	reports : helperService.fixReports(response.elmo.report), 
+                	learner : response.elmo.learner
+                }; 
+                deferred.resolve(elmo);
             }).error(function (error) {
                 deferred.reject(error);
             });
             return deferred.promise;
-        };
+        }; 
         
         var getElmoLearner = function(){
         	var deferred = $q.defer();
@@ -65,11 +68,13 @@ angular.module('api', [])
 
 
 
-        return {getElmoAll: getElmoAll,
-                getElmoLearner: getElmoLearner,
-        		getElmoSelected: getElmoSelected,
-                getSubmitHtml : getSubmitHtml,
-                getAbortHtml : getAbortHtml};
+        return {
+        	getElmoLearner: getElmoLearner,
+            getElmoEverthing : getElmoEverthing,
+    		getElmoSelected: getElmoSelected,
+            getSubmitHtml : getSubmitHtml,
+            getAbortHtml : getAbortHtml
+        };
 
     }
 );
