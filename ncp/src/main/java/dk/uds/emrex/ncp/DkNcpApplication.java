@@ -28,6 +28,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
+import java.util.Optional;
 
 @SpringBootApplication
 @Configuration
@@ -35,84 +36,84 @@ import java.util.Collections;
 @EnableAutoConfiguration
 public class DkNcpApplication {
 
-    private static final String ELMO_XML_FIN = "src/main/resources/Example-elmo-Finland.xml";
-    private static final String ELMO_XML_NOR = "src/main/resources/Example-elmo-Norway.xml";
-    private static final String ELMO_XML_FIN_URL = "https://raw.githubusercontent.com/EMREXEU/fi-ncp/master/src/main/resources/Example-elmo-Finland.xml";
-    private static final String ELMO_XML_SWE = "src/main/resources/Example-elmo-Sweden-1.0.xml";
-    private static final String ELMO_XML_NOR_10 = "src/main/resources/nor-emrex-1.0.xml";
-    private static final String ELMO_XML_KAISA = "src/main/resources/kaisa.xml";
-    public static String getElmo() throws Exception {
-        return new String(Files.readAllBytes(Paths.get(new File(ELMO_XML_KAISA).getAbsolutePath())));
-    }
+	private static final String ELMO_XML_FIN = "src/main/resources/Example-elmo-Finland.xml";
+	private static final String ELMO_XML_NOR = "src/main/resources/Example-elmo-Norway.xml";
+	private static final String ELMO_XML_FIN_URL = "https://raw.githubusercontent.com/EMREXEU/fi-ncp/master/src/main/resources/Example-elmo-Finland.xml";
+	private static final String ELMO_XML_SWE = "src/main/resources/Example-elmo-Sweden-1.0.xml";
+	private static final String ELMO_XML_NOR_10 = "src/main/resources/nor-emrex-1.0.xml";
+	private static final String ELMO_XML_KAISA = "src/main/resources/kaisa.xml";
 
-    public static void main(String[] args) {
-        SpringApplication.run(DkNcpApplication.class, args);
-    }
+	public static String getElmo() throws Exception {
+		return new String(Files.readAllBytes(Paths.get(new File(ELMO_XML_KAISA).getAbsolutePath())));
+	}
 
-    @Autowired
-    private ResourceLoader resourceLoader;
+	public static void main(String[] args) {
+		SpringApplication.run(DkNcpApplication.class, args);
+	}
 
-    @Value("${idp.configPath}")
-    private String idpConfigPath;
- 
-    @Value("${idp.configPath.fallback}")
-    private String idpConfigPathFallback;
+	@Autowired
+	private ResourceLoader resourceLoader;
 
-    
-    @Value("${stads.testURL}")
-    private String testStudyFetcherURL;
-    
-    @Value("${stads.testCPR}")
-    private String testCPR;
-    
-    @Value("${stads.useMock}")
-    private boolean useTestStudyFetcher;
+	@Value("${idp.configPath}")
+	private String idpConfigPath;
 
-    @Bean
-    public Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("dk.uds.emrex.stads.wsdl");
-        return marshaller;
-    }
+	@Value("${idp.configPath.fallback}")
+	private String idpConfigPathFallback;
 
-    @Bean
-    public StudyFetcher studyFetcher(Jaxb2Marshaller marshaller) {
-        final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
-        studyFetcher.setMarshaller(marshaller);
-        studyFetcher.setUnmarshaller(marshaller);
+	@Value("${stads.testURL}")
+	private String testStudyFetcherURL;
 
-        if (useTestStudyFetcher) {
-            return new StudyFetcher() {
-                @Cacheable
-                @Override
-                public String fetchStudies(String institutionId, String ssn) throws IOException {
-                	return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
-                }
+	@Value("${stads.testCPR}")
+	private String testCPR;
+
+	@Value("${stads.useMock}")
+	private boolean useTestStudyFetcher;
+
+	@Bean
+	public Jaxb2Marshaller marshaller() {
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		marshaller.setContextPath("dk.uds.emrex.stads.wsdl");
+		return marshaller;
+	}
+
+	@Bean
+	public StudyFetcher studyFetcher(Jaxb2Marshaller marshaller) {
+		final StadsStudyFetcher studyFetcher = new StadsStudyFetcher();
+		studyFetcher.setMarshaller(marshaller);
+		studyFetcher.setUnmarshaller(marshaller);
+
+		if (useTestStudyFetcher) {
+			return new StudyFetcher() {
+				@Cacheable
+				@Override
+				public String fetchStudies(String institutionId, String ssn) throws IOException {
+					return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(), testCPR);
+				}
 
 				@Override
-				public Elmo fetchElmo(String institutionId, String ssn) throws IOException {
-                	return studyFetcher.fetchElmo(Collections.singleton(testStudyFetcherURL).iterator(),testCPR);
+				public Optional<Elmo> fetchElmo(String institutionId, String ssn) throws IOException {
+					return Optional.of(studyFetcher.fetchElmo(Collections.singleton(testStudyFetcherURL).iterator(), testCPR));
 				}
-            };
-        }
+			};
+		}
 
-        return studyFetcher;
-    }
+		return studyFetcher;
+	}
 
-    @Bean
-    public IdpConfigListService idpConfigListService() throws IOException {
-        try (final InputStream jsonStream = getIdpConfigResource().getInputStream()) {
-            return IdpConfigListService.fromJson(jsonStream);
-        }
-    }
+	@Bean
+	public IdpConfigListService idpConfigListService() throws IOException {
+		try (final InputStream jsonStream = getIdpConfigResource().getInputStream()) {
+			return IdpConfigListService.fromJson(jsonStream);
+		}
+	}
 
-    private Resource getIdpConfigResource() {
-        Resource resource = this.resourceLoader.getResource(this.idpConfigPath);
+	private Resource getIdpConfigResource() {
+		Resource resource = this.resourceLoader.getResource(this.idpConfigPath);
 
-        if (!resource.exists()) {
-            resource = this.resourceLoader.getResource(this.idpConfigPathFallback);
-        }
+		if (!resource.exists()) {
+			resource = this.resourceLoader.getResource(this.idpConfigPathFallback);
+		}
 
-        return resource;
-    }
+		return resource;
+	}
 }

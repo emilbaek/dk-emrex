@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.StreamSupport;
 
@@ -48,28 +49,17 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 	private IdpConfigListService idpConfigListService;
 
 	@Override
-	public Elmo fetchElmo(String institutionId, String ssn) throws IOException {
-		List<Elmo> elmos = new ArrayList<Elmo>();
+	public Optional<Elmo> fetchElmo(@NotNull String institutionId, @NotNull String ssn) throws IOException {
 		for (IdpConfig idpConfig : idpConfigListService.getIdpConfigs()) {
 			if (idpConfig.getId().equalsIgnoreCase(institutionId)) {
 				for (IdpConfigUrl idpConfigUrl : idpConfig.getGetStudentsResultWebserviceEndpoints()) {
+					Elmo elmo = null;
 					GetStudentsResultsResponse studentResult = getStudentResult(idpConfigUrl.getUrl(), ssn);
 					if (studentResult != null) {
-						Elmo elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
-						elmos.add(elmo);
+						elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
 					}
+					return Optional.of(elmo);
 				}
-				/*
-				try {
-					final Iterator<String> urlIterator = StreamSupport
-							.stream(idpConfig.getGetStudentsResultWebserviceEndpoints().spliterator(), false)
-							.map((IdpConfig.IdpConfigUrl idpConfigUrl) -> idpConfigUrl.getUrl()).iterator();
-					getStudentResult(urlIterator, ssn);
-				} catch (IOException e) {
-					throw new IOException(
-							String.format("Unable to connect to any STADS servers for IDP %s", institutionId), e);
-				}
-				*/
 			}
 		}
 
@@ -158,7 +148,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 	 * @throws IOException
 	 * @throws SoapFaultClientException
 	 */
-	private String getStudentsResults(String url, String cpr) throws IOException, WebServiceException {
+	private String getStudentsResults(@NotNull String url, @NotNull String cpr) throws IOException, WebServiceException {
 		GetStudentsResultsResponse response = getStudentResult(url, cpr);
 
 		final GetStudentsResultsOutput.ReceiptStructure receipt = response.getReturn().getReceiptStructure();
@@ -178,7 +168,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		}
 	}
 
-	private String marshall(https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo elmo) {
+	private String marshall(@NotNull https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo elmo) {
 		final StringWriter xmlWriter = new StringWriter();
 		final StreamResult marshalResult = new StreamResult(xmlWriter);
 		try {
@@ -198,7 +188,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		return xml;
 	}
 
-	private String marshall(GetStudentsResultsResponse response) {
+	private String marshall(@NotNull GetStudentsResultsResponse response) {
 		final StringWriter xmlWriter = new StringWriter();
 		final StreamResult marshalResult = new StreamResult(xmlWriter);
 		try {
@@ -213,7 +203,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		return xml;
 	}
 
-	private String marshall(dk.uds.emrex.stads.wsdl.Elmo elmo) {
+	private String marshall(@NotNull dk.uds.emrex.stads.wsdl.Elmo elmo) {
 		final StringWriter xmlWriter = new StringWriter();
 		final StreamResult marshalResult = new StreamResult(xmlWriter);
 		final JAXBElement<dk.uds.emrex.stads.wsdl.Elmo> elmoJAXBElement = new JAXBElement<dk.uds.emrex.stads.wsdl.Elmo>(

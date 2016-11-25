@@ -1,8 +1,10 @@
 package dk.uds.emrex.ncp.virta;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -17,6 +19,7 @@ import fi.csc.tietovaranto.emrex.ELMOOpiskelijavaihtoService;
 import fi.csc.tietovaranto.emrex.Hakuehdot;
 import fi.csc.tietovaranto.emrex.Kutsuja;
 import fi.csc.tietovaranto.emrex.ObjectFactory;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -109,5 +112,11 @@ public class VirtaClient implements StudyFetcher {
         kutsuja.setTunnus(TUNNUS);
         return kutsuja;
     }
+
+		@Override
+		public Optional<Elmo> fetchElmo(String institutionId, String ssn) throws IOException {
+			// TODO Auto-generated method stub
+			return null;
+		}
 
 }
