@@ -112,9 +112,9 @@ public class Util {
                 for (LearningOpportunitySpecification spec : losList) {
                     List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
                     for (LearningOpportunitySpecification.Identifier id : identifiers) {
-                        if ("elmo".equals(id.getType()) && courses.contains(id.getValue())) {
+                        //if ("elmo".equals(id.getType()) && courses.contains(id.getValue())) {
                             tempList.add(spec);
-                        }
+                        //}
                     }
                 }
 
