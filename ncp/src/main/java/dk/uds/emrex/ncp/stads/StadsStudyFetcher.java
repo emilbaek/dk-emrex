@@ -66,31 +66,19 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		throw new IOException(String.format("No STADS servers known for IDP {}", institutionId));
 	}
 
-	public Elmo fetchElmo(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
-		return null;
+	public Optional<Elmo> fetchElmo(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
+		Elmo elmo = null;
+		while (urls.hasNext()) {
+			String url = urls.next();
+			GetStudentsResultsResponse studentResult = getStudentResult(url, ssn);
+			if (studentResult != null) {
+				elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
+			}
+		}
+		return Optional.of(elmo);
 	}
 
 	
-	@Deprecated
-	@Override
-	public String fetchStudies(@NotNull String institutionId, @NotNull String ssn) throws IOException {
-		for (final IdpConfig idpConfig : idpConfigListService.getIdpConfigs()) {
-			if (idpConfig.getId().equalsIgnoreCase(institutionId)) {
-				try {
-					final Iterator<String> urlIterator = StreamSupport
-							.stream(idpConfig.getGetStudentsResultWebserviceEndpoints().spliterator(), false)
-							.map((IdpConfig.IdpConfigUrl idpConfigUrl) -> idpConfigUrl.getUrl()).iterator();
-					return fetchStudies(urlIterator, ssn);
-				} catch (IOException e) {
-					throw new IOException(
-							String.format("Unable to connect to any STADS servers for IDP %s", institutionId), e);
-				}
-			}
-		}
-
-		throw new IOException(String.format("No STADS servers known for IDP {}", institutionId));
-	}
-
 	@Deprecated
 	public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
 		if (!urls.hasNext()) {
@@ -174,9 +162,6 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		try {
 			Jaxb2Marshaller elmoMarshaller = new Jaxb2Marshaller();
 
-			Map<String, Object> properties = new HashMap<String, Object>();
-			properties.put(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			elmoMarshaller.setMarshallerProperties(properties);
 			elmoMarshaller.setContextPath("https.github_com.emrex_eu.elmo_schemas.tree.v1");
 
 			elmoMarshaller.marshal(elmo, marshalResult);

@@ -45,12 +45,12 @@ public class VirtaClient implements StudyFetcher {
     
     private ELMOOpiskelijavaihtoService elmoOpiskelijavaihtoService;
 
-    
+/*    
     @Override
     public String fetchStudies(String institutionId, String ssn) {
         return fetchStudies(new VirtaUser(institutionId, ssn));
     }
-
+*/
     public String fetchStudies(VirtaUser virtaUser) {
         try {
             String marshal = VirtaMarshaller.marshal(sendRequest(virtaUser));

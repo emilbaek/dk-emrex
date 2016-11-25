@@ -33,14 +33,19 @@ public class ElmoParser {
 
 	private final Elmo elmo;
 
+	
+	public static ElmoParser elmoParser(@NonNull Elmo elmo) {
+		return new ElmoParser(elmo);
+	}
+	
+	public static ElmoParser elmoParserFromVirta(@NonNull Elmo elmo) {
+		return new ElmoParser(elmo);
+	}
+	
 	public static ElmoParser elmoParser(@NonNull String elmoString) {
 		return new ElmoParser(elmoString);
 	}
-	
-	public static ElmoParser elmoParserFromVirta(@NonNull String elmoString) {
-		return new ElmoParser(elmoString);
-	}
-	
+
 	public ElmoParser(@NonNull String elmoString) {
 		this.elmo = this.getElmoFromString(elmoString).orElse(null);
 	}
