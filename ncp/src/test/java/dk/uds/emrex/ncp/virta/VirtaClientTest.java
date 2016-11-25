@@ -14,7 +14,7 @@ import org.junit.Ignore;
 /**
  * Created by marko.hollanti on 08/10/15.
  */
-public class VirtaClientTest extends TestCase {
+public class VirtaClientTest /*extends TestCase*/ {
 
     private VirtaClient instance;
     private ELMOOpiskelijavaihtoService elmoOpiskelijavaihtoService;
@@ -24,7 +24,7 @@ public class VirtaClientTest extends TestCase {
         instance = new VirtaClient();
         instance.setElmoOpiskelijavaihtoService(elmoOpiskelijavaihtoService);
     }
-
+    
     /**
      *
      * Tällä testillä voi testata virtapalvelua, ei käytä mockeja
@@ -52,6 +52,7 @@ public class VirtaClientTest extends TestCase {
         assertNotNull(studies);
     }
   */
+/*
     @Ignore
     @Test
     public void testFetchStudies() throws Exception {
@@ -68,7 +69,7 @@ public class VirtaClientTest extends TestCase {
         assertNotNull(result);
         //assertEquals(expected, result);
     }
-
+*/
     private VirtaUser createVirtaUser() {
         return new VirtaUser("17488477125", null);
     }

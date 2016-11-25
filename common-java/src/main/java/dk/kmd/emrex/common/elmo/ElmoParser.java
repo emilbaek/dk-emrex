@@ -124,7 +124,7 @@ public class ElmoParser {
 				Specifies specifies = learningOpportunitySpecification.getSpecifies();
 				List<Credit> credits = specifies.getLearningOpportunityInstance().getCredit();
 				for (Credit credit : credits) {
-					if ("ECTS".equals(credit.getScheme())) {
+					if ("ECTS".equalsIgnoreCase(credit.getScheme())) {
 						etcsCount = etcsCount.add(credit.getValue());
 					}
 				}
@@ -191,7 +191,7 @@ public class ElmoParser {
 		try {
 			JAXBContext jc = JAXBContext.newInstance("https.github_com.emrex_eu.elmo_schemas.tree.v1");
 			Unmarshaller um = jc.createUnmarshaller();
-			um.unmarshal(new StringReader(xml));
+			elmo = (Elmo)um.unmarshal(new StringReader(xml));
 		} catch (JAXBException e) {
 			log.error("Error unmarshalling Elmo", e);
 		}

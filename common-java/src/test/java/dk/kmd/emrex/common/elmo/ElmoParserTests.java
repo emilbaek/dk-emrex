@@ -69,7 +69,7 @@ public class ElmoParserTests extends TestCase {
 
     @Test
     public void testCountECTS() throws Exception {
-        runETCSTest(testXML, 327);
+        runETCSTest(testXML, 360);
        // runETCSTest("Example-elmo-Norway.xml", 512); // some crazy learner here
     }
 
