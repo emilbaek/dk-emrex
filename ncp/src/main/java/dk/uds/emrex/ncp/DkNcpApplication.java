@@ -84,15 +84,9 @@ public class DkNcpApplication {
 
 		if (useTestStudyFetcher) {
 			return new StudyFetcher() {
-				@Cacheable
-				@Override
-				public String fetchStudies(String institutionId, String ssn) throws IOException {
-					return studyFetcher.fetchStudies(Collections.singleton(testStudyFetcherURL).iterator(), testCPR);
-				}
-
 				@Override
 				public Optional<Elmo> fetchElmo(String institutionId, String ssn) throws IOException {
-					return Optional.of(studyFetcher.fetchElmo(Collections.singleton(testStudyFetcherURL).iterator(), testCPR));
+					return studyFetcher.fetchElmo(Collections.singleton(testStudyFetcherURL).iterator(), testCPR);
 				}
 			};
 		}

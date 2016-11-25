@@ -9,6 +9,8 @@ import dk.uds.emrex.ncp.saml2.WayfUser;
 import dk.kmd.emrex.common.elmo.ElmoParser;
 import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+
 import org.json.JSONObject;
 import org.json.XML;
 import org.slf4j.Logger;
@@ -23,6 +25,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author salum
@@ -70,10 +73,9 @@ public class JsonController {
 
         try {
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParser(elmo);
+            Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParser(elmo.get());
 
-//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             String xmlString;
             
             xmlString = parser.getCourseData();
@@ -81,7 +83,7 @@ public class JsonController {
             JSONObject json = XML.toJSONObject(xmlString);
             return json.toString();
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("Error getting FullELmo", e);
             StackTraceElement elements[] = e.getStackTrace();
             Map<String, Object> error = new HashMap<String, Object>();
             Map<String, Object> log = new HashMap<String, Object>();
@@ -117,8 +119,8 @@ public class JsonController {
 
 //            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+            Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo.get());
 
             String xmlString;
             if (courses != null) {

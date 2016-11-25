@@ -33,6 +33,15 @@ public class ElmoParser {
 
 	private final Elmo elmo;
 
+	
+	public static ElmoParser elmoParser(@NonNull Elmo elmo) {
+		return new ElmoParser(elmo);
+	}
+	
+	public static ElmoParser elmoParserFromVirta(@NonNull Elmo elmo) {
+		return new ElmoParser(elmo);
+	}
+	
 	public static ElmoParser elmoParser(@NonNull String elmoString) {
 		return new ElmoParser(elmoString);
 	}

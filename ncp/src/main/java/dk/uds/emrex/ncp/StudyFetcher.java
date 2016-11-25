@@ -12,6 +12,4 @@ import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
  */
 public interface StudyFetcher {
     Optional<Elmo> fetchElmo(@NotNull String institutionId, @NotNull String ssn) throws IOException;
-    @Deprecated
-    String fetchStudies(@NotNull String institutionId, @NotNull String ssn) throws IOException;
 }

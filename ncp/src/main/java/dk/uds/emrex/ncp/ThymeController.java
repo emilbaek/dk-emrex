@@ -13,6 +13,7 @@ import dk.kmd.emrex.common.elmo.ElmoParser;
 import dk.kmd.emrex.common.util.Security;
 import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import dk.uds.emrex.ncp.virta.VirtaClient;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -73,8 +76,8 @@ public class ThymeController {
 
         ElmoParser parser;
         try {
-            final String elmoXml = this.studyFetcher.fetchStudies(wayfUser.getOrganizationId(), wayfUser.getCpr());
-            parser = ElmoParser.elmoParserFromVirta(elmoXml);
+            final Optional<Elmo> elmo = this.studyFetcher.fetchElmo(wayfUser.getOrganizationId(), wayfUser.getCpr());
+            parser = ElmoParser.elmoParserFromVirta(elmo.get());
         } catch (IOException e) {
             log.error("Failed to fetch study data.", e);
             throw e;
