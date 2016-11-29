@@ -7,6 +7,8 @@ import eu.europa.cedefop.europass.europass.v2.CountryCode;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Learner;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Report;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Report.Issuer;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Report.Issuer.Identifier;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification.Specifies;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification.Specifies.LearningOpportunityInstance;
@@ -36,7 +38,17 @@ public class StadsToElmoConverter {
 
 		Report report = new Report();
 		report.setIssueDate(stadsReport.getIssueDate());
-		report.setIssuer(null); // TODO QNK mangler i STADS
+		Issuer issuer = new Elmo.Report.Issuer(); 
+		issuer.setCountry(CountryCode.DK);
+		Identifier identifier = new Elmo.Report.Issuer.Identifier();
+		identifier.setType("local");
+		identifier.setValue("TODO : Issuer ID unknown");
+		issuer.getIdentifier().add(identifier);
+		TokenWithOptionalLang title = new TokenWithOptionalLang();
+		title.setLang("en");
+		title.setValue("TODO : Issuer unknown");
+		issuer.getTitle().add(title);
+		report.setIssuer(issuer); // TODO QNK Issuer mangler i STADS
 		report.getLearningOpportunitySpecification().addAll(asElmo(stadsReport.getLearningOpportunitySpecification()));
 
 		elmoReports.add(report);
