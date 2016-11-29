@@ -1,5 +1,5 @@
 Apache server 
-	Installer Apache 2.2 på dans-emrexws.kmd.dk
+	Installer Apache 2.4 på dans-emrexws.kmd.dk
 	Konfigurer med httpd.test.conf fra NCP projekt lagt som etc/httpd/conf/httpd.conf samt mime.types
 	Start server med sudo /sbin/service httpd start
 	Restart server med sudo /sbin/service httpd restart
@@ -7,9 +7,11 @@ Apache server
 	 
 Weblogic 
 	Installeres på dans-emrex.kmd.dk
+	I test : -Djava.security.egd=file:/dev/./urandom
 	Adgange med sudo -iu weblogic eller xsudo weblogic
 	Adminstrationskonsol på http://dans-emrex.kmd.dk:9001/console
-	Husk at sætte spring.profiles.active=test !!! TODO
+	Husk at sætte spring.profiles.active=test
 	NCP WAR-file installeres i rod context
+	stads-registry fil placeres i /etc/emrex
+	Mail server opsættes i weblogic start script som -D parametre i opstart	 	
 	./weblogic start/stop/restart 	
-	 	

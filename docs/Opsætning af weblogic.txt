@@ -17,5 +17,3 @@ Opsætning EMREX weblogic server
 	
 TODO logback : http://docs.spring.io/spring-boot/docs/current/reference/html/howto-traditional-deployment.html
 	weblogic.xml har besynderlige udkommenteringer
-	
-Mail server ?
