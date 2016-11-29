@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.europa.cedefop.europass.europass.v2.CountryCode;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.Attachment;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Learner;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Report;
@@ -67,9 +66,11 @@ public class StadsToElmoConverter {
 		elmoLOS.setUrl(null);
 		List<LearningOpportunitySpecification.Identifier> identifiers = elmoLOS.getIdentifier();
 		LearningOpportunitySpecification.Identifier identifier = new LearningOpportunitySpecification.Identifier();
+		identifier.setType("local");
 		identifier.setValue(stadsLOS.getIdentifier());
 		identifiers.add(identifier);
 		TokenWithOptionalLang title = new TokenWithOptionalLang();
+		title.setLang("en");
 		title.setValue(stadsLOS.getTitle());
 		elmoLOS.getTitle().add(title);
 

@@ -83,31 +83,25 @@ public class ThymeController {
             throw e;
         }
 
-//        ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
+        //ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
 
-        String xmlString;
+        String xmlString = getElmoXml(courses, parser);
 
-        // Generate pdf with existing courses and add pdf to xml
-        {
-            xmlString = getElmoXml(courses, parser);
+        PdfGen pdfGenerator = new PdfGen();
 
-            // TODO
-//            PdfGen pdfGenerator = new PdfGen();
-//
-//            byte[] pdf = pdfGenerator.generatePdf(xmlString);
-//
-//            parser.addPDFAttachment(pdf);
-//
-//            xmlString = getElmoXml(courses, parser);
-//
-//            ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
-        }
-//          TODO
-//        String source = "NCP";
-//        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
-//        StatisticalLogger.log(statisticalLogLine);
-//
-//        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
+        byte[] pdf = pdfGenerator.generatePdf(xmlString);
+
+        parser.addPDFAttachment(pdf);
+
+        xmlString = getElmoXml(courses, parser);
+
+        ElmoParser finalParser = ElmoParser.elmoParser(xmlString);
+
+        String source = "NCP";
+        String statisticalLogLine = generateStatisticalLogLine(finalParser, source);
+        StatisticalLogger.log(statisticalLogLine);
+
+        xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
         if (courses != null) {
             model.addAttribute("returnCode", context.getSession().getAttribute("returnCode"));
             model.addAttribute("elmo", xmlString);
