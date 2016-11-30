@@ -74,7 +74,7 @@ public class PdfGen {
         try {
             docBuilder = docFactory.newDocumentBuilder();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Klarte ikke å lage xml dokument", e);
+            throw new IllegalArgumentException("Kunne ikke oprette XML-dokument.", e);
         }
 
         Document doc = null;
@@ -82,7 +82,7 @@ public class PdfGen {
         try {
             doc = docBuilder.parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
         } catch (Exception e) {
-            throw new IllegalArgumentException("Klarte ikke parse XML-dokument.", e);
+            throw new IllegalArgumentException("Kunne ikke parse XML-dokument.", e);
         }
         return doc;
     }
@@ -105,7 +105,7 @@ public class PdfGen {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String headerText = "Source: Emrex - Supporting Student Mobility - ";
         headerText += LocalDate.now().format(formatter);
-        headerText += " - in Finland";
+        headerText += " - in Denmark";
         phrase.add(headerText);
 
         ColumnText.showTextAligned(writer.getDirectContent(),
