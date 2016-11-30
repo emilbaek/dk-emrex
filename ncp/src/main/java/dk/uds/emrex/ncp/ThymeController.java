@@ -118,14 +118,7 @@ public class ThymeController {
     }
 
     private String getElmoXml(@RequestParam(value = "courses", required = false) String[] courses, ElmoParser parser) throws ParserConfigurationException {
-        String xmlString;
-        if (courses != null) {
-            List<String> courseList = Arrays.asList(courses);
-            xmlString = parser.getCourseData(courseList);
-        } else {
-            xmlString = parser.getCourseData(null);
-        }
-
+        String xmlString = courses==null ? parser.getCourseData() : parser.getCourseData(courses);
         return xmlString;
     }
 
