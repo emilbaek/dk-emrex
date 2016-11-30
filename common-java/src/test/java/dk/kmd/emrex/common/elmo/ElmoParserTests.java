@@ -34,10 +34,7 @@ public class ElmoParserTests extends TestCase {
     public void testRemoveCourses() throws Exception {
         String elmo = TestUtil.getFileContent(testXML);
         ElmoParser parser = ElmoParser.elmoParser(elmo);
-        List<String> courses = new ArrayList<String>();
-        courses.add("0");
-        courses.add("1");
-        courses.add("2");
+        String[] courses = {"0","1","2"}; 
         String readyElmo = parser.getCourseData(courses);
         checkEmptyHasPartNodes(readyElmo);
     }
