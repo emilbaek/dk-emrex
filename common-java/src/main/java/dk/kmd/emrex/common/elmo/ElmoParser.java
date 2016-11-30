@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,11 +69,6 @@ public class ElmoParser {
 		throw new Exception("No attached PDFs in Elmo");
 	}
 
-	/**
-	 * TODO QNK : Currently only used in unit tests. To be removed?
-	 * 
-	 * @param pdf
-	 */
 	public void addPDFAttachment(byte[] pdf) {
 
 		Attachment attachment = new Attachment();
@@ -109,9 +105,9 @@ public class ElmoParser {
 	 * @return String representation of Elmo-xml with selected courses
 	 * @throws ParserConfigurationException
 	 */
-	public String getCourseData(List<String> courses) throws ParserConfigurationException {
+	public String getCourseData(String... courses) throws ParserConfigurationException {
 		String copyElmo = getStringFromDoc(elmo);
-		return Util.getCourses(copyElmo, courses);
+		return Util.getCourses(copyElmo, Arrays.asList(courses));
 	}
 
 	/**

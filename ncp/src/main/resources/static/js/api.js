@@ -32,7 +32,11 @@ angular.module('api', [])
                 method: 'GET',
                 params: {courses: courses}
             }).success(function (response) {
-                deferred.resolve(helperService.fixReports(response.elmo.report));
+            	var elmo = {
+            			reports : helperService.fixReports(response.elmo.report), 
+            			learner : response.elmo.learner
+            	}; 
+                deferred.resolve(elmo);
             }).error(function (error){
                 deferred.reject(error);
             });

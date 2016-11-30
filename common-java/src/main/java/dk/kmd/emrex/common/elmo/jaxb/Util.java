@@ -112,12 +112,11 @@ public class Util {
                 for (LearningOpportunitySpecification spec : losList) {
                     List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
                     for (LearningOpportunitySpecification.Identifier id : identifiers) {
-                        //if ("elmo".equals(id.getType()) && courses.contains(id.getValue())) {
+                        if(courses.contains(id.getValue())) {
                             tempList.add(spec);
-                        //}
+                        }
                     }
                 }
-
             }
             return marshalElmo(elmo);
         } catch (JAXBException ex) {
