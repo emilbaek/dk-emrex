@@ -107,32 +107,14 @@ public class JsonController {
     @ResponseBody
     public String getElmoJSON(
             @RequestParam(value = "courses", required = false) String[] courses) throws Exception {
-        if (courses != null) {
-            String courseIdList = "";
-            for (int i = 0; i < courses.length; i++) {
-                courseIdList += courses[i] + ", ";
-            }
-            log.info("Courses: " + courseIdList);
-        }
-
+            log.info("Courses: [" + (courses==null? "null" : Arrays.stream(courses).reduce((a,b)-> a+", "+b).orElse(""))+']');
         try {
-
-//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             final WayfUser user = getCurrentUser();
             Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
             final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo.get());
 
-            String xmlString;
-            if (courses != null) {
-                log.debug("Courses count: {}", courses.length);
-                List<String> courseList = Arrays.asList(courses);
-                xmlString = parser.getCourseData(); // TODO
-//                xmlString = parser.getCourseData(courseList);
-            } else {
-                log.debug("Courses count: null");
-                xmlString = parser.getCourseData(null);
-            }
-
+            String xmlString = courses==null? parser.getCourseData() : parser.getCourseData(courses);
+            log.debug(courses==null?"Courses count: null":("Courses count: "+ courses.length));
             log.trace(xmlString);
             JSONObject json = XML.toJSONObject(xmlString);
             return json.toString();
