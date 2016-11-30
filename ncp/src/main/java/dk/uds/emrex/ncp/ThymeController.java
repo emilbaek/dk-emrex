@@ -148,47 +148,47 @@ public class ThymeController {
         final WayfUser wayfUser = this.getCurrentUser();
 
         log.info("/ncp/");
-//        if (customRequest != null) {
-//            try {
-//                if (customRequest.getSessionId() != null) {
-//                    if (customRequest.getSessionId().equals(Security.stripXSS(customRequest.getSessionId()))) {
-//                        context.getSession().setAttribute("sessionId", customRequest.getSessionId());
-//                    } else {
-//                        throw new Exception("Suspected XSS-injection");
-//                    }
-//                }
-//                if (customRequest.getReturnUrl() != null) {
-//                    String returnUrl = customRequest.getReturnUrl();
-//                    log.info("unprocessed returnURL: " + returnUrl);
-//                    String temp = Security.stripXSS(returnUrl);
-//                    log.info("processed returnURL: " + temp);
-//                    if (!returnUrl.equals(temp)) {
-//                        throw new Exception("Suspected XSS-injection");
-//                    }
-//                    if (!returnUrl.startsWith("https")) {
-//                        log.debug("env: "+env);
-//                        if (!"dev".equals(env)) {
-//                            throw new Exception("Only HTTPS allowed");
-//                        }
-//                    }
-//                    context.getSession().setAttribute("returnUrl", returnUrl);
-//
-//                }
-//            } catch (Exception e) {
-//                model.addAttribute("error", e.getMessage());
-//                return "error";
-//            }
-//            log.info("Return URL: {}", context.getSession().getAttribute("returnUrl"));
-//            log.info("Session ID: {}", context.getSession().getAttribute("sessionId"));
-//
-//            try {
-//                if (context.getSession().getAttribute("elmo") == null) {
-//                    String elmoXML;
-//                    ShibbolethHeaderHandler headerHandler = new ShibbolethHeaderHandler(request);
-//                    log.debug(headerHandler.stringifyHeader());
-//                    String OID = headerHandler.getOID();
-//                    String personalId = headerHandler.getPersonalID();
-//
+        if (customRequest != null) {
+            try {
+                if (customRequest.getSessionId() != null) {
+                    if (customRequest.getSessionId().equals(Security.stripXSS(customRequest.getSessionId()))) {
+                        context.getSession().setAttribute("sessionId", customRequest.getSessionId());
+                    } else {
+                        throw new Exception("Suspected XSS-injection");
+                    }
+                }
+                if (customRequest.getReturnUrl() != null) {
+                    String returnUrl = customRequest.getReturnUrl();
+                    log.info("unprocessed returnURL: " + returnUrl);
+                    String temp = Security.stripXSS(returnUrl);
+                    log.info("processed returnURL: " + temp);
+                    if (!returnUrl.equals(temp)) {
+                        throw new Exception("Suspected XSS-injection");
+                    }
+                    if (!returnUrl.startsWith("https")) {
+                        log.debug("env: "+env);
+                        if (!"dev".equals(env)) {
+                            throw new Exception("Only HTTPS allowed");
+                        }
+                    }
+                    context.getSession().setAttribute("returnUrl", returnUrl);
+
+                }
+            } catch (Exception e) {
+                model.addAttribute("error", e.getMessage());
+                return "error";
+            }
+            log.info("Return URL: {}", context.getSession().getAttribute("returnUrl"));
+            log.info("Session ID: {}", context.getSession().getAttribute("sessionId"));
+
+            try {
+                if (context.getSession().getAttribute("elmo") == null) {
+                    String elmoXML;
+                    ShibbolethHeaderHandler headerHandler = new ShibbolethHeaderHandler(request);
+                    log.debug(headerHandler.stringifyHeader());
+                    String OID = headerHandler.getOID();
+                    String personalId = headerHandler.getPersonalID();
+
 //                    if (OID == null && personalId == null) {
 //                        if ("dev".equals(env)) {
 //                            elmoXML = studyFetcher.fetchStudies("17488477125", personalId);
@@ -196,35 +196,35 @@ public class ThymeController {
 //                            elmoXML = "";
 //                        }
 //                    } else {
-//                        elmoXML = studyFetcher.fetchStudies(OID, personalId);
+                        elmoXML = new ElmoParser(studyFetcher.fetchElmo(OID, personalId).get()).getCourseData();
 //                    }
-//                    log.debug(elmoXML);
-//                    ElmoParser parser = null;
-//                    if (elmoXML == null) {
-//                        log.debug("elmoXML null");
-//                        context.getSession().setAttribute("returnCode", "NCP_NO_RESULTS");
-//
-//                    } else {
-//                        context.getSession().setAttribute("returnCode", "NCP_OK");
-//                        parser = ElmoParser.elmoParserFromVirta(elmoXML);
-//                        context.getSession().setAttribute("elmo", parser);
-//
-//                    }
-//                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser);
-//
-//                    String statisticalLogLine = generateStatisticalLogLine(parser, "NCP");
-//                    StatisticalLogger.log(statisticalLogLine);
-//                    PersonalLogger.log(personalLogLine);
-//                }
-//                return "norex";
-//
-//            } catch (Exception e) {
-//                log.error("Elmo was null and fetching elmo failed somehow.", e);
-//                model.addAttribute("error", "Fetching study data failed");
-//                return "error";
-//            }
-//
-//        }
+                    log.debug(elmoXML);
+                    ElmoParser parser = null;
+                    if (elmoXML == null) {
+                        log.debug("elmoXML null");
+                        context.getSession().setAttribute("returnCode", "NCP_NO_RESULTS");
+
+                    } else {
+                        context.getSession().setAttribute("returnCode", "NCP_OK");
+                        parser = new ElmoParser(elmoXML);
+                        context.getSession().setAttribute("elmo", parser);
+
+                    }
+                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser);
+
+                    String statisticalLogLine = generateStatisticalLogLine(parser, "NCP");
+                    StatisticalLogger.log(statisticalLogLine);
+                    PersonalLogger.log(personalLogLine);
+                }
+                return "norex";
+
+            } catch (Exception e) {
+                log.error("Elmo was null and fetching elmo failed somehow.", e);
+                model.addAttribute("error", "Fetching study data failed");
+                return "error";
+            }
+
+        }
         return "norex";
     }
 

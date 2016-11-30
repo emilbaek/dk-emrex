@@ -69,11 +69,6 @@ public class ElmoParser {
 		throw new Exception("No attached PDFs in Elmo");
 	}
 
-	/**
-	 * TODO QNK : Currently only used in unit tests. To be removed?
-	 * 
-	 * @param pdf
-	 */
 	public void addPDFAttachment(byte[] pdf) {
 
 		Attachment attachment = new Attachment();
