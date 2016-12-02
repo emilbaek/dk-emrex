@@ -9,4 +9,5 @@ Start applikation på kommandolinie med
 
 Logning sker til STDOUT.	
 
+Beskrivelse af init.d opsætning : http://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html
 	
