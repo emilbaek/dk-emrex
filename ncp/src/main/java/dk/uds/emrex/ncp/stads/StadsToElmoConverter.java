@@ -15,10 +15,11 @@ import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecifi
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification.Specifies.LearningOpportunityInstance.AcademicTerm;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.LearningOpportunitySpecification.Specifies.LearningOpportunityInstance.Credit;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.TokenWithOptionalLang;
+import lombok.NonNull;
 
 public class StadsToElmoConverter {
-	public static Elmo toElmo(dk.uds.emrex.stads.wsdl.Elmo se) {
-		final Elmo elmo = new Elmo();
+	public static Elmo toElmo(@NonNull dk.uds.emrex.stads.wsdl.Elmo se) {
+		Elmo elmo = new Elmo();
 
 		elmo.setGeneratedDate(se.getGeneratedDate());
 		elmo.setSignature(null); // No data

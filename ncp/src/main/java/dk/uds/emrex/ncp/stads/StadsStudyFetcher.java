@@ -55,10 +55,10 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 				for (IdpConfigUrl idpConfigUrl : idpConfig.getGetStudentsResultWebserviceEndpoints()) {
 					Elmo elmo = null;
 					GetStudentsResultsResponse studentResult = getStudentResult(idpConfigUrl.getUrl(), ssn);
-					if (studentResult != null) {
+					if ((studentResult != null) && (studentResult.getReturn() != null) && (studentResult.getReturn().getElmoDocument()) != null) {
 						elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
 					}
-					return Optional.of(elmo);
+					return Optional.ofNullable(elmo);
 				}
 			}
 		}
