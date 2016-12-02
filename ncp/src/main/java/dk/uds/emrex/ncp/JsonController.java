@@ -74,14 +74,18 @@ public class JsonController {
         try {
             final WayfUser user = getCurrentUser();
             Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParser(elmo.get());
+            final ElmoParser parser = elmo.isPresent() ? ElmoParser.elmoParser(elmo.get()) : null;
 
-            String xmlString;
-            
-            xmlString = parser.getCourseData();
-            log.debug(xmlString);
-            JSONObject json = XML.toJSONObject(xmlString);
-            return json.toString();
+            if (parser != null) {
+              String xmlString;
+              
+              xmlString = parser.getCourseData();
+              log.debug(xmlString);
+              JSONObject json = XML.toJSONObject(xmlString);
+              return json.toString();
+            } else {
+            	return "";
+            }
         } catch (Exception e) {
             log.error("Error getting FullELmo", e);
             StackTraceElement elements[] = e.getStackTrace();

@@ -12,14 +12,11 @@ import dk.kmd.emrex.common.StatisticalLogger;
 import dk.kmd.emrex.common.elmo.ElmoParser;
 import dk.kmd.emrex.common.util.Security;
 import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
-import dk.uds.emrex.ncp.virta.VirtaClient;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,8 +28,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -186,8 +181,10 @@ public class ThymeController {
                     String elmoXML;
                     ShibbolethHeaderHandler headerHandler = new ShibbolethHeaderHandler(request);
                     log.debug(headerHandler.stringifyHeader());
-                    String OID = headerHandler.getOID();
-                    String personalId = headerHandler.getPersonalID();
+                    String OID = wayfUser.getOrganizationId();
+//                    String OID = headerHandler.getOID();
+                    String personalId = wayfUser.getCpr();
+//                    String personalId = headerHandler.getPersonalID();
 
 //                    if (OID == null && personalId == null) {
 //                        if ("dev".equals(env)) {
@@ -196,7 +193,12 @@ public class ThymeController {
 //                            elmoXML = "";
 //                        }
 //                    } else {
-                        elmoXML = new ElmoParser(studyFetcher.fetchElmo(OID, personalId).get()).getCourseData();
+                    		Optional<Elmo> elmo = studyFetcher.fetchElmo(OID, personalId);
+                    		if (elmo.isPresent()) {
+                          elmoXML = new ElmoParser(elmo.get()).getCourseData();
+                    		} else {
+                    			elmoXML = null;
+                    		}
 //                    }
                     log.debug(elmoXML);
                     ElmoParser parser = null;

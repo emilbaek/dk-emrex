@@ -311,7 +311,13 @@ public class WayfUser {
                 if (m.matches()) {
                     final String cpr = m.group(1);
                     if (!cpr.isEmpty()) {
+                    	if (cpr.length() == 11) {
+                    		return cpr;
+                    	} else if (cpr.length() == 10) {
+                    		return cpr.substring(0, 6) + "-" + cpr.substring(6);
+                    	} else {
                         return cpr;
+                    	}
                     }
                 }
             }

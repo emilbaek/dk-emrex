@@ -9,7 +9,7 @@ Weblogic
 	Installeres på dans-emrex.kmd.dk
 	I test : -Djava.security.egd=file:/dev/./urandom
 	Adgange med sudo -iu weblogic eller xsudo weblogic
-	Adminstrationskonsol på http://dans-emrex.kmd.dk:9001/console
+	Adminstrationskonsol på http://dans-emrex.kmd.dk:8000/console
 	Husk at sætte spring.profiles.active=test
 	NCP WAR-file installeres i rod context
 	stads-registry fil placeres i /etc/emrex
