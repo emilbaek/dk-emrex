@@ -1,0 +1,12 @@
+OBS! Udskift ${env} nedenfor med dev, test eller prod for ønsket miljø.
+
+Kopier stads-registry-${env}.json til /etc/emrex
+
+Kopier war file til ønsket placering.
+
+Start applikation på kommandolinie med 
+	java -jar -Dspring.profiles.active=${env} ncp-0.0.2-SNAPSHOT.war
+
+Logning sker til STDOUT.	
+
+	
