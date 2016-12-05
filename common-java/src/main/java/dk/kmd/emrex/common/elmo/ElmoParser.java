@@ -107,6 +107,7 @@ public class ElmoParser {
 		try {
 			Elmo elmoCopy = asElmo(this.asXml()).get();
 			selectCourses(elmoCopy, Arrays.asList(courses));
+<<<<<<< HEAD
 			jsonString = "{ \"elmo\" : " + asJson(elmoCopy) + " }";
 			log.debug(jsonString);
 		} catch (ParserConfigurationException e) {
@@ -144,6 +145,42 @@ public class ElmoParser {
 	        }
 	    }
 		}
+=======
+			jsonString = "{ \"elmo\" : " + asJson(elmoCopy) + " }"; 
+		} catch (ParserConfigurationException e) {
+			log.error("Error marshalling Elmo", e);
+		}
+		return jsonString;
+	}
+
+	/**
+	 * Remove all courses from Elmo that are not in list of courses.
+	 * @param elmo
+	 * @param courses
+	 */
+	private void selectCourses(Elmo elmo, List<String> courses) {
+    List<Elmo.Report> reports = elmo.getReport();
+    log.debug("reports: " + reports.size());
+    for (Elmo.Report report : reports) {
+        ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
+        List<LearningOpportunitySpecification> tempList = report.getLearningOpportunitySpecification();
+        for (LearningOpportunitySpecification los : tempList) {
+            getAllLearningOpportunities(los, losList);
+        }
+
+        //log.debug("templist size: " + tempList.size() + "; losList size: " + losList.size());
+        tempList.clear();
+        //log.debug("templist cleared: " + tempList.size());
+        for (LearningOpportunitySpecification spec : losList) {
+            List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
+            for (LearningOpportunitySpecification.Identifier id : identifiers) {
+                if(courses.contains(id.getValue())) {
+                    tempList.add(spec);
+                }
+            }
+        }
+    }
+>>>>>>> branch 'weblogic' of https://github.com/emilbaek/dk-emrex.git
 	}
 	
   public static List<LearningOpportunitySpecification> getAllLearningOpportunities(LearningOpportunitySpecification los, List<LearningOpportunitySpecification> losList) {
