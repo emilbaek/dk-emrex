@@ -72,7 +72,7 @@ public class ThymeController {
         ElmoParser parser;
         try {
             final Optional<Elmo> elmo = this.studyFetcher.fetchElmo(wayfUser.getOrganizationId(), wayfUser.getCpr());
-            parser = ElmoParser.elmoParserFromVirta(elmo.get());
+            parser = ElmoParser.elmoParser(elmo.get());
         } catch (IOException e) {
             log.error("Failed to fetch study data.", e);
             throw e;
@@ -113,7 +113,7 @@ public class ThymeController {
     }
 
     private String getElmoXml(@RequestParam(value = "courses", required = false) String[] courses, ElmoParser parser) throws ParserConfigurationException {
-        String xmlString = courses==null ? parser.getCourseData() : parser.getCourseData(courses);
+        String xmlString = courses==null ? parser.asXml() : parser.asXml(courses);
         return xmlString;
     }
 
@@ -195,7 +195,7 @@ public class ThymeController {
 //                    } else {
                     		Optional<Elmo> elmo = studyFetcher.fetchElmo(OID, personalId);
                     		if (elmo.isPresent()) {
-                          elmoXML = new ElmoParser(elmo.get()).getCourseData();
+                          elmoXML = new ElmoParser(elmo.get()).asXml();
                     		} else {
                     			elmoXML = null;
                     		}

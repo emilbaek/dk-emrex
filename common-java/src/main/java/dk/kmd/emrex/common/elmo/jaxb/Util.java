@@ -25,7 +25,9 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class Util {
-    public static List<LearningOpportunitySpecification> getAllLearningOpportunities(LearningOpportunitySpecification los, List<LearningOpportunitySpecification> losList) {
+	
+		@Deprecated
+    private static List<LearningOpportunitySpecification> getAllLearningOpportunities(LearningOpportunitySpecification los, List<LearningOpportunitySpecification> losList) {
         if (los != null) {
             losList.add(los);
             List<LearningOpportunitySpecification.HasPart> hasParts = los.getHasPart();
@@ -94,35 +96,4 @@ public class Util {
         return null;
     }
 
-    public static String getCourses(String elmoString, List<String> courses) {
-        try {
-            Elmo elmo = getElmo(elmoString);
-            List<Elmo.Report> reports = elmo.getReport();
-            log.debug("reports: " + reports.size());
-            for (Elmo.Report report : reports) {
-                ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
-                List<LearningOpportunitySpecification> tempList = report.getLearningOpportunitySpecification();
-                for (LearningOpportunitySpecification los : tempList) {
-                    getAllLearningOpportunities(los, losList);
-                }
-
-                //log.debug("templist size: " + tempList.size() + "; losList size: " + losList.size());
-                tempList.clear();
-                //log.debug("templist cleared: " + tempList.size());
-                for (LearningOpportunitySpecification spec : losList) {
-                    List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
-                    for (LearningOpportunitySpecification.Identifier id : identifiers) {
-                        if(courses.contains(id.getValue())) {
-                            tempList.add(spec);
-                        }
-                    }
-                }
-            }
-            return marshalElmo(elmo);
-        } catch (JAXBException ex) {
-        	log.error(ex.getMessage(), ex);
-        }
-        return null;
-
-    }
 }
