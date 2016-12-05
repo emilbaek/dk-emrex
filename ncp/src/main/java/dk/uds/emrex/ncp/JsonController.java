@@ -8,7 +8,6 @@ package dk.uds.emrex.ncp;
 import dk.uds.emrex.ncp.saml2.WayfUser;
 import dk.kmd.emrex.common.elmo.ElmoParser;
 import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
-import dk.uds.emrex.ncp.virta.VirtaClient;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 
 import org.json.JSONObject;
@@ -23,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -77,12 +75,9 @@ public class JsonController {
             final ElmoParser parser = elmo.isPresent() ? ElmoParser.elmoParser(elmo.get()) : null;
 
             if (parser != null) {
-              String xmlString;
-              
-              xmlString = parser.getCourseData();
-              log.debug(xmlString);
-              JSONObject json = XML.toJSONObject(xmlString);
-              return json.toString();
+              String jsonString = parser.asJson();
+              log.debug(jsonString);
+              return jsonString;
             } else {
             	return "";
             }
@@ -115,13 +110,12 @@ public class JsonController {
         try {
             final WayfUser user = getCurrentUser();
             Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo.get());
+            final ElmoParser parser = ElmoParser.elmoParser(elmo.get());
 
-            String xmlString = courses==null? parser.getCourseData() : parser.getCourseData(courses);
+            String jsonString = courses==null? parser.asJson() : parser.asJson(courses);
             log.debug(courses==null?"Courses count: null":("Courses count: "+ courses.length));
-            log.trace(xmlString);
-            JSONObject json = XML.toJSONObject(xmlString);
-            return json.toString();
+            log.debug(jsonString);
+            return jsonString;
         } catch (Exception e) {
             log.error("Failed to get Elmo JSON", e);
             StackTraceElement elements[] = e.getStackTrace();

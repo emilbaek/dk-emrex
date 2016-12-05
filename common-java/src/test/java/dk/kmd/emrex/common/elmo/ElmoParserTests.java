@@ -35,7 +35,7 @@ public class ElmoParserTests extends TestCase {
         String elmo = TestUtil.getFileContent(testXML);
         ElmoParser parser = ElmoParser.elmoParser(elmo);
         String[] courses = {"0","1","2"}; 
-        String readyElmo = parser.getCourseData(courses);
+        String readyElmo = parser.asXml(courses);
         checkEmptyHasPartNodes(readyElmo);
     }
 

@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +16,10 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.ooxi.jdatauri.DataUri;
 
-import dk.kmd.emrex.common.elmo.jaxb.Util;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Attachment;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo.Report;
@@ -39,16 +41,12 @@ public class ElmoParser {
 		return new ElmoParser(elmo);
 	}
 	
-	public static ElmoParser elmoParserFromVirta(@NonNull Elmo elmo) {
-		return new ElmoParser(elmo);
-	}
-	
 	public static ElmoParser elmoParser(@NonNull String elmoString) {
 		return new ElmoParser(elmoString);
 	}
 
 	public ElmoParser(@NonNull String elmoString) {
-		this.elmo = this.getElmoFromString(elmoString).orElse(null);
+		this.elmo = asElmo(elmoString).orElse(null);
 	}
 	
 	public ElmoParser(@NonNull Elmo elmo) {
@@ -88,15 +86,6 @@ public class ElmoParser {
 	}
 
 	/**
-	 * Complete XML of found Elmo
-	 *
-	 * @return String representation of Elmo-xml
-	 */
-	public String getCourseData() {
-		return getStringFromDoc(this.elmo);
-	}
-
-	/**
 	 * Elmo with a learning instance selection removes all learning opportunities
 	 * not selected even if a learning opprtunity has a child that is among the
 	 * selected courses.
@@ -105,11 +94,81 @@ public class ElmoParser {
 	 * @return String representation of Elmo-xml with selected courses
 	 * @throws ParserConfigurationException
 	 */
-	public String getCourseData(String... courses) throws ParserConfigurationException {
-		String copyElmo = getStringFromDoc(elmo);
-		return Util.getCourses(copyElmo, Arrays.asList(courses));
+	public String asXml(String... courses) throws ParserConfigurationException {
+		String copyElmoString = getStringFromDoc(elmo);
+		Elmo copyElmo = asElmo(copyElmoString).get();
+		selectCourses(copyElmo, Arrays.asList(courses));
+		String xml = getStringFromDoc(copyElmo);
+		return xml;
 	}
 
+	public String asJson(String... courses) {
+		String jsonString = null;
+		try {
+			Elmo elmoCopy = asElmo(this.asXml()).get();
+			selectCourses(elmoCopy, Arrays.asList(courses));
+			jsonString = "{ \"elmo\" : " + asJson(elmoCopy) + " }"; 
+		} catch (ParserConfigurationException e) {
+			log.error("Error marshalling Elmo", e);
+		}
+		return jsonString;
+	}
+
+	/**
+	 * Remove all courses from Elmo that are not in list of courses.
+	 * @param elmo
+	 * @param courses
+	 */
+	private void selectCourses(Elmo elmo, List<String> courses) {
+    List<Elmo.Report> reports = elmo.getReport();
+    log.debug("reports: " + reports.size());
+    for (Elmo.Report report : reports) {
+        ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
+        List<LearningOpportunitySpecification> tempList = report.getLearningOpportunitySpecification();
+        for (LearningOpportunitySpecification los : tempList) {
+            getAllLearningOpportunities(los, losList);
+        }
+
+        //log.debug("templist size: " + tempList.size() + "; losList size: " + losList.size());
+        tempList.clear();
+        //log.debug("templist cleared: " + tempList.size());
+        for (LearningOpportunitySpecification spec : losList) {
+            List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
+            for (LearningOpportunitySpecification.Identifier id : identifiers) {
+                if(courses.contains(id.getValue())) {
+                    tempList.add(spec);
+                }
+            }
+        }
+    }
+	}
+	
+  public static List<LearningOpportunitySpecification> getAllLearningOpportunities(LearningOpportunitySpecification los, List<LearningOpportunitySpecification> losList) {
+    if (los != null) {
+        losList.add(los);
+        List<LearningOpportunitySpecification.HasPart> hasParts = los.getHasPart();
+        for (LearningOpportunitySpecification.HasPart hasPart : hasParts) {
+            getAllLearningOpportunities(hasPart.getLearningOpportunitySpecification(), losList);
+        }
+        if (hasParts != null) {
+            //log.debug("deleting parts: " + hasParts.size());
+            hasParts.clear();
+        }
+    }
+    return losList;
+  }
+
+	public static String asJson(Elmo elmo) {
+		String jsonString = null;
+		try {
+			ObjectMapper om = new ObjectMapper();
+			jsonString = om.writerWithDefaultPrettyPrinter().writeValueAsString(elmo);
+		} catch (JsonProcessingException e) {
+			log.error("Error marshalling Elmo", e);
+		}
+		return jsonString;
+	}
+	
 	/**
 	 * Count ECTS points for Elmo report.
 	 * 
@@ -186,7 +245,7 @@ public class ElmoParser {
 		return hostCountry;
 	}
 	
-	private Optional<Elmo> getElmoFromString(@NonNull String xml) {
+	private static Optional<Elmo> asElmo(@NonNull String xml) {
 		Elmo elmo = null;
 
 		try {
