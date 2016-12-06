@@ -38,6 +38,7 @@
             <version>1</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -45,9 +46,7 @@
             <scope>provided</scope>
         </dependency>
     
-    
         <dependency>
-            <!--<groupId>fi.csc.emrex</groupId>-->
             <groupId>dk.kmd.emrex</groupId>
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -80,6 +79,7 @@
             <version>1.3.8</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jasmine</artifactId>
@@ -92,21 +92,25 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20141113</version>
         </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
             <type>jar</type>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -145,7 +149,6 @@
             <version>1.0-2</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -157,6 +160,7 @@
                 <directory>${project.build.directory}/generated-resources</directory>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -165,6 +169,7 @@
                 	<executable>true</executable>
                 </configuration>
             </plugin>
+
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -188,6 +193,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>ro.isdc.wro4j</groupId>
                 <artifactId>wro4j-maven-plugin</artifactId>
@@ -226,14 +232,16 @@
                         <artifactId>bootstrap</artifactId>
                         <version>3.2.0</version>
                     </dependency>
-        <dependency>
-            <groupId>xml-apis</groupId>
-            <artifactId>xml-apis</artifactId>
-            <version>1.4.01</version>
-            <scope>compile</scope>
-        </dependency>
+                    
+        			<dependency>
+            			<groupId>xml-apis</groupId>
+            			<artifactId>xml-apis</artifactId>
+            			<version>1.4.01</version>
+            			<scope>compile</scope>
+        			</dependency>
                 </dependencies>
             </plugin>
+            
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -245,7 +253,6 @@
                     <password>admin</password>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -265,29 +272,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>3.1.2</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <!--<wsdl>http://virtawstesti.csc.fi/emrex/ELMOOpiskelijavaihto.wsdl</wsdl> -->
-                                    <wsdl>${basedir}/src/main/resources/ELMOOpiskelijavaihto.wsdl</wsdl> 
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -314,9 +298,6 @@
                     <schemaExcludes>
                         <exclude>*.*</exclude>
                     </schemaExcludes>
-                    <!--<schemaIncludes>-->
-                        <!--<schemaInclude>STADS*.wsdl</schemaInclude>-->
-                    <!--</schemaIncludes>-->
                     <schemas>
                         <schema>
                             <url>http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0?wsdl</url>
@@ -324,9 +305,6 @@
                     </schemas>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
-
 </project>

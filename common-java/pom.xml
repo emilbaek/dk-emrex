@@ -11,7 +11,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -88,14 +87,14 @@
                             <schemaIncludes>
                                 <include>jaxb/elmo/*.xsd</include>
                             </schemaIncludes>
-                            <episodeFile>${project.build.directory}/generated-sources/xjc/META-INF/jaxb-elmo.episode</episodeFile>
+                            <!-- <episodeFile>${project.build.directory}/generated-sources/xjc/META-INF/jaxb-elmo.episode</episodeFile> -->
                             <!-- <generatePackage>eu.emrex.elmo</generatePackage> -->
                         </configuration>
                         <id>jaxb-generate-elmo</id>
                     </execution>
                 </executions>
                 <configuration>
-                    <catalog>src/main/resources/jaxb/catalog.xml</catalog>
+                <!-- <catalog>src/main/resources/jaxb/catalog.xml</catalog> -->
                     <catalogResolver>org.jvnet.jaxb2.maven2.resolver.tools.ClasspathCatalogResolver</catalogResolver>
                     <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
                     <verbose>true</verbose>
