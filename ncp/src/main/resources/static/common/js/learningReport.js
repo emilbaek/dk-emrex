@@ -86,17 +86,19 @@ angular.module('learningReport', [])
                             if (angular.isArray(opportunity.identifier))
                                 angular.forEach(opportunity.identifier, function (identifier) {
                                     if (identifier.type == "elmo")
-                                        opportunity.elmoIdentifier = identifier.content;
-                                    if (identifier.type == "local" || identifier.type == "oodi" ) //TODO remove oodi
-                                        opportunity.localIdentifier = identifier.content;
+                                        opportunity.elmoIdentifier = identifier.value;
+                                    if (identifier.type == "local" || identifier.type == "oodi" ) {//TODO remove oodi
+                                        opportunity.localIdentifier = identifier.value;
+                                    	opportunity.elmoIdentifier = identifier.value;
+                                    }
                                 })
                             else if (opportunity.identifier) {
-                            	if (typeof opportunity.identifier.content !== "undefined") {
-                                    opportunity.elmoIdentifier = opportunity.identifier.content;
-                                    opportunity.localIdentifier = opportunity.identifier.content;
+                            	if (typeof opportunity.identifier.value !== "undefined") {
+                                    opportunity.elmoIdentifier = opportunity.identifier.value;
+                                    opportunity.localIdentifier = opportunity.identifier.value;
                             	} else {
-                                    opportunity.elmoIdentifier = opportunity.identifier;
-                                    opportunity.localIdentifier = opportunity.identifier;
+                                    opportunity.elmoIdentifier = opportunity.identifier.value;
+                                    opportunity.localIdentifier = opportunity.identifier.value;
                             	}
                             }
                             // Find parents Elmo identifier
@@ -126,8 +128,8 @@ angular.module('learningReport', [])
 
                 // Sort by date
                 flatArray.sort(function(a, b) {
-                    var d1 = a.specifies.learningOpportunityInstance.date || "1970-01-01";
-                    var d2 = b.specifies.learningOpportunityInstance.date || "1970-01-01";
+                    var d1 = a.specifies.learningOpportunityInstance.date || 0; //1970-01-01
+                    var d2 = b.specifies.learningOpportunityInstance.date || 0; //1970-01-01
                     return d1 == d2 ? 0 : d1 > d2 ? -1 : 1;
                 });
 

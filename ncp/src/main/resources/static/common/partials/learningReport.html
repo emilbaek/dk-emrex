@@ -10,9 +10,9 @@
         <th>ID</th>
         <th>Code</th>
         <th>Title</th>
-        <th>Results</th>
-        <th>Credits</th>
-        <th>Date</th>
+        <th class="text-right">Results</th>
+        <th class="text-right">Credits</th>
+        <th class="text-right">Date</th>
         </thead>
         <tbody>
         <tr ng-class="{'custom-deselected' : !opportunity.selected}" ng-repeat="opportunity in flattenedLearningOpportunities">
@@ -24,9 +24,9 @@
             <td>{{opportunity.elmoIdentifier}}</td>
             <td>{{opportunity.localIdentifier}}</td>
             <td>{{getRightLanguage(opportunity.title)}}</td>
-            <td>{{opportunity.specifies.learningOpportunityInstance.resultLabel}}</td>
-            <td>{{opportunity.specifies.learningOpportunityInstance.credit.value}} {{opportunity.specifies.learningOpportunityInstance.credit.scheme}}</td>
-            <td>{{opportunity.specifies.learningOpportunityInstance.date}}</td>
+            <td class="text-right">{{opportunity.specifies.learningOpportunityInstance.resultLabel}}</td>
+            <td class="text-right">{{opportunity.specifies.learningOpportunityInstance.credit[0].value | number:2}} {{opportunity.specifies.learningOpportunityInstance.credit[0].scheme}}</td>
+            <td class="text-right">{{opportunity.specifies.learningOpportunityInstance.date | date:'yyyy-MM-dd'}}</td>
         </tr>
         </tbody>
     </table>

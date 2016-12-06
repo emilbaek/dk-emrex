@@ -29,8 +29,8 @@ angular.module('helper', [])
                 if (angular.isArray(titles))
                     angular.forEach(titles, function (title) {
 
-                        if (title.content)
-                            planB = title.content; // anything is better than nothing
+                        if (title.value)
+                            planB = title.value; // anything is better than nothing
 
                         if (title['xml:lang'] === selectedLanguage && title.content)
                             result = title['content'];
@@ -62,7 +62,7 @@ angular.module('helper', [])
                 var ects; 
                 angular.forEach(learningOpportunityArray, function (opportunity) {
                     if (opportunity.learningOpportunitySpecification) {
-                    	ects = opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit.value
+                    	ects = opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit[0].value
                     	if(ects){
                     		switch(typeof(ects)){
                     			case "string":
