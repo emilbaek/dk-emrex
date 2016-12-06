@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
 import dk.kmd.emrex.common.elmo.ElmoParser;
-import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 
 import org.json.JSONObject;
-import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * @author salum
- */
 @RestController
 public class JsonController {
 
@@ -47,14 +37,16 @@ public class JsonController {
         model.put("returnUrl", context.getSession().getAttribute("returnUrl"));
         model.put("sessionId", context.getSession().getAttribute("sessionId"));
 
-        ShibbolethHeaderHandler header = new ShibbolethHeaderHandler(request);
-        header.stringifyHeader();
-        String OID = header.getHeiOid();
-        String PersonalID = header.getPersonalID();
-//        log.info("Fetching data from Virta client OID: {} PersonalID {}", OID, PersonalID);
-//        model.put("elmoXml", studyFetcher.fetchStudies(OID, PersonalID));
-        // TODO
+        final WayfUser user = getCurrentUser();
+        Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+        final ElmoParser parser = elmo.isPresent() ? ElmoParser.elmoParser(elmo.get()) : null;
 
+        if (parser != null) {
+        	String elmoXml = parser.asXml();
+          model.put("elmoXml", elmoXml);
+        } else {
+          model.put("elmoXml", "");
+        }
         return model;
     }
 
