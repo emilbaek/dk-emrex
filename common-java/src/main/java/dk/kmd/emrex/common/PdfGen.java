@@ -143,21 +143,19 @@ public class PdfGen {
         table.addCell(createHeaderCell("Title"));
         table.addCell(createHeaderCell("Level"));
         table.addCell(createHeaderCell("Type"));
-        table.addCell(createHeaderCell("Credits"));
-        table.addCell(createHeaderCell("Result"));
-        table.addCell(createHeaderCell("Date"));
+        table.addCell(createHeaderCell("Credits", Rectangle.ALIGN_RIGHT));
+        table.addCell(createHeaderCell("Result", Rectangle.ALIGN_RIGHT));
+        table.addCell(createHeaderCell("Date", Rectangle.ALIGN_RIGHT));
 
         for (ElmoResult res : doc.getResults()) {
             table.addCell(createCell(res.getCode()));
             table.addCell(createCell(res.getName()));
             table.addCell(createCell(res.getLevel()));
             table.addCell(createCell(res.getType()));
-            table.addCell(createCell(res.getCredits()));
-            table.addCell(createCell(res.getResult()));
-            table.addCell(createCell(res.getDate()));
-
+            table.addCell(createCell(res.getCredits(), Rectangle.ALIGN_RIGHT));
+            table.addCell(createCell(res.getResult(), Rectangle.ALIGN_RIGHT));
+            table.addCell(createCell(res.getDate(), Rectangle.ALIGN_RIGHT));
         }
-
         document.add(table);
     }
 
@@ -169,12 +167,30 @@ public class PdfGen {
         cell.setBorder(Rectangle.BOTTOM);
         return cell;
     }
+    
+    private PdfPCell createHeaderCell(final String text, final int horizontalAlignment) {
+        PdfPCell cell = null;
+        cell = new PdfPCell(new Phrase(text, FONT_BOLD));
+        cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setHorizontalAlignment(horizontalAlignment);
+        cell.setBorder(Rectangle.BOTTOM);
+        return cell;
+    }
 
 
     private PdfPCell createCell(String text) {
         PdfPCell cell = null;
         cell = new PdfPCell(new Phrase(text, FONT_NORMAL));
         cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setBorder(Rectangle.NO_BORDER);
+        return cell;
+    }
+    
+    private PdfPCell createCell(final String text, final int horizontalAlignment){
+    	PdfPCell cell = null; 
+    	cell = new PdfPCell(new Phrase(text, FONT_NORMAL));
+        cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setHorizontalAlignment(horizontalAlignment);
         cell.setBorder(Rectangle.NO_BORDER);
         return cell;
     }
