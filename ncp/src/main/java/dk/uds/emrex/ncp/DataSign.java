@@ -22,6 +22,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
@@ -125,8 +126,43 @@ public class DataSign {
     }
 
     private String readFileContent(String path) throws Exception {
-        return environment.equalsIgnoreCase("dev") ? FileReader.getFileContent(path) :
-                new String(Files.readAllBytes(Paths.get(path)));
+    		String fileContent = null;
+    		
+    		try {
+    			Path certPath = Paths.get(path);
+    			fileContent = new String(Files.readAllBytes(certPath));
+    		} catch (Exception e) {
+    			log.info("Certifikat kunne ikke læses fra præcis path " + path);
+    		}
+
+    		if (fileContent == null) {
+      		if (path.startsWith("/")) {
+        		try {
+        			Path certPath = Paths.get(path.substring(1));
+        			fileContent = new String(Files.readAllBytes(certPath));
+        		} catch (Exception e) {
+        			log.info("Certifikat kunne ikke læses fra relativ path " + path.substring(1));
+        		}
+      		}
+    		}
+    		
+    		if (fileContent == null) {
+    			try {
+    				String cleanPath = path;
+    				if (cleanPath.lastIndexOf("/") >= 0) {
+    					cleanPath = path.substring(path.lastIndexOf("/") + 1);
+    				}
+    				fileContent = FileReader.getFileContent(cleanPath);
+    			} catch (Exception e) {
+    				log.debug("Certifikat " + path + " kunne ikke læses fra classpath", e);
+    			}
+    		}
+    		
+    		if (fileContent == null) {
+    			throw new IOException("Certifikat kunne ikke findes med path " + path);
+    		}
+    		
+        return fileContent;
     }
 
     private static X509Certificate getCertificate(String certString) throws IOException, GeneralSecurityException {
