@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "return.url",
+    "type": "java.lang.String",
+    "description": "A description for 'return.url'"
+  },
+  {
+    "name": "environment.port",
+    "type": "java.lang.String",
+    "description": "A description for 'environment.port'"
+  },
+  {
+    "name": "environment.url",
+    "type": "java.lang.String",
+    "description": "A description for 'environment.url'"
+  },
+  {
+    "name": "return.url",
+    "type": "java.lang.String",
+    "description": "A description for 'return.url'"
+  }
+]}
