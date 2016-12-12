@@ -1,7 +1,0 @@
-Installer Apache 2.4 i /etc/httpd
-Konfigurer Apaches /etc/httpd/conf/httpd.conf med indholdet af httpd{env}.conf fra NCP projekt  
-Læg filen mime.types i /etc/httpd/conf  
-Placer server SSL certifikat og nøgle (server.crt og server.key) i /etc/httpd/conf/ssl
-
-Windows : httpd -k install -n "EMREX-NCP-PROXY"
-Windows : httpd -k start -n "EMREX-NCP-PROXY"
