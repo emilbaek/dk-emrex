@@ -20,8 +20,8 @@ public class DataSignTest extends TestCase {
     @Before
     public void setUp() throws Exception {
         instance = new DataSign();
-        instance.setCertificatePath("csc-cert.crt");
-        instance.setEncryptionKeyPath("csc-privkey-pkcs8.key");
+        instance.setCertificatePath("dk-emrex-dev.cer");
+        instance.setEncryptionKeyPath("dk-emrex-dev.key");
         instance.setEnvironment("dev");
     }
 
