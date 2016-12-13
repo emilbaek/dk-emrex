@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>dk.kmd.emrex</groupId>
-	<artifactId>Decoder</artifactId>
+	<artifactId>elmo-decoder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Decoder</name>
+	<name>elmo-decoder</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,7 +30,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>dk.kmd.emrex.Decoder.App</mainClass>
+							<mainClass>dk.kmd.emrex.elmodecoder.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
