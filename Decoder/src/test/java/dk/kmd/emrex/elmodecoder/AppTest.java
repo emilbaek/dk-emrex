@@ -1,4 +1,4 @@
-package dk.kmd.emrex.Decoder;
+package dk.kmd.emrex.elmodecoder;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

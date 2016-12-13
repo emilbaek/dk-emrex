@@ -1,4 +1,4 @@
-package dk.kmd.emrex.Decoder;
+package dk.kmd.emrex.elmodecoder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -56,7 +56,7 @@ public class App {
 	}
 	
 	private static void commandUsage(){
-		System.out.println("Command usage java -jar Decoder.jar <filename>");
+		System.out.println("Command usage java -jar elmo-decoder.jar <filename>");
 		System.out.println("File is suppposed to be a base64 encoded text file");
 		System.exit(0);
 	}
