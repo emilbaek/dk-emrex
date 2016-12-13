@@ -7,7 +7,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/xjc"/>
-        <dependent-module archiveName="common-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common/common">
+        <dependent-module archiveName="common-java-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/common-java/common-java">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="ncp"/>
