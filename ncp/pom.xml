@@ -11,7 +11,7 @@
     <description>NCP</description>
 
     <parent>
-        <artifactId>emrex</artifactId>
+        <artifactId>dk-emrex</artifactId>
         <groupId>dk.kmd.emrex</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
@@ -48,7 +48,7 @@
     
         <dependency>
             <groupId>dk.kmd.emrex</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>common-java</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

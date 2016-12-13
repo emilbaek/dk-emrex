@@ -3,7 +3,7 @@
 	<name>ncp</name>
 	<comment></comment>
 	<projects>
-		<project>common</project>
+		<project>common-java</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
