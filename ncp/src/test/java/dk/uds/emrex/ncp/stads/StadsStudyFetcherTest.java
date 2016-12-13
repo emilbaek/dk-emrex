@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.xml.bind.Marshaller;
 
@@ -15,6 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -52,8 +54,8 @@ public class StadsStudyFetcherTest {
 		try {
 			for (final String ssn : SSN_ARRAY) {
 				final Iterator<String> urlIterator = Collections.singleton(STADS_URL).iterator();
-				final String elmo = this.studyFetcher.fetchStudies(urlIterator, ssn);
-				if (StringUtils.isEmpty(elmo)) {
+				final Optional<Elmo> elmo = this.studyFetcher.fetchElmo(urlIterator, ssn);
+				if (!elmo.isPresent()) {
 					fail("ELMO response was empty");
 				}
 			}

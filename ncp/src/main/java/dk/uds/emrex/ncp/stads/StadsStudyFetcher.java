@@ -77,32 +77,7 @@ public class StadsStudyFetcher extends WebServiceGatewaySupport implements Study
 		}
 		return Optional.of(elmo);
 	}
-
 	
-	@Deprecated
-	public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
-		if (!urls.hasNext()) {
-			log.warn("No STADS urls given.");
-		}
-
-		while (urls.hasNext()) {
-			final String url = urls.next();
-
-			log.info("Opening connection to STADS with URL {}", url);
-
-			try {
-				return getStudentsResults(url, ssn);
-			} catch (IOException | WebServiceException ex) {
-				log.warn(String.format("Error when connecting to STADS web-service at %s.", url), ex);
-			}
-		}
-
-		// If we get here we were unable to connect and/or read a response from
-		// a STADS server.
-		// Throw error: Not able to connect to any STADS URL
-		throw new IOException(String.format("Unable to successfully get data from any STADS URL in list."));
-	}
-
 	private static BigInteger uuidToBigInteger(@NotNull UUID uuid) {
 		final ByteBuffer buffer = ByteBuffer.allocate(16);
 
