@@ -1,4 +1,4 @@
-package dk.kmd.emrex.NCPFaker;
+package dk.kmd.emrex.smpmock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

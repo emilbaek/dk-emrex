@@ -1,4 +1,4 @@
-package dk.kmd.emrex.NCPFaker;
+package dk.kmd.emrex.smpmock;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

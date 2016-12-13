@@ -1,4 +1,4 @@
-package dk.kmd.emrex.NCPFaker;
+package dk.kmd.emrex.smpmock;
 
 import lombok.Getter;
 import lombok.Setter;
