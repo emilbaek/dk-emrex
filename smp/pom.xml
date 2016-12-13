@@ -12,7 +12,7 @@
     <description>SMP</description>
 
     <parent>
-        <artifactId>emrex</artifactId>
+        <artifactId>dk-emrex</artifactId>
         <groupId>dk.kmd.emrex</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../</relativePath>
@@ -47,17 +47,17 @@
             <scope>provided</scope>
         </dependency>
     
-    
         <dependency>
             <groupId>dk.kmd.emrex</groupId>
-            <!--<groupId>fi.csc.emrex</groupId>-->
-            <artifactId>common</artifactId>
+            <artifactId>common-java</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
