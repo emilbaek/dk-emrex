@@ -42,7 +42,14 @@
 **Please that dev is the default if test and prod is not specified** 
 Edit WL_HOME/user_projects/emrex/bin/setDomainEnv.sh to add '-Dspring.profiles.active=test' or -Dspring.profiles.active=prod' to JAVA_OPTIONS at top of file with line as shown below.
 
+**Windows**
+
 > set JAVA_OPTIONS=%JAVA_OPTIONS% -Dspring.profiles.active=test
+
+**Linux**
+
+> JAVA_OPTIONS="${JAVA_OPTIONS} -Dspring.profiles.active=test
+> export JAVA_OPTIONS 
 
 
 
