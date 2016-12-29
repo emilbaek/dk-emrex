@@ -3,7 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dk.kmd.emrex</groupId>
     <artifactId>smp</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -19,10 +18,8 @@
     </parent>
 
     <properties>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <wro4j.version>1.7.6</wro4j.version>
         <start-class>dk.uds.emrex.smp.DkSmpApplication</start-class>
         <project.build.finalName>smp</project.build.finalName>
     </properties>
@@ -80,7 +77,6 @@
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
         </dependency>
 
         <dependency>
@@ -122,12 +118,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20141113</version>
             <type>jar</type>
         </dependency>
          
@@ -213,7 +207,6 @@
             <plugin>
                 <groupId>ro.isdc.wro4j</groupId>
                 <artifactId>wro4j-maven-plugin</artifactId>
-                <version>${wro4j.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
