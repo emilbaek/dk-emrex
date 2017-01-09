@@ -19,6 +19,7 @@
         <module>common-java</module>
         <module>smp</module>
         <module>ncp</module>
+        <module>smp-mock</module>
     </modules>
 
     <parent>
