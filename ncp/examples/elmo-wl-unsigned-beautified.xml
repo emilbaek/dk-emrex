@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:elmo xmlns:ns0="https://github.com/emrex-eu/elmo-schemas/tree/v1"
+	xmlns:ns1="http://www.w3.org/2000/09/xmldsig#">
+	<ns0:generatedDate>2017-01-09T10:26:02.306+01:00</ns0:generatedDate>
+	<ns0:learner>
+		<ns0:citizenship>DK</ns0:citizenship>
+		<ns0:identifier type="nationalIdentifier">091280-1128</ns0:identifier>
+		<ns0:identifier type="studentIdentifier">4</ns0:identifier>
+		<ns0:identifier type="stadsIdentifier">697</ns0:identifier>
+		<ns0:givenNames>Jens</ns0:givenNames>
+		<ns0:familyName>Hansen</ns0:familyName>
+		<ns0:bday>1980-12-09</ns0:bday>
+	</ns0:learner>
+	<ns0:report>
+		<ns0:issuer>
+			<ns0:country>DK</ns0:country>
+			<ns0:identifier type="local">TODO : Issuer ID unknown
+			</ns0:identifier>
+			<ns0:title xml:lang="en">TODO : Issuer unknown</ns0:title>
+		</ns0:issuer>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-KHE</ns0:identifier>
+			<ns0:title xml:lang="en">Kaffens Historie</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>10</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-DYE</ns0:identifier>
+			<ns0:title xml:lang="en">Dyrkning</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-HØE</ns0:identifier>
+			<ns0:title xml:lang="en">Høst</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-RIE</ns0:identifier>
+			<ns0:title xml:lang="en">Ristning</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>E16</ns0:title>
+						<ns0:start>2016-09-01+02:00</ns0:start>
+						<ns0:end>2017-01-31+01:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-ROE</ns0:identifier>
+			<ns0:title xml:lang="en">Robusta</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>E16</ns0:title>
+						<ns0:start>2016-09-01+02:00</ns0:start>
+						<ns0:end>2017-01-31+01:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>4</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>5.0000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:issueDate>2017-01-09T10:26:02.306+01:00</ns0:issueDate>
+	</ns0:report>
+	<ns0:attachment>
+		<ns0:title>en</ns0:title>
+		<ns0:type>EMREX transcript</ns0:type>
+		<ns0:content xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMiAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDEyOD4+c3RyZWFtCnicJY0xDgIhFET7f4optUA/xGRZS+PaWRi4gLpoUIFdAoneXoyZat6bZGbaWVIa3UbBjjRYOtH8YxLcIiF1v1LQzLCB1ocG2vBGC5NqvrothpDdGwKmTlPKxcc7TKmjiwXHdPEvXz7NKpadYCm4b8VH7F0M5/xc2sf/8gvPeyOuCmVuZHN0cmVhbQplbmRvYmoKNCAwIG9iago8PC9Db250ZW50cyAyIDAgUi9UeXBlL1BhZ2UvUmVzb3VyY2VzPDwvUHJvY1NldCBbL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSV0vRm9udDw8L0YxIDEgMCBSPj4+Pi9QYXJlbnQgMyAwIFIvTWVkaWFCb3hbMCAwIDU5NSA4NDJdPj4KZW5kb2JqCjEgMCBvYmoKPDwvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQvQmFzZUZvbnQvSGVsdmV0aWNhL0VuY29kaW5nL1dpbkFuc2lFbmNvZGluZz4+CmVuZG9iagozIDAgb2JqCjw8L0tpZHNbNCAwIFJdL1R5cGUvUGFnZXMvQ291bnQgMS9JVFhUKDUuMC42KT4+CmVuZG9iago1IDAgb2JqCjw8L1R5cGUvQ2F0YWxvZy9QYWdlcyAzIDAgUj4+CmVuZG9iago2IDAgb2JqCjw8L01vZERhdGUoRDoyMDE3MDEwOTEwMjYwMyswMScwMCcpL0NyZWF0aW9uRGF0ZShEOjIwMTcwMTA5MTAyNjAzKzAxJzAwJykvUHJvZHVjZXIoaVRleHQgNS4wLjYgXChjXCkgMVQzWFQgQlZCQSk+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMzY3IDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDQ1NSAwMDAwMCBuIAowMDAwMDAwMjEwIDAwMDAwIG4gCjAwMDAwMDA1MTggMDAwMDAgbiAKMDAwMDAwMDU2MyAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gNiAwIFIvSUQgWzxmMjZiNmNkM2E4MGJjNzVlNmE1MzEyMDk3OWZmZTBhOT48ZTQ3MzQ2MGEyMDc0NWE2YTJjMGM2ZTQ2ZjQ2ZWY2OGQ+XS9Sb290IDUgMCBSL1NpemUgNz4+CnN0YXJ0eHJlZgo2OTMKJSVFT0YK
+		</ns0:content>
+	</ns0:attachment>
+</ns0:elmo>
