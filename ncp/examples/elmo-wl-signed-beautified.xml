@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ns0:elmo xmlns:ns0="https://github.com/emrex-eu/elmo-schemas/tree/v1"
+	xmlns:ns1="http://www.w3.org/2000/09/xmldsig#">
+	<ns0:generatedDate>2017-01-09T10:26:02.306+01:00</ns0:generatedDate>
+	<ns0:learner>
+		<ns0:citizenship>DK</ns0:citizenship>
+		<ns0:identifier type="nationalIdentifier">091280-1128</ns0:identifier>
+		<ns0:identifier type="studentIdentifier">4</ns0:identifier>
+		<ns0:identifier type="stadsIdentifier">697</ns0:identifier>
+		<ns0:givenNames>Jens</ns0:givenNames>
+		<ns0:familyName>Hansen</ns0:familyName>
+		<ns0:bday>1980-12-09</ns0:bday>
+	</ns0:learner>
+	<ns0:report>
+		<ns0:issuer>
+			<ns0:country>DK</ns0:country>
+			<ns0:identifier type="local">TODO : Issuer ID unknown
+			</ns0:identifier>
+			<ns0:title xml:lang="en">TODO : Issuer unknown</ns0:title>
+		</ns0:issuer>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-KHE</ns0:identifier>
+			<ns0:title xml:lang="en">Kaffens Historie</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>10</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-DYE</ns0:identifier>
+			<ns0:title xml:lang="en">Dyrkning</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-HÃ˜E</ns0:identifier>
+			<ns0:title xml:lang="en">HÃ¸st</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>F10</ns0:title>
+						<ns0:start>2010-02-01+01:00</ns0:start>
+						<ns0:end>2010-08-31+02:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-RIE</ns0:identifier>
+			<ns0:title xml:lang="en">Ristning</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>E16</ns0:title>
+						<ns0:start>2016-09-01+02:00</ns0:start>
+						<ns0:end>2017-01-31+01:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>7</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>10.000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:learningOpportunitySpecification>
+			<ns0:identifier type="local">EJK-ROE</ns0:identifier>
+			<ns0:title xml:lang="en">Robusta</ns0:title>
+			<ns0:type>Course</ns0:type>
+			<ns0:specifies>
+				<ns0:learningOpportunityInstance>
+					<ns0:start>2009-09-25+02:00</ns0:start>
+					<ns0:academicTerm>
+						<ns0:title>E16</ns0:title>
+						<ns0:start>2016-09-01+02:00</ns0:start>
+						<ns0:end>2017-01-31+01:00</ns0:end>
+					</ns0:academicTerm>
+					<ns0:resultLabel>4</ns0:resultLabel>
+					<ns0:credit>
+						<ns0:scheme>ECTS</ns0:scheme>
+						<ns0:level>-</ns0:level>
+						<ns0:value>5.0000</ns0:value>
+					</ns0:credit>
+				</ns0:learningOpportunityInstance>
+			</ns0:specifies>
+		</ns0:learningOpportunitySpecification>
+		<ns0:issueDate>2017-01-09T10:26:02.306+01:00</ns0:issueDate>
+	</ns0:report>
+	<ns0:attachment>
+		<ns0:title>en</ns0:title>
+		<ns0:type>EMREX transcript</ns0:type>
+		<ns0:content xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMiAwIG9iago8PC9GaWx0ZXIvRmxhdGVEZWNvZGUvTGVuZ3RoIDEyOD4+c3RyZWFtCnicJY0xDgIhFET7f4optUA/xGRZS+PaWRi4gLpoUIFdAoneXoyZat6bZGbaWVIa3UbBjjRYOtH8YxLcIiF1v1LQzLCB1ocG2vBGC5NqvrothpDdGwKmTlPKxcc7TKmjiwXHdPEvXz7NKpadYCm4b8VH7F0M5/xc2sf/8gvPeyOuCmVuZHN0cmVhbQplbmRvYmoKNCAwIG9iago8PC9Db250ZW50cyAyIDAgUi9UeXBlL1BhZ2UvUmVzb3VyY2VzPDwvUHJvY1NldCBbL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSV0vRm9udDw8L0YxIDEgMCBSPj4+Pi9QYXJlbnQgMyAwIFIvTWVkaWFCb3hbMCAwIDU5NSA4NDJdPj4KZW5kb2JqCjEgMCBvYmoKPDwvU3VidHlwZS9UeXBlMS9UeXBlL0ZvbnQvQmFzZUZvbnQvSGVsdmV0aWNhL0VuY29kaW5nL1dpbkFuc2lFbmNvZGluZz4+CmVuZG9iagozIDAgb2JqCjw8L0tpZHNbNCAwIFJdL1R5cGUvUGFnZXMvQ291bnQgMS9JVFhUKDUuMC42KT4+CmVuZG9iago1IDAgb2JqCjw8L1R5cGUvQ2F0YWxvZy9QYWdlcyAzIDAgUj4+CmVuZG9iago2IDAgb2JqCjw8L01vZERhdGUoRDoyMDE3MDEwOTEwMjYwMyswMScwMCcpL0NyZWF0aW9uRGF0ZShEOjIwMTcwMTA5MTAyNjAzKzAxJzAwJykvUHJvZHVjZXIoaVRleHQgNS4wLjYgXChjXCkgMVQzWFQgQlZCQSk+PgplbmRvYmoKeHJlZgowIDcKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMzY3IDAwMDAwIG4gCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAwMDAwMDQ1NSAwMDAwMCBuIAowMDAwMDAwMjEwIDAwMDAwIG4gCjAwMDAwMDA1MTggMDAwMDAgbiAKMDAwMDAwMDU2MyAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gNiAwIFIvSUQgWzxmMjZiNmNkM2E4MGJjNzVlNmE1MzEyMDk3OWZmZTBhOT48ZTQ3MzQ2MGEyMDc0NWE2YTJjMGM2ZTQ2ZjQ2ZWY2OGQ+XS9Sb290IDUgMCBSL1NpemUgNz4+CnN0YXJ0eHJlZgo2OTMKJSVFT0YK
+		</ns0:content>
+	</ns0:attachment>
+	<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+		<SignedInfo>
+			<CanonicalizationMethod
+				Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+			<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+			<Reference URI="">
+				<Transforms>
+					<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+				</Transforms>
+				<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+				<DigestValue>d4u+fugbM1cNPjDb0/gSUl5+/Gk=</DigestValue>
+			</Reference>
+		</SignedInfo>
+		<SignatureValue>fuJxi1BudQTFxOYrflij7JUCvJNfxgS8SfkEFOhb2k21ArLTYhRjzGFbSbUDaXxByMTlEhibIcZ8
+			zSbTN/vQRYW/0cLM0Md2a8XYRudvormDVLEdXpelv0221E2h8zyz3V3dqI7eqqIw4++YXw/gBN2G
+			ElnhKMt5d6tQnHuaxvpxdKbZmx0ihaWIABLBUPyOIUKLErAs3OuSyuAvipBynvUcpLh/ffxUTx6N
+			zOs8sqLyJQRTwLBzXL0vuERrkoIYkj3D7v0k1MipmMijlLhHQglvcjso69zFf33RukfUD66Zwomt
+			Hy11BMQz83fQu+2iKi+ULckSVr5Txly+dE6YJQ==
+		</SignatureValue>
+		<KeyInfo>
+			<X509Data>
+				<X509SubjectName>CN=Niels
+					Kildeskov,OU=Unknown,O=KMD,L=Copenhagen,ST=Unknown,C=DK
+				</X509SubjectName>
+				<X509Certificate>MIIDfTCCAmWgAwIBAgIEW06GzjANBgkqhkiG9w0BAQsFADBuMQswCQYDVQQGEwJESzEQMA4GA1UE
+					CBMHVW5rbm93bjETMBEGA1UEBxMKQ29wZW5oYWdlbjEMMAoGA1UEChMDS01EMRAwDgYDVQQLEwdV
+					bmtub3duMRgwFgYDVQQDEw9OaWVscyBLaWxkZXNrb3YwIBcNMTYxMjA3MDk0NzM2WhgPMjExNTA3
+					MDIwOTQ3MzZaMG4xCzAJBgNVBAYTAkRLMRAwDgYDVQQIEwdVbmtub3duMRMwEQYDVQQHEwpDb3Bl
+					bmhhZ2VuMQwwCgYDVQQKEwNLTUQxEDAOBgNVBAsTB1Vua25vd24xGDAWBgNVBAMTD05pZWxzIEtp
+					bGRlc2tvdjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIIUEGUXzZZRhobBGQQEhABC
+					Vu2iLASd3FvsU5BnAC4Mkh7lPN/eRmR6oqAdnI0GbCjd8KYdBz6jVeCBz1WK4objwHh/9H6Hz4uv
+					bJgQzZeo2KaT1FV7yFN0Mh165jY33++GNdAWI1+cjnHMudh5pidADKvMKs2+cg49RAUM/pqmu6Ea
+					fVRALDsxWAj7Lx8/ZgLN+s5sjfJNni0k0DO6u7Oeb860B3oAWcsditZJg+6oeYj7CQOi9z+9b79/
+					seAGETBfERVrShkdYOEj/nHXqRVW6UG8IrL3vnzKWCu3++NKozU6JD7Wn+X2xlOcbfb0g/b/wqaP
+					t/ZM4PjYx0vb4yUCAwEAAaMhMB8wHQYDVR0OBBYEFGxeHsHNSHR/cJ3wLVTyllvYenaJMA0GCSqG
+					SIb3DQEBCwUAA4IBAQA74FZ6u4WpzVuTQQkQ/NQoWoy7GN+9DEP6WpHWEpcbJbhbo7+Q2aHhBL/A
+					HXmuxfZBT/zo6k870ELKj2BFONIFKwohD+4TpkovXUnpDbD5SLj10zhXAOJIyQ4iayCtVfjOlDEt
+					SufPhpj4D92vgSfdUWKInjSECHs6/GqwgIZpAMH5W7gDqSXUHMTyE0slTRyqtWtPgkNuOWyld/od
+					t4RGpjB6x9Z5y0zO75MlFg2hRhUuM0aUWXBw7roCsJK6we47Zlv0A4ryOtH8cwHCno6OL0qYAOHN
+					Q+JmL8ge2k2FU/vrxa2a5IYiXTQ694hh07mKmoirgKYrv+XDeyhijAoU
+				</X509Certificate>
+			</X509Data>
+		</KeyInfo>
+	</Signature>
+</ns0:elmo>
