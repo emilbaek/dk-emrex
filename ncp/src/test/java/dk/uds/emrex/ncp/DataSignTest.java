@@ -59,6 +59,7 @@ public class DataSignTest extends TestCase {
 
     private void testSignedBase64ZippedXml(String fileName, boolean shouldBeValid) throws Exception {
     	String base64EncodedCompressedXml = TestUtil.getFileContent(fileName);
+    	System.out.println(instance.unpackBase64CompressedXml(base64EncodedCompressedXml));
 		boolean valid = instance.isValidSignature(base64EncodedCompressedXml, StandardCharsets.UTF_8);
 		Assert.assertTrue("Skal være valid", valid == shouldBeValid);
     }
