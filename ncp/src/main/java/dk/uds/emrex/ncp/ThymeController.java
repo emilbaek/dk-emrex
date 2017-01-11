@@ -212,7 +212,7 @@ public class ThymeController {
                         context.getSession().setAttribute("elmo", parser);
 
                     }
-                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser);
+                    String personalLogLine = generatePersonalLogLine(customRequest, headerHandler, parser, wayfUser);
 
                     String statisticalLogLine = generateStatisticalLogLine(parser, "NCP");
                     StatisticalLogger.log(statisticalLogLine);
@@ -230,10 +230,10 @@ public class ThymeController {
         return "norex";
     }
 
-    private String generatePersonalLogLine(@ModelAttribute CustomRequest customRequest, ShibbolethHeaderHandler headerHandler, ElmoParser parser) {
+    private String generatePersonalLogLine(@ModelAttribute CustomRequest customRequest, ShibbolethHeaderHandler headerHandler, ElmoParser parser, WayfUser wayfUser) {
         String personalLogLine = "NCP\t" + customRequest.getSessionId();
         personalLogLine += "\t" + customRequest.getReturnUrl();
-        personalLogLine += "\t" + headerHandler.getFirstName() + " " + headerHandler.getLastName();
+        personalLogLine += "\t" + wayfUser.getGivenName() + " " + wayfUser.getSurName();
         if (parser == null) {
             personalLogLine += "\t" + "not-available";
         } else {
