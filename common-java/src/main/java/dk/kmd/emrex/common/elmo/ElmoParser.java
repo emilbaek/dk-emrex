@@ -13,12 +13,14 @@ import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.ooxi.jdatauri.DataUri;
+import com.sun.xml.internal.bind.marshaller.NamespacePrefixMapper;
 
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Attachment;
 import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
@@ -269,11 +271,40 @@ public class ElmoParser {
 			StringWriter out = new StringWriter();
 
 			Marshaller m = jc.createMarshaller();
+			
+			// Forcing WebLogic to use Elmo namespace as default namespace
+			// Receiving EMREG system requires Elmo namespace to be default.
+			try {
+	            m.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new ElmoAsDefaultNamespaceMapper());
+	        } catch(PropertyException e) {
+	            // Ignore in case another JAXB implementation is used
+	        }
+			
 			m.marshal(elmo, out);
 			xml = out.toString();
 		} catch (JAXBException e) {
 			log.error("Error marshalling Elmo", e);
 		}
 		return xml;
+	}
+	
+	public static class ElmoAsDefaultNamespaceMapper extends NamespacePrefixMapper {
+
+		private static final String FOO_PREFIX = ""; // DEFAULT NAMESPACE
+		private static final String FOO_URI = "https://github.com/emrex-eu/elmo-schemas/tree/v1";
+
+		@Override
+		public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
+			if (FOO_URI.equals(namespaceUri)) {
+				return FOO_PREFIX;
+			}
+			return suggestion;
+		}
+
+		@Override
+		public String[] getPreDeclaredNamespaceUris() {
+			return new String[] { FOO_URI };
+		}
+
 	}
 }

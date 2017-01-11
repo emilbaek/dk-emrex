@@ -126,6 +126,7 @@ public class DataSign {
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer trans = tf.newTransformer();
+		trans.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
 		trans.transform(new DOMSource(doc), new StreamResult(os));
 
 		final String signedXml = os.toString();
