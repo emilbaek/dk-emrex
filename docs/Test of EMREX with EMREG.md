@@ -12,3 +12,13 @@
 10. Log in using userid/password as embkmd/kmdem1l or qnkkmd/kmd8qnk.
 11. Press button 'Import selected results'.
 12. Push button 'Confirm selected results'.
+
+CPR: 091280-1128
+Navn: Jens Hansen
+WAYF-brugernavn: emrx1
+WAYF adgangskode: emrx2017 
+ 
+CPR: 091280-1136
+Navn:Fakir El-kaffsen
+WAYF-brugernavn: emrx2
+WAYF-adgangskode: emrx2017
