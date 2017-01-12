@@ -2,6 +2,10 @@
 <configuration>
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
 
+  <appender name="ASYNC-CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="CONSOLE" />
+  </appender>
+  
   <appender name="FILE-SYSTEM-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>/etc/emrex/logs/ncp.log</file>
     <append>true</append>
@@ -16,6 +20,10 @@
     </encoder>
   </appender>
 
+  <appender name="ASYNC-FILE-SYSTEM-LOG" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-SYSTEM-LOG" />
+  </appender>
+  
 	<appender name="FILE-STATISTICAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>/etc/emrex/logs/statistical.log</file>
     <append>true</append>
@@ -30,6 +38,10 @@
 		</encoder>
 	</appender>
 
+  <appender name="ASYNC-FILE-STATISTICAL" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-STATISTICAL" />
+  </appender>
+  
 	<appender name="FILE-PERSONAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>/etc/emrex/logs/personal.log</file>
 		<append>true</append>
@@ -44,46 +56,50 @@
 		</encoder>
 	</appender>
 
+  <appender name="ASYNC-FILE-PERSONAL" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-PERSONAL" />
+  </appender>
+  
 	<springProfile name="dev,default">
     <logger name="dk" level="DEBUG" additivity="false">
-      <appender-ref ref="CONSOLE" />
+      <appender-ref ref="ASYNC-CONSOLE" />
     </logger>
 
     <logger name="dk.kmd.emrex.common.PersonalLogger" level="INFO" additivity="false">
-      <appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE-PERSONAL" />
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-PERSONAL" />
     </logger>
 
     <logger name="dk.kmd.emrex.common.StatisticalLogger" level="INFO" additivity="false">
-      <appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE-STATISTICAL" />
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-STATISTICAL" />
     </logger>
 
     <root level="INFO">
-      <appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE-SYSTEM-LOG" />
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
     </root>
 	</springProfile>
 
 	<springProfile name="test,prod">
 		<logger name="dk.kmd.emrex.common.PersonalLogger" level="INFO" additivity="false">
-			<appender-ref ref="CONSOLE" />
-			<appender-ref ref="FILE-PERSONAL" />
+			<appender-ref ref="ASYNC-CONSOLE" />
+			<appender-ref ref="ASYNC-FILE-PERSONAL" />
 		</logger>
 
 		<logger name="dk.kmd.emrex.common.StatisticalLogger" level="INFO" additivity="false">
-			<appender-ref ref="CONSOLE" />
-			<appender-ref ref="FILE-STATISTICAL" />
+			<appender-ref ref="ASYNC-CONSOLE" />
+			<appender-ref ref="ASYNC-FILE-STATISTICAL" />
 		</logger>
 
 		<logger name="org.springframework.security" level="INFO" additivity="false">
-			<appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE-SYSTEM-LOG" />
+			<appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
 		</logger>
 
 		<root level="WARN">
-			<appender-ref ref="CONSOLE" />
-      <appender-ref ref="FILE-SYSTEM-LOG" />
+			<appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
 		</root>
 	</springProfile>
 </configuration>
