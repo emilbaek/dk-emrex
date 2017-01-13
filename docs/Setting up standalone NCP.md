@@ -19,10 +19,10 @@ Copy dk-emrex-${env}.key til /etc/emrex
 
 The prod .cer and .key files for production are private to the customer and as such not available to KMD.  
 
-Copy NCP ncp-0.0.2-SNAPSHOT.war file to desired location.
+Copy NCP ncp-1.0-SNAPSHOT.war file to desired location.
 
 Start application on command line by executing :
-  java -jar -Dspring.profiles.active=${env} ncp-0.0.2-SNAPSHOT.war
+  java -jar -Dspring.profiles.active=${env} ncp-1.0-SNAPSHOT.war
 
 Logging is done to STDOUT.   
 
