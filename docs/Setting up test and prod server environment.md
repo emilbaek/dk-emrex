@@ -27,8 +27,16 @@
 5.	Press 'Install'.
 6.	Select NCP WAR-file from install folder and press 'Next'.
 8.	Select 'Install this deployment as an application' and press 'Next'.
-10.	(Select desired server and press next).
-12. Press 'Finish'.
+9.	(Select desired server and press next).
+10. Press 'Finish'.
+11. Select 'Environment'.
+12. Select 'Servers'.
+13. Select desired server.
+14. Select 'SSL' tab.
+15. Select 'Advanced'.
+16. From 'Hostname Verification' select 'Custom Hostname Verifier'.
+17. Specify 'weblogic.security.utils.SSLWLSWildcardHostnameVerifier' as the 'Custom Hostname Verifier'.
+18. Press 'Save'.
 
 ## Configuring application
 ### Properties files

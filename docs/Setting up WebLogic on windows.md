@@ -14,3 +14,4 @@
 12. Point your browser to [http://localhost:7001/console/](http://localhost:7001/console/ "WebLogic console").
 13. Change listen port to 8000.
 14. Deploy NCP war-file as application.
+15. Change WebLogic SSL hostname verification to 'weblogic.security.utils.SSLWLSWildcardHostnameVerifier'.

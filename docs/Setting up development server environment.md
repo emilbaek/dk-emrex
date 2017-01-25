@@ -17,6 +17,7 @@ To assume weblogic with x window support use 'xsudo weblogic'
 Adminstrationskonsol på http://dans-emrex.kmd.dk:8000/console.   
 Install NCP WAR-file in root context as application on port 8000. 
 stads-registry fil placeres i /etc/emrex sammen med certifikat og private key filer.  
+Change WebLogic SSL hostname verification to 'weblogic.security.utils.SSLWLSWildcardHostnameVerifier'
 Use './weblogic start' to start application.  
 Use './weblogic restart' to restart application.  
 Use './weblogic stop' to stop application.  
