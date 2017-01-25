@@ -7,7 +7,6 @@
                 <input type="checkbox" ng-model="selectAll" ng-change="selectAllClicked()" />
             </div>
         </th>
-        <th>ID</th>
         <th>Code</th>
         <th>Title</th>
         <th class="text-right">Results</th>
@@ -21,7 +20,6 @@
                                             ng-change="checkBoxChanged(opportunity)">
                 </div>
             </td>
-            <td>{{opportunity.elmoIdentifier}}</td>
             <td>{{opportunity.localIdentifier}}</td>
             <td>{{getRightLanguage(opportunity.title)}}</td>
             <td class="text-right">{{opportunity.specifies.learningOpportunityInstance.resultLabel}}</td>
