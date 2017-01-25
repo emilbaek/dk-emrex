@@ -154,7 +154,7 @@ public class PdfGen {
             table.addCell(createCell(res.getType()));
             table.addCell(createCell(res.getCredits(), Rectangle.ALIGN_RIGHT));
             table.addCell(createCell(res.getResult(), Rectangle.ALIGN_RIGHT));
-            table.addCell(createCell(res.getDate(), Rectangle.ALIGN_RIGHT));
+            table.addCell(createCell(trimDate(res.getDate()), Rectangle.ALIGN_RIGHT));
         }
         document.add(table);
     }
@@ -200,5 +200,16 @@ public class PdfGen {
         FileUtils.writeByteArrayToFile(new File(uri.getPath()), str.toByteArray());
     }
 
+    /**
+     * Strip time from String with data.
+     * @since EMRIX-10
+     */
+    private String trimDate(String d){
+    	if (d!=null && d.length() > 10)
+    		return d.substring(0, 10);
+    	else 
+    		return d;
+    	
+    }
 
 }
