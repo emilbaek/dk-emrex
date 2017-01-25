@@ -26,8 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StadsStudyFetcherTest {
 
 	private static String STADS_URL = "https://ref.stads.dk:443/ws_STDBEMRX/services/GetStudentsResult/version_1_0?wsdl";
-	//private static String[] SSN_ARRAY = { "020575-6557", "010101-aps1" };
-	private static String[] SSN_ARRAY = {  }; // Workaround because we do not know whats on the test-system
+	private static String[] SSN_ARRAY = { "091280-1128", "091280-1136" };
 	
 	private StadsStudyFetcher studyFetcher;
 
