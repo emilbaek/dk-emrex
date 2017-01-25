@@ -10,7 +10,7 @@
 8.  Press button 'Gå til valgt land'.
 9.  Choose 'IT Department og Higher Education'.
 10. Log in using userid/password as embkmd/kmdem1l or qnkkmd/kmd8qnk.
-11. Press button 'Import selected results'.
+11. Press button 'Next'.
 12. Push button 'Confirm selected results'.
 
 CPR: 091280-1128
