@@ -25,9 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StadsStudyFetcherTest {
 
-	private static String STADS_URL = "http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0";
-	private static String[] SSN_ARRAY = { "020575-6557", "010101-aps1" };
-
+	private static String STADS_URL = "https://ref.stads.dk:443/ws_STDBEMRX/services/GetStudentsResult/version_1_0?wsdl";
+	//private static String[] SSN_ARRAY = { "020575-6557", "010101-aps1" };
+	private static String[] SSN_ARRAY = {  }; // Workaround because we do not know whats on the test-system
+	
 	private StadsStudyFetcher studyFetcher;
 
 	@Before

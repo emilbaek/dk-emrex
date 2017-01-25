@@ -255,7 +255,7 @@
 					</schemaExcludes>
 					<schemas>
 						<schema>
-							<url>http://stads-dev31.northeurope.cloudapp.azure.com:4062/ws_STADS/services/GetStudentsResult/version_1_0?wsdl</url>
+							<url>https://ref.stads.dk:443/ws_STDBEMRX/services/GetStudentsResult/version_1_0?wsdl</url>
 						</schema>
 					</schemas>
 				</configuration>

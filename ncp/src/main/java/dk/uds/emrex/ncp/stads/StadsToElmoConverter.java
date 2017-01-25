@@ -36,18 +36,18 @@ public class StadsToElmoConverter {
 
 	private static List<Report> asElmo(dk.uds.emrex.stads.wsdl.Elmo.Report stadsReport) {
 		ArrayList<Report> elmoReports = new ArrayList<Report>();
-
+		
 		Report report = new Report();
 		report.setIssueDate(stadsReport.getIssueDate());
 		Issuer issuer = new Elmo.Report.Issuer(); 
 		issuer.setCountry(CountryCode.DK);
 		Identifier identifier = new Elmo.Report.Issuer.Identifier();
 		identifier.setType("local");
-		identifier.setValue("TODO : Issuer ID unknown");
+		identifier.setValue(stadsReport.getIssuer().getIdentifier());
 		issuer.getIdentifier().add(identifier);
 		TokenWithOptionalLang title = new TokenWithOptionalLang();
 		title.setLang("en");
-		title.setValue("TODO : Issuer unknown");
+		title.setValue(stadsReport.getIssuer().getTitle());
 		issuer.getTitle().add(title);
 		report.setIssuer(issuer); // TODO QNK Issuer mangler i STADS
 		report.getLearningOpportunitySpecification().addAll(asElmo(stadsReport.getLearningOpportunitySpecification()));

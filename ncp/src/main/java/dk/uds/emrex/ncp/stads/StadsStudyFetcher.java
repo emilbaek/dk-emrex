@@ -4,18 +4,12 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.StreamSupport;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
 import javax.xml.transform.stream.StreamResult;
 
@@ -31,7 +25,6 @@ import dk.kmd.emrex.common.idp.IdpConfig;
 import dk.kmd.emrex.common.idp.IdpConfig.IdpConfigUrl;
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.StudyFetcher;
-
 import dk.uds.emrex.stads.wsdl.GetStudentsResultInput;
 import dk.uds.emrex.stads.wsdl.GetStudentsResults;
 import dk.uds.emrex.stads.wsdl.GetStudentsResultsOutput;
