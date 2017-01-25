@@ -1,14 +1,15 @@
 #Setting up Nginx for development
 
 #####Installing and configuring
-As an alternative to use the apache 2.4 server for the development environment, 
+As an easy and lightweight alternative to use the apache 2.4 server for the development environment, 
 it is possible to use the nginx server instead. The configuration can be found in 
 
-> ./dk-emrex/ncp/etc/nginx/nginx.conf
+> ./dk-emrex/ncp/etc/nginx
 
 At the time of writing the project uses Nginx 1.10.2, which is the newest. Documentation 
 on installing the windows version can be found [here](http://nginx.org/en/docs/windows.html). 
-When nginx has been installed copy the configuration file nginx.conf to the <intall-dir>/conf
+
+When nginx has been installed copy the configuration file nginx.conf and the accompanying ssl folder to the <install-dir>/conf
 directory. 
 
 #####Using nginx
