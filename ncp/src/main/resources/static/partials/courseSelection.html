@@ -18,7 +18,11 @@
 </div>
 
 <div class="row">
-  <span ng-show="loading == 'true'"><img src="../common/img/loading.gif"/></span>
+  <div class="col-xs-12">
+    <span ng-show="loading == 'true'">
+      <h2>Fetching data, please wait ....</h2>
+    </span>
+  </div>
 </div>
 
 <div class="row">
@@ -40,14 +44,18 @@
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <div class="custom-inline" ng-bind-html="abort"/>
         <button class="btn btn-default btn-success pull-right" ng-click="sendIds()">Next</button>
+      </span>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <br/><br/>
         <span>If something is not working, please contact your home university or <a href="mailto:emrex-support@emrex.eu">emrex-support@emrex.eu</a>.</span>
+      </span>
     </div>
 </div>

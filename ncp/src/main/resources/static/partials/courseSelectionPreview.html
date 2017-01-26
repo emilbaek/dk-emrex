@@ -9,7 +9,15 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <span>
+      <span ng-show="loading == 'true'">
+            <h2>Fetching data, please wait ...</h2>
+       </span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
             <h2>Review and approve your selected courses</h2>
             You have selected to import {{numberOfCourses}}
             <span ng-show="numberOfCourses == 1">result</span><span ng-show="numberOfCourses != 1">results</span> with a total of {{totalEcts}} ECTS.<br/>
@@ -20,28 +28,36 @@
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <h3>{{learner.givenNames}} {{learner.familyName}}, {{learner.bday | date:'yyyy-MM-dd'}}</h3>
+        </span>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12">
-        <div ng-repeat="learningReport in reports | filter:courseNumberfilter">
+      <div ng-repeat="learningReport in reports | filter:courseNumberfilter">
+        <span ng-show="loaded == 'true'">
             <learning-report-directive report='learningReport' only-viewing=true level-filter='selectedLevel' type-filter='typeOptions' />
-        </div>
+        </span>
+      </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <a ng-href="#/ncp" class="btn btn-link">Back</a>
-        <div class="pull-right" ng-bind-html="review"/>
+      </span>
+      <div class="pull-right" ng-bind-html="review"/>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <br/><br/>
         <span>If something is not working, please contact your home university or <a href="mailto:emrex-support@emrex.eu">emrex-support@emrex.eu</a>.</span>
+        </span>
     </div>
 </div>
