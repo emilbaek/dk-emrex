@@ -6,9 +6,9 @@ Install latest Windows 64 bit JDK 8 (not JRE).
 ### Eclipse installation
 Install Eclipse Spring Tool Suite 64 bit for Windows [Spring Tool Suite 64 bit for Windows](https://spring.io/tools/sts/all "Spring Tool Suite").  
 Install [Lombok](https://projectlombok.org/ "Project Lombok") in Eclipse.  
-Set eclipse to use JDK (not JRE) in sts.ini file.  
+Set eclipse to use JDK (not JRE) in sts.ini file by adding the following lines to the beginning of sts.ini file.
+  
 > -vm
-
 > C:\<path to jdk>\bin\javaw.exe
 
 Set eclipse to use JDK (not JRE) as default jre in eclipse\preference\Installed JREs.  
