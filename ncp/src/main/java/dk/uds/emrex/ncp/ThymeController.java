@@ -5,16 +5,15 @@
  */
 package dk.uds.emrex.ncp;
 
-import dk.uds.emrex.ncp.saml2.WayfUser;
-import dk.kmd.emrex.common.PdfGen;
-import dk.kmd.emrex.common.PersonalLogger;
-import dk.kmd.emrex.common.StatisticalLogger;
-import dk.kmd.emrex.common.elmo.ElmoParser;
-import dk.kmd.emrex.common.util.Security;
-import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
-import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,13 +23,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Value;
+import dk.kmd.emrex.common.PdfGen;
+import dk.kmd.emrex.common.PersonalLogger;
+import dk.kmd.emrex.common.StatisticalLogger;
+import dk.kmd.emrex.common.elmo.ElmoParser;
+import dk.kmd.emrex.common.util.Security;
+import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
+import dk.uds.emrex.ncp.saml2.WayfUser;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author salum
@@ -237,7 +238,7 @@ public class ThymeController {
         if (parser == null) {
             personalLogLine += "\t" + "not-available";
         } else {
-            personalLogLine += "\t" + parser.getHostInstitution();
+            personalLogLine += "\t" + parser.getHostInstitutionForLoging();
         }
         return personalLogLine;
     }
@@ -248,7 +249,7 @@ public class ThymeController {
         if (parser != null) {
             statisticalLogLine += "\t" + parser.getCoursesCount();
             statisticalLogLine += "\t" + parser.getETCSCount();
-            statisticalLogLine += "\t" + parser.getHostInstitution();
+            statisticalLogLine += "\t" + parser.getHostInstitutionForLoging();
         } else {
             statisticalLogLine += "\t0\t0\tfi"; // zero courses, zero ects, from finland
         }
@@ -258,4 +259,5 @@ public class ThymeController {
     private WayfUser getCurrentUser() {
         return (WayfUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+    
 }

@@ -307,4 +307,25 @@ public class ElmoParser {
 		}
 
 	}
+	
+	/** 
+     * For activity loging.
+     */
+	public String getHostInstitutionForLoging() {
+		String hostInstitution = "Unknown host institution";
+
+		List<Report> reports = this.elmo.getReport();
+		for (Report report : reports) {
+			if (report.getIssuer() != null) {
+				List<Identifier> identifiers = report.getIssuer().getIdentifier();
+				for (Identifier identifier : identifiers) {
+					if ("local".equals(identifier.getType())) {
+						hostInstitution = identifier.getValue();
+					}
+				}
+			}
+		}
+
+		return hostInstitution;
+	}
 }
