@@ -4,7 +4,9 @@ angular.module('courseSelection', [])
         $scope.educationInstitutionOptions = {}; // {'Helsinki University' : true, 'Oulu AMK' : true};
         $scope.typeOptions = {};
         $scope.levelOptions = ["Any"];
-        $scope.learner = {givenNames:'',familyName:'',bday:''};        
+        $scope.learner = {givenNames:'',familyName:'',bday:''};  
+        $scope.loading = "true";
+        $scope.loaded = "false";
 
         var findOptionsRecursively = function (innerFunction, learningOpportunityArray, partOf) {
             angular.forEach(learningOpportunityArray, function (opportunityWrapper) {
@@ -33,6 +35,9 @@ angular.module('courseSelection', [])
         }
 
         var collectDataFromReports = function(reports){
+            $scope.loading = "true";
+            $scope.loaded = "false";
+
             angular.forEach(reports, function (report) {
                 var issuerTitle = "TODO : unknown issuer"; 
                 if (typeof report.issuer !== "undefined") {
@@ -42,6 +47,9 @@ angular.module('courseSelection', [])
 
                 findOptionsRecursively(collectOptions, report.learningOpportunitySpecification);
             });
+            
+            $scope.loading = "false";
+            $scope.loaded = "true";
         };
         
         if (!selectedCoursesService.reports)
@@ -57,6 +65,7 @@ angular.module('courseSelection', [])
             $scope.reports = selectedCoursesService.reports;
             $scope.learner = selectedCoursesService.learner;
         }
+        
 
         apiService.getAbortHtml().then(function (html) {
             $scope.abort = html;

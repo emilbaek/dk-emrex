@@ -18,8 +18,14 @@
 </div>
 
 <div class="row">
+  <span ng-show="loading == 'true'"><img src="../common/img/loading.gif"/></span>
+</div>
+
+<div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <h3>{{learner.givenNames}} {{learner.familyName}}, {{learner.bday | date:'yyyy-MM-dd'}}</h3>
+      </span>
     </div>
 </div>
 
