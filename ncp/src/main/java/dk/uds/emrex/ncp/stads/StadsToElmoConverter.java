@@ -39,23 +39,36 @@ public class StadsToElmoConverter {
 		
 		Report report = new Report();
 		report.setIssueDate(stadsReport.getIssueDate());
-		Issuer issuer = new Elmo.Report.Issuer(); 
-		issuer.setCountry(CountryCode.DK);
-		Identifier identifier = new Elmo.Report.Issuer.Identifier();
-		identifier.setType("local");
-		identifier.setValue(stadsReport.getIssuer().getIdentifier());
-		issuer.getIdentifier().add(identifier);
 		
-		identifier = new Elmo.Report.Issuer.Identifier();
-		identifier.setType("url");
-		identifier.setValue(stadsReport.getIssuer().getUrl());
-		issuer.getIdentifier().add(identifier);
+		if (stadsReport.getIssuer() != null) {
+			Issuer issuer = new Elmo.Report.Issuer(); 
+			issuer.setCountry(CountryCode.DK);
+			Identifier identifier = new Elmo.Report.Issuer.Identifier();
+			identifier.setType("local");
+			identifier.setValue(stadsReport.getIssuer().getIdentifier());
+			issuer.getIdentifier().add(identifier);
+			
+			identifier = new Elmo.Report.Issuer.Identifier();
+			identifier.setType("url");
+			identifier.setValue(stadsReport.getIssuer().getUrl());
+			issuer.getIdentifier().add(identifier);
+			
+			TokenWithOptionalLang title = new TokenWithOptionalLang();
+			title.setLang("en");
+			title.setValue(stadsReport.getIssuer().getTitle());
+			issuer.getTitle().add(title);
+			report.setIssuer(issuer);
+		} else {
+			Issuer issuer = new Elmo.Report.Issuer(); 
+			issuer.setCountry(CountryCode.DK);
+
+			TokenWithOptionalLang title = new TokenWithOptionalLang();
+			title.setLang("en");
+			title.setValue("Error : No issuer found");
+			issuer.getTitle().add(title);
+			report.setIssuer(issuer);
+		}
 		
-		TokenWithOptionalLang title = new TokenWithOptionalLang();
-		title.setLang("en");
-		title.setValue(stadsReport.getIssuer().getTitle());
-		issuer.getTitle().add(title);
-		report.setIssuer(issuer); // TODO QNK Issuer mangler i STADS
 		report.getLearningOpportunitySpecification().addAll(asElmo(stadsReport.getLearningOpportunitySpecification()));
 
 		elmoReports.add(report);
