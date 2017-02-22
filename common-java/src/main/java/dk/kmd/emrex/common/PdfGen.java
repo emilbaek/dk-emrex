@@ -74,7 +74,7 @@ public class PdfGen {
         try {
             docBuilder = docFactory.newDocumentBuilder();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Klarte ikke å lage xml dokument", e);
+            throw new IllegalArgumentException("Kunne ikke oprette XML-dokument.", e);
         }
 
         Document doc = null;
@@ -82,7 +82,7 @@ public class PdfGen {
         try {
             doc = docBuilder.parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
         } catch (Exception e) {
-            throw new IllegalArgumentException("Klarte ikke parse XML-dokument.", e);
+            throw new IllegalArgumentException("Kunne ikke parse XML-dokument.", e);
         }
         return doc;
     }
@@ -105,7 +105,7 @@ public class PdfGen {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String headerText = "Source: Emrex - Supporting Student Mobility - ";
         headerText += LocalDate.now().format(formatter);
-        headerText += " - in Finland";
+        headerText += " - in Denmark";
         phrase.add(headerText);
 
         ColumnText.showTextAligned(writer.getDirectContent(),
@@ -143,21 +143,19 @@ public class PdfGen {
         table.addCell(createHeaderCell("Title"));
         table.addCell(createHeaderCell("Level"));
         table.addCell(createHeaderCell("Type"));
-        table.addCell(createHeaderCell("Credits"));
-        table.addCell(createHeaderCell("Result"));
-        table.addCell(createHeaderCell("Date"));
+        table.addCell(createHeaderCell("Credits", Rectangle.ALIGN_RIGHT));
+        table.addCell(createHeaderCell("Result", Rectangle.ALIGN_RIGHT));
+        table.addCell(createHeaderCell("Date", Rectangle.ALIGN_RIGHT));
 
         for (ElmoResult res : doc.getResults()) {
             table.addCell(createCell(res.getCode()));
             table.addCell(createCell(res.getName()));
             table.addCell(createCell(res.getLevel()));
             table.addCell(createCell(res.getType()));
-            table.addCell(createCell(res.getCredits()));
-            table.addCell(createCell(res.getResult()));
-            table.addCell(createCell(res.getDate()));
-
+            table.addCell(createCell(res.getCredits(), Rectangle.ALIGN_RIGHT));
+            table.addCell(createCell(res.getResult(), Rectangle.ALIGN_RIGHT));
+            table.addCell(createCell(trimDate(res.getDate()), Rectangle.ALIGN_RIGHT));
         }
-
         document.add(table);
     }
 
@@ -166,6 +164,15 @@ public class PdfGen {
         PdfPCell cell = null;
         cell = new PdfPCell(new Phrase(text, FONT_BOLD));
         cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setBorder(Rectangle.BOTTOM);
+        return cell;
+    }
+    
+    private PdfPCell createHeaderCell(final String text, final int horizontalAlignment) {
+        PdfPCell cell = null;
+        cell = new PdfPCell(new Phrase(text, FONT_BOLD));
+        cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setHorizontalAlignment(horizontalAlignment);
         cell.setBorder(Rectangle.BOTTOM);
         return cell;
     }
@@ -178,11 +185,31 @@ public class PdfGen {
         cell.setBorder(Rectangle.NO_BORDER);
         return cell;
     }
+    
+    private PdfPCell createCell(final String text, final int horizontalAlignment){
+    	PdfPCell cell = null; 
+    	cell = new PdfPCell(new Phrase(text, FONT_NORMAL));
+        cell.setVerticalAlignment(Rectangle.ALIGN_BOTTOM);
+        cell.setHorizontalAlignment(horizontalAlignment);
+        cell.setBorder(Rectangle.NO_BORDER);
+        return cell;
+    }
 
 
     private void writePdf(ByteArrayOutputStream str, URI uri) throws Exception {
         FileUtils.writeByteArrayToFile(new File(uri.getPath()), str.toByteArray());
     }
 
+    /**
+     * Strip time from String with data.
+     * @since EMRIX-10
+     */
+    private String trimDate(String d){
+    	if (d!=null && d.length() > 10)
+    		return d.substring(0, 10);
+    	else 
+    		return d;
+    	
+    }
 
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Fake SMP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="common/styles/bootstrap.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<ul class="nav nav-pills">
+				<li role="presentation" ><a th:href="@{~/}">Home</a></li>
+				<li role="presentation"><a th:href="@{~/smp}">SMP</a></li>
+				<li role="presentation" class="active"><a href="#">onReturn</a></li>
+			</ul>
+		</nav>
+		<h3>Result of received post from NCP</h3>
+		<div class="row"><p th:text="'Return code: '+${returnCode}"/></div>
+		<div class="row"><p th:text="'Session id: '+${sesisonId}"/></div>
+		<div class="row">
+			<a th:href="@{~/getPdf}" class="btn btn-primary btn-lg active pull-left" role="button">Get PDF</a>
+			<a th:href="@{~/getXml}" class="btn btn-primary btn-lg active" role="button">Get XML</a>
+		</div>
+	</div>
+	<script src="common/js/jquery-3.1.1.js"></script>
+	<script src="common/js/bootstrap.js"></script>
+</body>
+</html>

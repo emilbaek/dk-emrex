@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dk.uds.emrex.ncp;
 
 import dk.uds.emrex.ncp.saml2.WayfUser;
 import dk.kmd.emrex.common.elmo.ElmoParser;
-import dk.kmd.emrex.common.util.ShibbolethHeaderHandler;
-import dk.uds.emrex.ncp.virta.VirtaClient;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
+
 import org.json.JSONObject;
-import org.json.XML;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-/**
- * @author salum
- */
 @RestController
 public class JsonController {
 
@@ -46,14 +37,16 @@ public class JsonController {
         model.put("returnUrl", context.getSession().getAttribute("returnUrl"));
         model.put("sessionId", context.getSession().getAttribute("sessionId"));
 
-        ShibbolethHeaderHandler header = new ShibbolethHeaderHandler(request);
-        header.stringifyHeader();
-        String OID = header.getHeiOid();
-        String PersonalID = header.getPersonalID();
-//        log.info("Fetching data from Virta client OID: {} PersonalID {}", OID, PersonalID);
-//        model.put("elmoXml", studyFetcher.fetchStudies(OID, PersonalID));
-        // TODO
+        final WayfUser user = getCurrentUser();
+        Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+        final ElmoParser parser = elmo.isPresent() ? ElmoParser.elmoParser(elmo.get()) : null;
 
+        if (parser != null) {
+        	String elmoXml = parser.asXml();
+          model.put("elmoXml", elmoXml);
+        } else {
+          model.put("elmoXml", "");
+        }
         return model;
     }
 
@@ -70,18 +63,18 @@ public class JsonController {
 
         try {
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParser(elmo);
+            Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+            final ElmoParser parser = elmo.isPresent() ? ElmoParser.elmoParser(elmo.get()) : null;
 
-//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
-            String xmlString;
-            
-            xmlString = parser.getCourseData();
-            log.debug(xmlString);
-            JSONObject json = XML.toJSONObject(xmlString);
-            return json.toString();
+            if (parser != null) {
+              String jsonString = parser.asJson();
+              log.debug(jsonString);
+              return jsonString;
+            } else {
+            	return "";
+            }
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("Error getting FullELmo", e);
             StackTraceElement elements[] = e.getStackTrace();
             Map<String, Object> error = new HashMap<String, Object>();
             Map<String, Object> log = new HashMap<String, Object>();
@@ -105,35 +98,16 @@ public class JsonController {
     @ResponseBody
     public String getElmoJSON(
             @RequestParam(value = "courses", required = false) String[] courses) throws Exception {
-        if (courses != null) {
-            String courseIdList = "";
-            for (int i = 0; i < courses.length; i++) {
-                courseIdList += courses[i] + ", ";
-            }
-            log.info("Courses: " + courseIdList);
-        }
-
+            log.info("Courses: [" + (courses==null? "null" : Arrays.stream(courses).reduce((a,b)-> a+", "+b).orElse(""))+']');
         try {
-
-//            ElmoParser parser = (ElmoParser) context.getSession().getAttribute("elmo");
             final WayfUser user = getCurrentUser();
-            final String elmo = studyFetcher.fetchStudies(user.getOrganizationId(), user.getCpr());
-            final ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+            Optional<Elmo> elmo = studyFetcher.fetchElmo(user.getOrganizationId(), user.getCpr());
+            final ElmoParser parser = ElmoParser.elmoParser(elmo.get());
 
-            String xmlString;
-            if (courses != null) {
-                log.debug("Courses count: {}", courses.length);
-                List<String> courseList = Arrays.asList(courses);
-                xmlString = parser.getCourseData(); // TODO
-//                xmlString = parser.getCourseData(courseList);
-            } else {
-                log.debug("Courses count: null");
-                xmlString = parser.getCourseData(null);
-            }
-
-            log.trace(xmlString);
-            JSONObject json = XML.toJSONObject(xmlString);
-            return json.toString();
+            String jsonString = courses==null? parser.asJson() : parser.asJson(courses);
+            log.debug(courses==null?"Courses count: null":("Courses count: "+ courses.length));
+            log.debug(jsonString);
+            return jsonString;
         } catch (Exception e) {
             log.error("Failed to get Elmo JSON", e);
             StackTraceElement elements[] = e.getStackTrace();

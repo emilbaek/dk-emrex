@@ -25,12 +25,12 @@ angular.module('helper', [])
 
             function getRightLanguage(titles) {
                 var result = "";
-                var planB = "";
+                var planB = titles;
                 if (angular.isArray(titles))
                     angular.forEach(titles, function (title) {
 
-                        if (title.content)
-                            planB = title.content; // anything is better than nothing
+                        if (title.value)
+                            planB = title.value; // anything is better than nothing
 
                         if (title['xml:lang'] === selectedLanguage && title.content)
                             result = title['content'];
@@ -59,9 +59,22 @@ angular.module('helper', [])
 
             var calculateEcts = function(learningOpportunityArray) {
                 var count = 0;
+                var ects; 
                 angular.forEach(learningOpportunityArray, function (opportunity) {
                     if (opportunity.learningOpportunitySpecification) {
-                        count += opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit.value || 0;
+                    	ects = opportunity.learningOpportunitySpecification.specifies.learningOpportunityInstance.credit[0].value
+                    	if(ects){
+                    		switch(typeof(ects)){
+                    			case "string":
+                    				count += Number.parseFloat(ects);
+                    				break;
+                    			case "number":
+                    				count += ects;
+                    				break;
+                    			default: 
+                    				break;
+                    		}
+                    	}
                         if (opportunity.learningOpportunitySpecification.hasPart)
                             count = count + calculateCourses(opportunity.learningOpportunitySpecification.hasPart)
                     }

@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elmo xmlns="https://github.com/emrex-eu/elmo-schemas/tree/v1" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#">
+	<generatedDate>2016-12-07T09:17:51.566Z</generatedDate>
+	<learner>
+		<citizenship>DK</citizenship>
+		<identifier type="nationalIdentifier">020575-6557</identifier>
+		<identifier type="studentIdentifier">AA021511</identifier>
+		<identifier type="stadsIdentifier">14683</identifier>
+		<givenNames>CX</givenNames>
+		<familyName>CX</familyName>
+		<bday>1975-05-02</bday>
+	</learner>
+	<report>
+		<issuer>
+			<country>DK</country>
+			<identifier type="local">TODO : Issuer ID unknown</identifier>
+			<title xml:lang="en">TODO : Issuer unknown</title>
+		</issuer>
+		<learningOpportunitySpecification>
+			<identifier type="local">GRPMAT/DIP</identifier>
+			<title xml:lang="en">01005/01905 til GæstDK samt GÆSTUD 2005</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2006-09-01Z</start>
+					<date>2009-08-31Z</date>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91111</identifier>
+			<title xml:lang="en">91111 Mechanics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F99</title>
+						<start>1999-02-01Z</start>
+						<end>1999-08-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>7.500</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91312</identifier>
+			<title xml:lang="en">91312 Analytical and Inorganic Chemistry, Laboratory Course</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>E98</title>
+						<start>1998-09-01Z</start>
+						<end>1999-01-31Z</end>
+					</academicTerm>
+					<resultLabel>G</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>2.5000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91112</identifier>
+			<title xml:lang="en">91112 Mathematics 1</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F00</title>
+						<start>2000-02-01Z</start>
+						<end>2000-08-31Z</end>
+					</academicTerm>
+					<resultLabel>00</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91711</identifier>
+			<title xml:lang="en">91711 Introduction to Chemical Process Engineering</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>E98</title>
+						<start>1998-09-01Z</start>
+						<end>1999-01-31Z</end>
+					</academicTerm>
+					<resultLabel>G</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91123</identifier>
+			<title xml:lang="en">91123 Computer Science</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F99</title>
+						<start>1999-02-01Z</start>
+						<end>1999-08-31Z</end>
+					</academicTerm>
+					<resultLabel>12</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91326</identifier>
+			<title xml:lang="en">91326 Inorganic Quantitative Analysis, laboratory course</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F99</title>
+						<start>1999-02-01Z</start>
+						<end>1999-08-31Z</end>
+					</academicTerm>
+					<resultLabel>G</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>2.5000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91722</identifier>
+			<title xml:lang="en">91722 Fluid Mechanics, Laboratory Course</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F99</title>
+						<start>1999-02-01Z</start>
+						<end>1999-08-31Z</end>
+					</academicTerm>
+					<resultLabel>G</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>2.5000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">91132</identifier>
+			<title xml:lang="en">91132 Mathematics 3</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>1998-09-01Z</start>
+					<date>2001-02-12Z</date>
+					<academicTerm>
+						<title>F00</title>
+						<start>2000-02-01Z</start>
+						<end>2000-08-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>2.5000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01995</identifier>
+			<title xml:lang="en">01905 Advanced Calculus</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2002-02-01Z</start>
+					<date>2005-07-26Z</date>
+					<academicTerm>
+						<title>E04</title>
+						<start>2004-09-01Z</start>
+						<end>2005-01-31Z</end>
+					</academicTerm>
+					<resultLabel>5</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>0</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01996</identifier>
+			<title xml:lang="en">01905 Advanced Calculus</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2002-02-01Z</start>
+					<date>2005-07-26Z</date>
+					<academicTerm>
+						<title>E04</title>
+						<start>2004-09-01Z</start>
+						<end>2005-01-31Z</end>
+					</academicTerm>
+					<resultLabel>9</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>0</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01997</identifier>
+			<title xml:lang="en">01905 Advanced Calculus</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2002-02-01Z</start>
+					<date>2005-07-26Z</date>
+					<academicTerm>
+						<title>E04</title>
+						<start>2004-09-01Z</start>
+						<end>2005-01-31Z</end>
+					</academicTerm>
+					<resultLabel>5</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01905-1</identifier>
+			<title xml:lang="en">01905 Advanced Calculus</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2002-02-01Z</start>
+					<date>2005-07-26Z</date>
+					<academicTerm>
+						<title>E04</title>
+						<start>2004-09-01Z</start>
+						<end>2005-01-31Z</end>
+					</academicTerm>
+					<resultLabel>6</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01905-1</identifier>
+			<title xml:lang="en">01905 Advanced Calculus</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2009-09-01Z</start>
+					<date>2010-06-26Z</date>
+					<academicTerm>
+						<title>E04</title>
+						<start>2004-09-01Z</start>
+						<end>2005-01-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31037</identifier>
+			<title xml:lang="en">31037 Analogue Design</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F13</title>
+						<start>2013-02-01Z</start>
+						<end>2013-08-31Z</end>
+					</academicTerm>
+					<resultLabel>10</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">30090</identifier>
+			<title xml:lang="en">30090 Digital Systems, Design of</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F12</title>
+						<start>2012-02-01Z</start>
+						<end>2012-08-31Z</end>
+					</academicTerm>
+					<resultLabel>12</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">02403-1</identifier>
+			<title xml:lang="en">02403 Introduction to Statistics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F12</title>
+						<start>2012-02-01Z</start>
+						<end>2012-08-31Z</end>
+					</academicTerm>
+					<resultLabel>4</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31354</identifier>
+			<title xml:lang="en">31354 Circuit Technology and EMC</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E12</title>
+						<start>2012-09-01Z</start>
+						<end>2013-01-31Z</end>
+					</academicTerm>
+					<resultLabel>BE</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">30080</identifier>
+			<title xml:lang="en">30080 Digital and Data Technique</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F10</title>
+						<start>2010-02-01Z</start>
+						<end>2010-08-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31033</identifier>
+			<title xml:lang="en">31033 Project Work in Electrotechnics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F07</title>
+						<start>2007-02-01Z</start>
+						<end>2007-08-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">02319-1</identifier>
+			<title xml:lang="en">02319 Advanced Programming</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F10</title>
+						<start>2010-02-01Z</start>
+						<end>2010-08-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31038</identifier>
+			<title xml:lang="en">31038 Linear Systems, Digital Signal Processing, and Signal Processors</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E10</title>
+						<start>2010-09-01Z</start>
+						<end>2011-01-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>15.00</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31035</identifier>
+			<title xml:lang="en">31035 Engineering Electromagnetics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E11</title>
+						<start>2011-09-01Z</start>
+						<end>2012-01-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">10917</identifier>
+			<title xml:lang="en">10917 Physics 1</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F12</title>
+						<start>2012-02-01Z</start>
+						<end>2012-08-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31301</identifier>
+			<title xml:lang="en">31301 Linear Control Design 1</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F11</title>
+						<start>2011-02-01Z</start>
+						<end>2011-08-31Z</end>
+					</academicTerm>
+					<resultLabel>10</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31036</identifier>
+			<title xml:lang="en">31036 Electrical Energy Systems</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F11</title>
+						<start>2011-02-01Z</start>
+						<end>2011-08-31Z</end>
+					</academicTerm>
+					<resultLabel>BE</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01906-1</identifier>
+			<title xml:lang="en">01906 Calculus and Algebra 1</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<resultLabel>BE</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01907-1</identifier>
+			<title xml:lang="en">01907 Calculus and Algebra 2</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<resultLabel>BE</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31340</identifier>
+			<title xml:lang="en">31340 Computer Control Systems</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E11</title>
+						<start>2011-09-01Z</start>
+						<end>2012-01-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31032</identifier>
+			<title xml:lang="en">31032 Electrotechnics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F11</title>
+						<start>2011-02-01Z</start>
+						<end>2011-08-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">02318-1</identifier>
+			<title xml:lang="en">02318 Elementary Programming in C</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E09</title>
+						<start>2009-09-01Z</start>
+						<end>2010-01-31Z</end>
+					</academicTerm>
+					<resultLabel>4</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">01964-1</identifier>
+			<title xml:lang="en">01964 Mathematics 2</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E10</title>
+						<start>2010-09-01Z</start>
+						<end>2011-01-31Z</end>
+					</academicTerm>
+					<resultLabel>4</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31022</identifier>
+			<title xml:lang="en">31022 Analogue Electronics</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E09</title>
+						<start>2009-09-01Z</start>
+						<end>2010-01-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31310</identifier>
+			<title xml:lang="en">31310 Linear Control Design 2</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E12</title>
+						<start>2012-09-01Z</start>
+						<end>2013-01-31Z</end>
+					</academicTerm>
+					<resultLabel>02</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>10.000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">31305</identifier>
+			<title xml:lang="en">31305 Projects in Control Practice</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>E13</title>
+						<start>2013-09-01Z</start>
+						<end>2014-01-31Z</end>
+					</academicTerm>
+					<resultLabel>7</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<learningOpportunitySpecification>
+			<identifier type="local">02325-1</identifier>
+			<title xml:lang="en">02325 Data Communication</title>
+			<type>Course</type>
+			<specifies>
+				<learningOpportunityInstance>
+					<start>2011-02-01Z</start>
+					<academicTerm>
+						<title>F13</title>
+						<start>2013-02-01Z</start>
+						<end>2013-08-31Z</end>
+					</academicTerm>
+					<resultLabel>10</resultLabel>
+					<credit>
+						<scheme>ECTS</scheme>
+						<level>-</level>
+						<value>5.0000</value>
+					</credit>
+				</learningOpportunityInstance>
+			</specifies>
+		</learningOpportunitySpecification>
+		<issueDate>2016-12-07T09:17:51.566Z</issueDate>
+	</report>
+</elmo>

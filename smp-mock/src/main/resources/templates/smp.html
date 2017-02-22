@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Fake SMP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="common/styles/bootstrap.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<ul class="nav nav-pills">
+				<li role="presentation"><a th:href="@{~/}">Home</a></li>
+				<li role="presentation" class="active"><a href="#">SMP</a></li>
+			</ul>
+		</nav>
+		<h3>The test posts against the following url</h3>
+		<p th:text="${environmentUrl}+':'+${environmentPort}" />
+		<h3>The return url is set to</h3>
+		<p th:text="${returnUrl}+':'+${serverport}+'/onReturn'" />
+		<form th:action="${environmentUrl}+':'+${environmentPort}" method="POST">
+			<input class="form-control" type="hidden" id="sessionId" name="sessionId" value="FC3D54726E1331D2530D5E54BEB0C1F2" /> 
+			<input class="form-control" type="hidden" id="returnUrl" name="returnUrl" th:value="${returnUrl}+':'+${serverport}+'/onReturn'" /> 
+			<input class="btn btn-primary" type="submit" value="submit" />
+		</form>
+	</div>
+	<script src="common/js/jquery-3.1.1.js"></script>
+	<script src="common/js/bootstrap.js"></script>
+</body>
+</html>

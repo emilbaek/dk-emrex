@@ -11,16 +11,25 @@
     <div class="col-xs-12">
         <span>
             <h2>Find and select results to import</h2>
-            Select the results you want to import (only passed results are shown) and click "Import selected".<br/>
+            Select the results you want to import (only passed results are shown) and click "Next".<br/>
             After this you will be asked to confirm your selection of results.
         </span>
     </div>
 </div>
 
 <div class="row">
+  <div class="col-xs-12">
+    <span ng-show="loading == 'true'">
+      <h2>Fetching data, please wait ....</h2>
+    </span>
+  </div>
+</div>
+
+<div class="row">
     <div class="col-xs-12">
-        <h3>Jens Jensen, 06-03-1995</h3> <!-- TODO -->
-        <!--<h3>{{learner.fullName}}, {{learner.bday.content}}</h3>-->
+      <span ng-show="loaded == 'true'">
+        <h3>{{learner.givenNames}} {{learner.familyName}}, {{learner.bday | date:'yyyy-MM-dd'}}</h3>
+      </span>
     </div>
 </div>
 
@@ -35,14 +44,18 @@
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <div class="custom-inline" ng-bind-html="abort"/>
-        <button class="btn btn-default btn-success pull-right" ng-click="sendIds()">Import selected results</button>
+        <button class="btn btn-default btn-success pull-right" ng-click="sendIds()">Next</button>
+      </span>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12">
+      <span ng-show="loaded == 'true'">
         <br/><br/>
         <span>If something is not working, please contact your home university or <a href="mailto:emrex-support@emrex.eu">emrex-support@emrex.eu</a>.</span>
+      </span>
     </div>
 </div>

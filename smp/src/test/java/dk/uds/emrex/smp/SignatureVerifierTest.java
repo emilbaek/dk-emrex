@@ -29,4 +29,24 @@ public class SignatureVerifierTest extends TestCase {
         assertTrue(instance.verifySignature(cert, dataOk));
 
     }
+
+    @Test
+    public void testVerifySignatureDk() throws Exception {
+
+        final String cert = TestUtil.getFileContent("dk-emrex-test.cer");
+        final String dataOk = TestUtil.getFileContent("wl.txt");
+
+        assertTrue(instance.verifySignature(cert, dataOk));
+
+    }
+
+    @Test
+    public void testVerifySignatureDk2() throws Exception {
+
+        final String cert = TestUtil.getFileContent("dk-emrex-test.cer");
+        final String dataOk = TestUtil.getFileContent("wl2.txt");
+
+        assertTrue(instance.verifySignature(cert, dataOk));
+
+    }
 }

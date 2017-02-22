@@ -58,20 +58,34 @@ public class ElmoXmlImportHelper {
         res.setType(getValueForTag(los, "type"));
         res.setLevel(getValueForTag(los, "specifies/learningOpportunityInstance/credit/level"));
         res.setName(getEnglishContentValue(los, xpath, "title"));
-        res.setCredits(getValueForTag(los, "specifies/learningOpportunityInstance/credit/value"));
+        res.setCredits(getCredits(los));
         res.setDate(getDate(los));
 
+    }
+    
+    private String getCredits(Node los) throws Exception{
+    	String credits = getValueForTag(los, "specifies/learningOpportunityInstance/credit/value");
+    	try{
+    		double d = (credits != null && !credits.isEmpty())? Double.parseDouble(credits) : 0.00; 
+    		return String.format("%3.2f", d);
+    	}catch(NumberFormatException nfe){
+    		try{
+    			double d = Double.parseDouble(credits.replace(",","."));
+    			return String.format("%3.2f", d);
+    		}catch(NumberFormatException e){
+    			return String.format("%3.2f", 0.00);
+    		}
+    	}
     }
 
     private String getDate(Node los) throws Exception {
 
         String endDate;
         endDate = getValueForTag(los, "specifies/learningOpportunityInstance/date");
-        if (endDate.isEmpty()) {
-            return getValueForTag(los, "specifies/learningOpportunityInstance/start");
-        } else {
-            return endDate;
-        }
+        if (endDate.isEmpty())
+            endDate = getValueForTag(los, "specifies/learningOpportunityInstance/start");
+        endDate = endDate.isEmpty()? endDate : endDate.replaceAll("Z$",""); 
+        return endDate;
     }
 
     @SuppressWarnings("unused")

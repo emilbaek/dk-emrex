@@ -4,6 +4,9 @@ angular.module('courseSelection', [])
         $scope.educationInstitutionOptions = {}; // {'Helsinki University' : true, 'Oulu AMK' : true};
         $scope.typeOptions = {};
         $scope.levelOptions = ["Any"];
+        $scope.learner = {givenNames:'',familyName:'',bday:''};  
+        $scope.loading = "true";
+        $scope.loaded = "false";
 
         var findOptionsRecursively = function (innerFunction, learningOpportunityArray, partOf) {
             angular.forEach(learningOpportunityArray, function (opportunityWrapper) {
@@ -32,33 +35,48 @@ angular.module('courseSelection', [])
         }
 
         var collectDataFromReports = function(reports){
-            angular.forEach(reports, function (report) {
-                $scope.learner = report.learner;
+            $scope.loading = "true";
+            $scope.loaded = "false";
 
-                var issuerTitle = helperService.getRightLanguage(report.issuer.title);
+            angular.forEach(reports, function (report) {
+                var issuerTitle = "TODO : unknown issuer"; 
+                if (typeof report.issuer !== "undefined") {
+                	issuerTitle = helperService.getRightLanguage(report.issuer.title);
+                }
                 $scope.educationInstitutionOptions[issuerTitle] = true;
 
                 findOptionsRecursively(collectOptions, report.learningOpportunitySpecification);
             });
+            
+            $scope.loading = "false";
+            $scope.loaded = "true";
         };
-
+        
         if (!selectedCoursesService.reports)
-            apiService.getElmoAll().then(function (reports) {
-                collectDataFromReports(reports);
-                $scope.reports = reports;
-                selectedCoursesService.reports = reports;
+            apiService.getElmoEverthing().then(function (data) {
+                collectDataFromReports(data.reports);
+                $scope.reports = data.reports;
+                selectedCoursesService.reports = data.reports;
+                $scope.learner = data.learner;
+                selectedCoursesService.learner = data.learner;
             })
         else {
             collectDataFromReports(selectedCoursesService.reports)
             $scope.reports = selectedCoursesService.reports;
+            $scope.learner = selectedCoursesService.learner;
         }
+        
 
         apiService.getAbortHtml().then(function (html) {
             $scope.abort = html;
         });
 
         $scope.issuerFilter = function (report) {
-            var title = helperService.getRightLanguage(report.issuer.title);
+        	var title = "TODO : unknown issuer";
+            if (typeof report.issuer !== "undefined") {
+            	title = helperService.getRightLanguage(report.issuer.title);
+            }
+        		
             var visible = (!!$scope.educationInstitutionOptions[title]);
 
             var deselectInvisibleOpportunities = function(opportunity){

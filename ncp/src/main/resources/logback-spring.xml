@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+
+  <appender name="ASYNC-CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="CONSOLE" />
+  </appender>
+  
+  <appender name="FILE-SYSTEM-LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/etc/emrex/logs/ncp.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>/etc/emrex/logs/ncp-%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="ASYNC-FILE-SYSTEM-LOG" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-SYSTEM-LOG" />
+  </appender>
+  
+	<appender name="FILE-STATISTICAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/etc/emrex/logs/statistical.log</file>
+    <append>true</append>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- monthly rollover -->
+      <fileNamePattern>/etc/emrex/logs/statistical-%d{yyyy-MM}.log</fileNamePattern>
+      <maxHistory>24</maxHistory>
+    </rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+  <appender name="ASYNC-FILE-STATISTICAL" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-STATISTICAL" />
+  </appender>
+  
+	<appender name="FILE-PERSONAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/etc/emrex/logs/personal.log</file>
+		<append>true</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- monthly rollover -->
+			<fileNamePattern>/etc/emrex/logs/personal-%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>24</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+  <appender name="ASYNC-FILE-PERSONAL" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="FILE-PERSONAL" />
+  </appender>
+  
+	<springProfile name="dev,default">
+    <logger name="dk" level="DEBUG" additivity="false">
+      <appender-ref ref="ASYNC-CONSOLE" />
+    </logger>
+
+    <logger name="dk.kmd.emrex.common.PersonalLogger" level="INFO" additivity="false">
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-PERSONAL" />
+    </logger>
+
+    <logger name="dk.kmd.emrex.common.StatisticalLogger" level="INFO" additivity="false">
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-STATISTICAL" />
+    </logger>
+
+    <root level="INFO">
+      <appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
+    </root>
+	</springProfile>
+
+	<springProfile name="test,prod">
+		<logger name="dk.kmd.emrex.common.PersonalLogger" level="INFO" additivity="false">
+			<appender-ref ref="ASYNC-CONSOLE" />
+			<appender-ref ref="ASYNC-FILE-PERSONAL" />
+		</logger>
+
+		<logger name="dk.kmd.emrex.common.StatisticalLogger" level="INFO" additivity="false">
+			<appender-ref ref="ASYNC-CONSOLE" />
+			<appender-ref ref="ASYNC-FILE-STATISTICAL" />
+		</logger>
+
+		<logger name="org.springframework.security" level="INFO" additivity="false">
+			<appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
+		</logger>
+
+		<root level="WARN">
+			<appender-ref ref="ASYNC-CONSOLE" />
+      <appender-ref ref="ASYNC-FILE-SYSTEM-LOG" />
+		</root>
+	</springProfile>
+</configuration>

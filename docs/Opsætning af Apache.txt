@@ -1,5 +1,0 @@
-Installer Apache 2.2 i /usr/local/apache2
-Konfigurer Apache med httpd.conf fra NCP projekt
-Windows : httpd -k install -n "EMREX-NCP-PROXY"
-Windows : httpd -k start -n "EMREX-NCP-PROXY"
-(Eventuelt SSL certifikat og nøgle (dans-emrexws.kmd.dk.cert og dans-emrexws.kmd.dk.key) som server.crt og server.key i /usr/local/apache2/conf/ssl) 

@@ -5,30 +5,31 @@ import java.io.StringWriter;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.StreamSupport;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import javax.xml.transform.stream.StreamResult;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.oxm.XmlMappingException;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.WebServiceException;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import dk.kmd.emrex.common.idp.IdpConfig;
+import dk.kmd.emrex.common.idp.IdpConfig.IdpConfigUrl;
 import dk.kmd.emrex.common.idp.IdpConfigListService;
 import dk.uds.emrex.ncp.StudyFetcher;
-import dk.uds.emrex.stads.wsdl.Elmo;
 import dk.uds.emrex.stads.wsdl.GetStudentsResultInput;
 import dk.uds.emrex.stads.wsdl.GetStudentsResults;
 import dk.uds.emrex.stads.wsdl.GetStudentsResultsOutput;
 import dk.uds.emrex.stads.wsdl.GetStudentsResultsResponse;
+import https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -37,113 +38,148 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StadsStudyFetcher extends WebServiceGatewaySupport implements StudyFetcher {
 
-    @Autowired
-    private IdpConfigListService idpConfigListService;
+	@Autowired
+	private IdpConfigListService idpConfigListService;
 
-    @Override
-    public String fetchStudies(@NotNull String institutionId, @NotNull String ssn) throws IOException {
-        for (final IdpConfig idpConfig : idpConfigListService.getIdpConfigs()) {
-            if (idpConfig.getId().equalsIgnoreCase(institutionId)) {
-                try {
-                    final Iterator<String> urlIterator =
-                            StreamSupport.stream(idpConfig.getGetStudentsResultWebserviceEndpoints().spliterator(), false)
-                            .map((IdpConfig.IdpConfigUrl idpConfigUrl) -> idpConfigUrl.getUrl())
-                            .iterator();
-                    return fetchStudies(urlIterator, ssn);
-                } catch (IOException e) {
-                    throw new IOException(String.format("Unable to connect to any STADS servers for IDP %s", institutionId), e);
-                }
-            }
-        }
+	@Override
+	public Optional<Elmo> fetchElmo(@NotNull String institutionId, @NotNull String ssn) throws IOException {
+		for (IdpConfig idpConfig : idpConfigListService.getIdpConfigs()) {
+			if (idpConfig.getId().equalsIgnoreCase(institutionId)) {
+				for (IdpConfigUrl idpConfigUrl : idpConfig.getGetStudentsResultWebserviceEndpoints()) {
+					Elmo elmo = null;
+					GetStudentsResultsResponse studentResult = getStudentResult(idpConfigUrl.getUrl(), ssn);
+					if ((studentResult != null) && (studentResult.getReturn() != null) && (studentResult.getReturn().getElmoDocument()) != null) {
+						elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
+					}
+					return Optional.ofNullable(elmo);
+				}
+			}
+		}
 
-        throw new IOException(String.format("No STADS servers known for IDP {}", institutionId));
-    }
+		throw new IOException(String.format("No STADS servers known for IDP {}", institutionId));
+	}
 
-    public String fetchStudies(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
-        if (!urls.hasNext()) {
-            log.warn("No STADS urls given.");
-        }
+	public Optional<Elmo> fetchElmo(@NotNull Iterator<String> urls, @NotNull String ssn) throws IOException {
+		Elmo elmo = null;
+		while (urls.hasNext()) {
+			String url = urls.next();
+			GetStudentsResultsResponse studentResult = getStudentResult(url, ssn);
+			if (studentResult != null) {
+				elmo = StadsToElmoConverter.toElmo(studentResult.getReturn().getElmoDocument());
+			}
+		}
+		return Optional.of(elmo);
+	}
+	
+	private static BigInteger uuidToBigInteger(@NotNull UUID uuid) {
+		final ByteBuffer buffer = ByteBuffer.allocate(16);
 
-        while (urls.hasNext()) {
-            final String url = urls.next();
+		buffer.putLong(uuid.getMostSignificantBits());
+		buffer.putLong(uuid.getLeastSignificantBits());
 
-           log.info("Opening connection to STADS with URL {}", url);
+		return new BigInteger(buffer.array());
+	}
 
-            try {
-                return getStudentsResults(url, ssn);
-            } catch (IOException | WebServiceException ex) {
-                log.warn(String.format("Error when connecting to STADS web-service at %s.", url), ex);
-            }
-        }
+	private GetStudentsResultsResponse getStudentResult(@NotNull String url, @NotNull String cpr) {
+		final BigInteger requestId = uuidToBigInteger(UUID.randomUUID());
 
-        // If we get here we were unable to connect and/or read a response from a STADS server.
-        // Throw error: Not able to connect to any STADS URL
-        throw new IOException(String.format("Unable to successfully get data from any STADS URL in list."));
-    }
+		final GetStudentsResults request = new GetStudentsResults();
 
-    private static BigInteger uuidToBigInteger(@NotNull UUID uuid) {
-        final ByteBuffer buffer = ByteBuffer.allocate(16);
+		final GetStudentsResultInput input = new GetStudentsResultInput();
+		input.setCPR(formatCprToStads(cpr));
+		input.setRequestId(requestId);
 
-        buffer.putLong(uuid.getMostSignificantBits());
-        buffer.putLong(uuid.getLeastSignificantBits());
+		request.setInputStruct(input);
 
-        return new BigInteger(buffer.array());
-    }
+		final GetStudentsResultsResponse response = (GetStudentsResultsResponse) this.getWebServiceTemplate()
+				.marshalSendAndReceive(url, request, new SoapActionCallback(url));
+		return response;
+	}
 
-    /***
-     *
-     * @param url
-     * @param cpr
-     * @return ELMO XML as String
-     * @throws IOException
-     * @throws SoapFaultClientException
-     */
-    private String getStudentsResults(String url, String cpr) throws IOException, WebServiceException {
-        final BigInteger requestId = uuidToBigInteger(UUID.randomUUID());
+	/***
+	 *
+	 * @param url
+	 * @param cpr
+	 * @return ELMO XML as String
+	 * @throws IOException
+	 * @throws SoapFaultClientException
+	 */
+	private String getStudentsResults(@NotNull String url, @NotNull String cpr) throws IOException, WebServiceException {
+		GetStudentsResultsResponse response = getStudentResult(url, cpr);
 
-        final GetStudentsResults request = new GetStudentsResults();
+		final GetStudentsResultsOutput.ReceiptStructure receipt = response.getReturn().getReceiptStructure();
 
-        final GetStudentsResultInput input = new GetStudentsResultInput();
-        input.setCPR(formatCprToStads(cpr));
-        input.setRequestId(requestId);
+		switch (receipt.getReceiptCode()) {
+		case 0:
+			// Get ELMO document as XML string
+			dk.uds.emrex.stads.wsdl.Elmo stadsElmo = response.getReturn().getElmoDocument();
 
-        request.setInputStruct(input);
+			// String elmoString = marshall(stadsElmo);
+			String elmoString = marshall(StadsToElmoConverter.toElmo(stadsElmo));
+			log.debug("Returning ELMO string:\n{}", elmoString);
+			return elmoString;
+		default:
+			throw new IOException(
+					String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));
+		}
+	}
 
-        final GetStudentsResultsResponse response = (GetStudentsResultsResponse) this.getWebServiceTemplate()
-                .marshalSendAndReceive(
-                        url,
-                        request,
-                        new SoapActionCallback(url)
-                );
+	private String marshall(@NotNull https.github_com.emrex_eu.elmo_schemas.tree.v1.Elmo elmo) {
+		final StringWriter xmlWriter = new StringWriter();
+		final StreamResult marshalResult = new StreamResult(xmlWriter);
+		try {
+			Jaxb2Marshaller elmoMarshaller = new Jaxb2Marshaller();
 
-        final GetStudentsResultsOutput.ReceiptStructure receipt = response.getReturn().getReceiptStructure();
+			elmoMarshaller.setContextPath("https.github_com.emrex_eu.elmo_schemas.tree.v1");
 
-        switch (receipt.getReceiptCode()) {
-            case 0:
-                // Get ELMO document as XML string
-                final StringWriter xmlWriter = new StringWriter();
-                final StreamResult marshalResult = new StreamResult(xmlWriter);
-                final Elmo elmoDocument = response.getReturn().getElmoDocument();
+			elmoMarshaller.marshal(elmo, marshalResult);
+		} catch (XmlMappingException e) {
+			log.error("Error marshalling : " + elmo, e);
+		}
+		String xml = xmlWriter.toString();
+		log.debug("Marshalled to : ", xml);
+		return xml;
+	}
 
-                final JAXBElement<Elmo> elmoJAXBElement = new JAXBElement<>(new QName("elmo"), Elmo.class, elmoDocument);
+	private String marshall(@NotNull GetStudentsResultsResponse response) {
+		final StringWriter xmlWriter = new StringWriter();
+		final StreamResult marshalResult = new StreamResult(xmlWriter);
+		try {
+			this.getMarshaller().marshal(response, marshalResult);
+		} catch (XmlMappingException e) {
+			log.error("Error marshalling : " + response, e);
+		} catch (IOException e) {
+			log.error("Error marshalling : " + response, e);
+		}
+		String xml = xmlWriter.toString();
+		log.debug("Marshalled to : ", xml);
+		return xml;
+	}
 
-                this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
+	private String marshall(@NotNull dk.uds.emrex.stads.wsdl.Elmo elmo) {
+		final StringWriter xmlWriter = new StringWriter();
+		final StreamResult marshalResult = new StreamResult(xmlWriter);
+		final JAXBElement<dk.uds.emrex.stads.wsdl.Elmo> elmoJAXBElement = new JAXBElement<dk.uds.emrex.stads.wsdl.Elmo>(
+				new QName("elmo"), dk.uds.emrex.stads.wsdl.Elmo.class, elmo);
+		try {
+			this.getMarshaller().marshal(elmoJAXBElement, marshalResult);
+		} catch (XmlMappingException e) {
+			log.error("Error marshalling : " + elmo, e);
+		} catch (IOException e) {
+			log.error("Error marshalling : " + elmo, e);
+		}
+		String xml = xmlWriter.toString();
+		log.debug("Marshalled to : ", xml);
+		return xml;
+	}
 
-                final String elmoString = xmlWriter.toString();
-                log.debug("Returning ELMO string:\n{}", elmoString);
-                return elmoString;
-            default:
-                throw new IOException(String.format("STADS error: %s - %s", receipt.getReceiptCode(), receipt.getReceiptText()));
-        }
-    }
-
-    private static String formatCprToStads(@NotNull String cpr) {
-        if (cpr.length() == 10) {
-            return cpr.substring(0, 6) + "-" + cpr.substring(6);
-        } else if (cpr.length() == 11) {
-            return cpr;
-        } else {
-            throw new IllegalArgumentException("cpr must be either length 10 or 11");
-        }
-    }
+	private static String formatCprToStads(@NotNull String cpr) {
+		if (cpr.length() == 10) {
+			return cpr.substring(0, 6) + "-" + cpr.substring(6);
+		} else if (cpr.length() == 11) {
+			return cpr;
+		} else {
+			throw new IllegalArgumentException("cpr must be either length 10 or 11");
+		}
+	}
 }

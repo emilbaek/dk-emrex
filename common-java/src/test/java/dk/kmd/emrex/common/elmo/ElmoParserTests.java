@@ -33,19 +33,16 @@ public class ElmoParserTests extends TestCase {
     @Test
     public void testRemoveCourses() throws Exception {
         String elmo = TestUtil.getFileContent(testXML);
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
-        List<String> courses = new ArrayList<String>();
-        courses.add("0");
-        courses.add("1");
-        courses.add("2");
-        String readyElmo = parser.getCourseData(courses);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
+        String[] courses = {"0","1","2"}; 
+        String readyElmo = parser.asXml(courses);
         checkEmptyHasPartNodes(readyElmo);
     }
 
     @Test
     public void testCoursesCount() throws Exception {
         String elmo = TestUtil.getFileContent(testXML);
-        ElmoParser parser =  ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser =  ElmoParser.elmoParser(elmo);
         ElmoParser parser2 =  ElmoParser.elmoParser(elmo);
 //        assertEquals(17, parser.getCoursesCount());
         assertEquals(parser2.getCoursesCount(), parser.getCoursesCount());
@@ -55,27 +52,27 @@ public class ElmoParserTests extends TestCase {
     @Test
     public void testGetHostInstitution() throws Exception {
         String elmo = TestUtil.getFileContent(testXML);
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
         String host = parser.getHostInstitution();
         assertEquals("umu.se", host);
     }
         @Test
     public void testGetHostCountry() throws Exception {
         String elmo = TestUtil.getFileContent(testXML);
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
         String host = parser.getHostCountry();
         assertEquals("SE", host);
     }
 
     @Test
     public void testCountECTS() throws Exception {
-        runETCSTest(testXML, 327);
+        runETCSTest(testXML, 360);
        // runETCSTest("Example-elmo-Norway.xml", 512); // some crazy learner here
     }
 
     private void runETCSTest(String elmoName, int value) throws Exception {
         String elmo = TestUtil.getFileContent(elmoName);
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
         int count = parser.getETCSCount();
         assertEquals(value, count);
         ElmoParser parser2 = ElmoParser.elmoParser(elmo);
@@ -88,7 +85,7 @@ public class ElmoParserTests extends TestCase {
         String elmo = TestUtil.getFileContent(testXML);
         File pdfFile = TestUtil.getFile("elmo-finland.pdf");
         byte[] pdf = IOUtils.toByteArray(new FileInputStream(pdfFile));
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
         parser.addPDFAttachment(pdf);
         byte[] readPdf = parser.getAttachedPDF();
         assertArrayEquals(pdf, readPdf);
@@ -100,7 +97,7 @@ public class ElmoParserTests extends TestCase {
         String elmo = TestUtil.getFileContent(testXML);
         File pdfFile = TestUtil.getFile("elmo-finland.pdf");
         byte[] pdf = IOUtils.toByteArray(new FileInputStream(pdfFile));
-        ElmoParser parser = ElmoParser.elmoParserFromVirta(elmo);
+        ElmoParser parser = ElmoParser.elmoParser(elmo);
         parser.addPDFAttachment(pdf);
         parser.addPDFAttachment(pdf);
         // next line throws an exception if there are several pdfs
