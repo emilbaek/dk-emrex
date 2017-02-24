@@ -199,6 +199,31 @@ public class ElmoParser {
 	}
 
 	/**
+	 * Count ECTS points for Elmo report.
+	 * 
+	 * Wunder why getETCSCount() build to return integer whe ETCS is fraction walues?
+	 * 
+	 * @since EMREX-17
+	 */
+	public float getETCSCountAsFloat() {
+		BigDecimal etcsCount = BigDecimal.ZERO;
+		List<Report> reports = this.elmo.getReport();
+		for (Report report : reports) {
+			List<LearningOpportunitySpecification> learningOpportunitySpecifications = report
+					.getLearningOpportunitySpecification();
+			for (LearningOpportunitySpecification learningOpportunitySpecification : learningOpportunitySpecifications) {
+				Specifies specifies = learningOpportunitySpecification.getSpecifies();
+				List<Credit> credits = specifies.getLearningOpportunityInstance().getCredit();
+				for (Credit credit : credits) {
+					if ("ECTS".equalsIgnoreCase(credit.getScheme())) {
+						etcsCount = etcsCount.add(credit.getValue());
+					}
+				}
+			}
+		}
+		return etcsCount.floatValue();
+	}
+	/**
 	 * Get number of courses from Elmo report
 	 * 
 	 * @return number of courses from Elmo report
@@ -211,7 +236,7 @@ public class ElmoParser {
 			List<LearningOpportunitySpecification> learningOpportunitySpecifications = report
 					.getLearningOpportunitySpecification();
 			for (LearningOpportunitySpecification learningOpportunitySpecification : learningOpportunitySpecifications) {
-				if ("module".equals(learningOpportunitySpecification.getType())) {
+				if ("Course".equals(learningOpportunitySpecification.getType())) {
 					coursesCount += 1;
 				}
 			}
