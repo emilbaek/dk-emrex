@@ -44,3 +44,6 @@ For testing against prod the following command can be used:
 For testing against the test environment use the following command
 
 > java -jar -Dspring.profiles.active=test &lt;file_name&gt;.war
+
+### Url
+https://localhost:8080/smp
