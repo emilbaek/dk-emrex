@@ -16,7 +16,7 @@ which is read from the classpath of the application.
 An example of the application.properties file: 
 
 - server.port = 8080
-- environment.url = http://dans-emrexws.kmd.dk
+- environment.url = https://dans-emrexws.kmd.dk
 - environment.port = 8000
 - return.url = http://localhost
 

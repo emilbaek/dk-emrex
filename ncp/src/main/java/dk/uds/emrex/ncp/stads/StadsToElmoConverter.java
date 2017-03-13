@@ -146,7 +146,7 @@ public class StadsToElmoConverter {
 			dk.uds.emrex.stads.wsdl.LearningOpportunitySpecification.Specifies.LearningOpportunityInstance.Credit stadsCredit) {
 		Credit credit = new Credit();
 
-		credit.setLevel(stadsCredit.getLevel());
+//		credit.setLevel(stadsCredit.getLevel());
 		credit.setScheme(stadsCredit.getScheme());
 		credit.setValue(stadsCredit.getValue());
 
