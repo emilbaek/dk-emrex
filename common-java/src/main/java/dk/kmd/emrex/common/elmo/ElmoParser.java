@@ -123,28 +123,29 @@ public class ElmoParser {
 	 * @param courses
 	 */
 	private void selectCourses(Elmo elmo, List<String> courses) {
-		if ((courses != null)  && (courses.size() > 0)) {
-	    List<Elmo.Report> reports = elmo.getReport();
-	    log.debug("reports: " + reports.size());
-	    for (Elmo.Report report : reports) {
-	        ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
-	        List<LearningOpportunitySpecification> tempList = report.getLearningOpportunitySpecification();
-	        for (LearningOpportunitySpecification los : tempList) {
-	            getAllLearningOpportunities(los, losList);
-	        }
+		if (courses != null) {
+			List<Elmo.Report> reports = elmo.getReport();
+			log.debug("reports: " + reports.size());
+			for (Elmo.Report report : reports) {
+				ArrayList<LearningOpportunitySpecification> losList = new ArrayList<LearningOpportunitySpecification>();
+				List<LearningOpportunitySpecification> tempList = report.getLearningOpportunitySpecification();
+				for (LearningOpportunitySpecification los : tempList) {
+					getAllLearningOpportunities(los, losList);
+				}
 
-	        //log.debug("templist size: " + tempList.size() + "; losList size: " + losList.size());
-	        tempList.clear();
-	        //log.debug("templist cleared: " + tempList.size());
-	        for (LearningOpportunitySpecification spec : losList) {
-	            List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
-	            for (LearningOpportunitySpecification.Identifier id : identifiers) {
-	                if(courses.contains(id.getValue())) {
-	                    tempList.add(spec);
-	                }
-	            }
-	        }
-	    }
+				// log.debug("templist size: " + tempList.size() + "; losList
+				// size: " + losList.size());
+				tempList.clear();
+				// log.debug("templist cleared: " + tempList.size());
+				for (LearningOpportunitySpecification spec : losList) {
+					List<LearningOpportunitySpecification.Identifier> identifiers = spec.getIdentifier();
+					for (LearningOpportunitySpecification.Identifier id : identifiers) {
+						if (courses.contains(id.getValue())) {
+							tempList.add(spec);
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -215,7 +216,7 @@ public class ElmoParser {
 				Specifies specifies = learningOpportunitySpecification.getSpecifies();
 				List<Credit> credits = specifies.getLearningOpportunityInstance().getCredit();
 				for (Credit credit : credits) {
-					if ("ECTS".equalsIgnoreCase(credit.getScheme())) {
+					if ("ECTS".equalsIgnoreCase(credit.getScheme()) && credit!=null) {
 						etcsCount = etcsCount.add(credit.getValue());
 					}
 				}
@@ -307,6 +308,9 @@ public class ElmoParser {
 			
 			m.marshal(elmo, out);
 			xml = out.toString();
+			
+			// EMREX-25 - revoving extra traling zeros from ECTS value (I know this misarable - but with my lack of jaxb knowlage - this the only way I could fix this)
+			xml = xml.replaceAll("0*</value>","</value>").replaceAll("\\.</value>", ".0</value>");
 		} catch (JAXBException e) {
 			log.error("Error marshalling Elmo", e);
 		}
