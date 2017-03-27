@@ -1,5 +1,6 @@
 package dk.uds.emrex.ncp.stads;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,9 +146,14 @@ public class StadsToElmoConverter {
 	private static Credit asElmo(
 			dk.uds.emrex.stads.wsdl.LearningOpportunitySpecification.Specifies.LearningOpportunityInstance.Credit stadsCredit) {
 		Credit credit = new Credit();
+		String scheme = stadsCredit.getScheme();
 
+		// EMREX-22 STADS return ECTS but elmo expect ects!
+		if ("ECTS".equals(scheme)) 
+			scheme = "ects";
+	
 //		credit.setLevel(stadsCredit.getLevel());
-		credit.setScheme(stadsCredit.getScheme());
+		credit.setScheme(scheme);
 		credit.setValue(stadsCredit.getValue());
 
 		return credit;
