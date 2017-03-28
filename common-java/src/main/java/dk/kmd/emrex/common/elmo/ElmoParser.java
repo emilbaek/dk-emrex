@@ -123,7 +123,7 @@ public class ElmoParser {
 	 * @param courses
 	 */
 	private void selectCourses(Elmo elmo, List<String> courses) {
-		if (courses != null) {
+		if (courses != null && courses.size() > 0) { 
 			List<Elmo.Report> reports = elmo.getReport();
 			log.debug("reports: " + reports.size());
 			for (Elmo.Report report : reports) {
