@@ -104,11 +104,39 @@ public class ElmoParser {
 		return xml;
 	}
 
+	/*
+	 * Get all learning opputinitys.
+	 * @since EMREX-23
+	 */
+	public String asXml() throws ParserConfigurationException {
+		String copyElmoString = getStringFromDoc(elmo);
+		Elmo copyElmo = asElmo(copyElmoString).get();
+		String xml = getStringFromDoc(copyElmo);
+		return xml;
+	}
+
 	public String asJson(String... courses) {
 		String jsonString = null;
 		try {
 			Elmo elmoCopy = asElmo(this.asXml()).get();
 			selectCourses(elmoCopy, Arrays.asList(courses));
+			jsonString = "{ \"elmo\" : " + asJson(elmoCopy) + " }";
+			log.debug(jsonString);
+		} catch (ParserConfigurationException e) {
+			log.error("Error marshalling Elmo", e);
+		}
+		return jsonString;
+	}
+	
+	/*
+	 * Get all learning opputinitys.
+	 * @since EMREX-23
+	 */
+	public String asJson() {
+		String jsonString = null;
+		try {
+			Elmo elmoCopy = asElmo(this.asXml()).get();
+		//	selectCourses(elmoCopy, Arrays.asList(courses));
 			jsonString = "{ \"elmo\" : " + asJson(elmoCopy) + " }";
 			log.debug(jsonString);
 		} catch (ParserConfigurationException e) {
@@ -123,7 +151,7 @@ public class ElmoParser {
 	 * @param courses
 	 */
 	private void selectCourses(Elmo elmo, List<String> courses) {
-		if (courses != null && courses.size() > 0) { 
+		if (courses != null) { 
 			List<Elmo.Report> reports = elmo.getReport();
 			log.debug("reports: " + reports.size());
 			for (Elmo.Report report : reports) {

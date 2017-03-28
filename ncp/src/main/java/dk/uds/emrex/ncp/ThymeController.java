@@ -63,12 +63,14 @@ public class ThymeController {
     @RequestMapping(value = "/ncp/review", method = RequestMethod.GET)
     public String ncpReview(@RequestParam(value = "courses", required = false) String[] courses,
             Model model) throws Exception {
+    	log.info("(ncp/review");
         return this.review(courses, model);
     }
 
     @RequestMapping(value = "/review", method = RequestMethod.GET)
     public String review(@RequestParam(value = "courses", required = false) String[] courses,
             Model model) throws Exception {
+    	log.info("/review");
         final WayfUser wayfUser = this.getCurrentUser();
 
         model.addAttribute("sessionId", context.getSession().getAttribute("sessionId"));
@@ -102,13 +104,13 @@ public class ThymeController {
         //StatisticalLogger.log(statisticalLogLine);
 
         xmlString = dataSign.sign(xmlString.trim(), StandardCharsets.UTF_8);
-        if (courses != null) {
+        //if (courses != null) {
             model.addAttribute("returnCode", context.getSession().getAttribute("returnCode"));
             model.addAttribute("elmo", xmlString);
-        } else {
-            model.addAttribute("returnCode", "NCP_NO_RESULTS");
-            model.addAttribute("elmo", null);
-        }
+        //} else {
+        //    model.addAttribute("returnCode", "NCP_NO_RESULTS");
+        //    model.addAttribute("elmo", null);
+        //}
         model.addAttribute("buttonText", "Confirm selected results");
 
         model.addAttribute("buttonClass", "btn btn-success");
@@ -121,17 +123,19 @@ public class ThymeController {
     }
 
     private String getElmoXml(@RequestParam(value = "courses", required = false) String[] courses, ElmoParser parser) throws ParserConfigurationException {
-        String xmlString = courses==null ? parser.asXml() : parser.asXml(courses);
+        String xmlString = courses==null ? parser.asXml(new String[] {}) : parser.asXml(courses);
         return xmlString;
     }
 
     @RequestMapping(value = "/ncp/abort", method = RequestMethod.GET)
     public String smpabort(Model model) {
+    	log.info("/ncp/abort");
         return abort(model);
     }
 
     @RequestMapping(value = "/abort", method = RequestMethod.GET)
     public String abort(Model model) {
+    	log.info("/abort");
         // same submit button with ame url and color is used, but without Elmo
         model.addAttribute("sessionId", context.getSession().getAttribute("sessionId"));
         model.addAttribute("returnUrl", context.getSession().getAttribute("returnUrl"));
@@ -143,11 +147,13 @@ public class ThymeController {
 
     @RequestMapping(value = "/")
     public String ncp1(@ModelAttribute CustomRequest customRequest, HttpServletRequest request, Model model) {
+    	log.info("/");
         return this.greeting(customRequest, request, model);
     }
 
     @RequestMapping(value = "/ncp/")
     public String greeting(@ModelAttribute CustomRequest customRequest, HttpServletRequest request, Model model) {
+    	log.info("/ncp");
         final WayfUser wayfUser = this.getCurrentUser();
 
         log.info("/ncp/");

@@ -1,6 +1,5 @@
 package dk.uds.emrex.ncp.stads;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
