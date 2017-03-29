@@ -204,6 +204,7 @@ public class PdfGen {
     /**
      * Strip time from String with data.
      * @since EMRIX-10
+     * @author z6cxh
      */
     private String trimDate(String d){
     	if (d!=null && d.length() > 10)

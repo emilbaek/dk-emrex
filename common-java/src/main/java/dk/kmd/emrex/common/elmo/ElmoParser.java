@@ -7,7 +7,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.JAXBContext;
@@ -33,6 +35,8 @@ import https.github_com.emrex_eu.elmo_schemas.tree.v1.TokenWithOptionalLang;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 @Slf4j
 public class ElmoParser {
 
@@ -107,6 +111,7 @@ public class ElmoParser {
 	/*
 	 * Get all learning opputinitys.
 	 * @since EMREX-23
+	 * @author z6cxh
 	 */
 	public String asXml() throws ParserConfigurationException {
 		String copyElmoString = getStringFromDoc(elmo);
@@ -131,6 +136,7 @@ public class ElmoParser {
 	/*
 	 * Get all learning opputinitys.
 	 * @since EMREX-23
+	 * @author z6cxh
 	 */
 	public String asJson() {
 		String jsonString = null;
@@ -233,6 +239,7 @@ public class ElmoParser {
 	 * Wunder why getETCSCount() build to return integer whe ETCS is fraction walues?
 	 * 
 	 * @since EMREX-17
+	 * @author z6cxh
 	 */
 	public float getETCSCountAsFloat() {
 		BigDecimal etcsCount = BigDecimal.ZERO;
@@ -337,13 +344,13 @@ public class ElmoParser {
 			m.marshal(elmo, out);
 			xml = out.toString();
 			
-			// EMREX-25 - revoving extra traling zeros from ECTS value (I know this misarable - but with my lack of jaxb knowlage - this the only way I could fix this)
-			xml = xml.replaceAll("0*</value>","</value>").replaceAll("\\.</value>", ".0</value>");
+			xml = ElmoParser.giveEctsValueTwoDecimal(xml);
 		} catch (JAXBException e) {
 			log.error("Error marshalling Elmo", e);
 		}
 		return xml;
 	}
+	
 	
 	public static class ElmoAsDefaultNamespaceMapper extends NamespacePrefixMapper {
 
@@ -385,4 +392,28 @@ public class ElmoParser {
 
 		return hostInstitution;
 	}
+	
+	/**
+	 * Make ECTS value have excatly 2 decimal (I know this misarable - but with my lack of jaxb knowlage - this the only way I could fix this)
+	 * @since EMREX-25
+	 * @author z6cxh
+	 */
+	public static String giveEctsValueTwoDecimal(String s) {
+		List<String[]> toChange = new ArrayList<String[]>();
+
+		Pattern pattern = Pattern.compile("<value>\\d*.\\d*</value>");
+		Matcher matcher = pattern.matcher(s);
+		while (matcher.find()) {
+			String[] n = new String[] { s.substring(matcher.start(), matcher.end()),
+					s.substring(matcher.start() + 7, matcher.end() - 8) };
+			toChange.add(n);
+		}
+		for (String[] ns : toChange) {
+			double d = Double.parseDouble(ns[1]);
+			s = s.replaceAll(ns[0], String.format(Locale.ROOT, "<value>%.2f</value>", d));
+		}
+
+		return s;
+	}
+	
 }

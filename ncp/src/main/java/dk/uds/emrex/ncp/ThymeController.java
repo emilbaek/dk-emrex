@@ -285,6 +285,7 @@ public class ThymeController {
 	 * https://confluence.csc.fi/display/EMREX/Implementation+details:+NCP
 	 * 
 	 * @since EMREX-17
+	 * @author z6cxh
 	 */
 	private String getLogLineStr(ElmoParser parser, ElmoParser finalParser, boolean success) throws Exception {
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
