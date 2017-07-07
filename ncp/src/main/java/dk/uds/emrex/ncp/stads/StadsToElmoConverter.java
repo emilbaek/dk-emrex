@@ -44,7 +44,8 @@ public class StadsToElmoConverter {
 			Issuer issuer = new Elmo.Report.Issuer(); 
 			issuer.setCountry(CountryCode.DK);
 			Identifier identifier = new Elmo.Report.Issuer.Identifier();
-			identifier.setType("local");
+			//identifier.setType("local");
+			identifier.setType("erasmus");
 			identifier.setValue(stadsReport.getIssuer().getIdentifier());
 			issuer.getIdentifier().add(identifier);
 			
